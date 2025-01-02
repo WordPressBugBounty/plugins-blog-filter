@@ -3,8 +3,8 @@ Contributors: awordpresslife, razipathhan, hanif0991, muhammadshahid, fkfaisalkh
 Donate link: https://paypal.me/awplife
 Tags: blog grid, post layout, blog layout, blog template, blog design
 Requires at least: 3.0
-Tested up to: 6.6.1
-Stable tag: 1.5.9
+Tested up to: 6.7.1
+Stable tag: 1.6.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -221,6 +221,10 @@ The following are other recommended plugins by the author:
 * [Facebook Like Box Plugin](https://wordpress.org/plugins/facebook-likebox-widget-and-shortcode/ "Facebook Likebox Plugin") - Facebook Light Box Plugin For WordPress 
 
 == Changelog ==
+
+= 1.6.0 =
+* Tested on WordPress 6.7.1
+* Regular plugin check and update.
 
 = 1.5.9 =
 * Tested on WordPress 6.6.1
