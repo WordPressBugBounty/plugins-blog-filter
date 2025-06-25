@@ -5,7 +5,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<div class="blog_filter_main" >
 		<?php
 		
-		// $no_of_page = get_query_var( 'paged' ) ? get_query_var( 'paged' ) : 1;
+		// If pagination is OFF and someone is on page >1, force a 404:
+		if ( $blog_pagination === 'no' && get_query_var('paged') > 1 ) {
+			global $wp_query;
+			// Tell WP this is a 404
+			$wp_query->set_404();
+			status_header( 404 );
+			nocache_headers();
+			// Load your theme’s 404 template and bail out
+			include( get_query_template( '404' ) );
+			exit;
+		}
+		
 		// pagination work with front page.
 		if ( is_front_page() ) {
 			$no_of_page = ( get_query_var( 'page' ) ) ? get_query_var( 'page' ) : 1;
@@ -19,6 +30,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 				'cat'            => $selected_categories,
 				'posts_per_page' => $blog_per_page,
 				'paged'          => $no_of_page,
+				// skip the expensive count query when you’re loading ALL posts
+				'no_found_rows'  => ( $blog_pagination === 'no' ),
 			);
 		} elseif ( $blog_filtering == 'blog_tag' ) {
 			$new_selected_tags       = explode( ',', $selected_tags );
@@ -26,6 +39,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 				'tag__in'        => $new_selected_tags,
 				'posts_per_page' => $blog_per_page,
 				'paged'          => $no_of_page,
+				// skip the expensive count query when you’re loading ALL posts
+				'no_found_rows'  => ( $blog_pagination === 'no' ),
 			);
 		}
 		

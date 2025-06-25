@@ -183,11 +183,12 @@ function awl_blog_filter_shortcode( $atts ) {
 		$custom_css = '';
 	}
 
-	if ( $blog_pagination == 'no' ) {
-		$blog_per_page = 99999;
-	} else {
-		$blog_per_page = 12;
-	}
+	if ( $blog_pagination === 'no' ) {
+        // -1 tells WP_Query “give me ALL posts in one go”
+        $blog_per_page = -1;
+    } else {
+        $blog_per_page = 12;
+    }
 
 	// color dark code
 	list($r, $g, $b) = sscanf( $blog_desc_box_color, '#%02x%02x%02x' );

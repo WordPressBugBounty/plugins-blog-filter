@@ -5,7 +5,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
 Plugin Name: Blog Filter
 Description: Blog / Post Filter and Blog / Post Gird layout Plugin For WordPress.
-Version: 1.6.2
+Version: 1.6.5
 Author: A WP Life
 Author URI: http://awplife.com/
 Text Domain: blog-filter
@@ -35,13 +35,13 @@ if ( ! class_exists( 'Awl_Blog_Filter' ) ) {
 
 		protected function _constants() {
 			// Plugin Version.
-			define( 'BF_PLUGIN_VER', '1.6.2' );
+			define( 'BF_PLUGIN_VER', '1.6.5' );
 
 			// Plugin Text Domain.
 			define( 'BF_TXTDM', 'blog-filter' );
 
 			// Plugin Name.
-			define( 'BF_PLUGIN_NAME', __( 'Blog Filter Premium', 'blog-filter' ) );
+			define( 'BF_PLUGIN_NAME', 'Blog Filter Premium' );
 
 			// Plugin Slug.
 			define( 'BF_PLUGIN_SLUG', 'awl_blog_filter' );

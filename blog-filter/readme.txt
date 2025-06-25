@@ -2,9 +2,9 @@
 Contributors: awordpresslife, razipathhan, hanif0991, muhammadshahid, fkfaisalkhan007, sharikkhan007, zishlife, FARAZFRANK
 Donate link: https://paypal.me/awplife
 Tags: blog grid, post layout, blog layout, blog template, blog design
-Requires at least: 3.0
-Tested up to: 6.8
-Stable tag: 1.6.2
+Requires at least: 5.0
+Tested up to: 6.8.1
+Stable tag: 1.6.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -223,6 +223,16 @@ The following are other recommended plugins by the author:
 
 == Changelog ==
 
+= 1.6.5 =
+* Paging issue fixed.
+
+= 1.6.4 =
+* Text Domain error fixed.
+
+= 1.6.3 =
+* Tested on WordPress 6.8.1
+* Fixed the extra page URLs generating when the pagination is disabled.
+
 = 1.6.2 =
 * Tested on WordPress 6.8
 * Regular plugin check and update.
@@ -233,246 +243,6 @@ The following are other recommended plugins by the author:
 = 1.6.0 =
 * Tested on WordPress 6.7.1
 * Regular plugin check and update.
-
-= 1.5.9 =
-* Tested on WordPress 6.6.1
-* Regular plugin check and update.
-
-= 1.5.8 =
-* Tested on WordPress 6.5.4
-* Regular plugin check and update.
-
-= 1.5.7 =
-* Tested on WordPress 6.4.2
-* Regular plugin check and update.
-
-= 1.5.6 =
-* Tested on WordPress 6.4.1
-* Translation files added for 15 different languages.
-
-= 1.5.5 =
-* Fixed grid Image issue fixed.
-
-= 1.5.4 =
-* fix Vulnerability issue with adding escaping functions.
-
-= 1.5.3 =
-* Comment section issue solved.
-
-= 1.5.2 =
-* Tested on WordPress 6.3.1
-
-= 1.5.1 =
-* Added Some new settings option
-* 1. Large Desktop Column option Added
-* 2. Title Font Size Option Added  
-* 3. Description Text Color option Added  
-* 4. Description Box Color option Added  
-* 5. Description Font Size option Added  
-* 6. Show Post Author option Added  
-* 7. Show Post Categories option Added  
-* 8. Link On Date option Added  
-* 9. Show Post Count On Filters option Added  
-* 10. Blog Search Field option Added  
-* 11. Text For Search option Added  
-
-= 1.5 =
-* Same size grid option added.
-* Tested on WordPress 6.3
-
-= 1.4.6 =
-* Tested on WordPress 6.2.2
-
-= 1.4.5 =
-* Tested on WordPress 6.2.1
-
-= 1.4.4 =
-* Tested on WordPress 6.1.1
-* CSS fixed.
-
-= 1.4.3 =
-* Tested on WordPress 6.0.3
-* Fixed little codding bugs
-
-= 1.4.2 =
-* Security issues fixed.
-
-= 1.4.1 =
-* Tested on WordPress 6.0.1
-
-= 1.4.0 =
-* Tested on WordPress 6.0
-* Added js for fresh load images.
-
-= 1.3.9 =
-* Tested on WordPress 5.9.2
-* Bug Fixed
-
-= 1.3.8 =
-* Tested on WordPress 5.9
-
-= 1.3.7 =
-* Tested on WordPress 5.8.2
-
-= 1.3.6 =
-* Security issues fixed.
-
-= 1.3.5 =
-* Tested on WordPress 5.8.1
-
-= 1.3.4 =
-* Added exclude WordPress lazy load function.
-* Tested on WordPress 5.8
-
-= 1.3.3 =
-* Enhances security.
-
-= 1.3.2 =
-* Tested with WordPress version 5.7
-
-= 1.3.1 =
-* Tested with WordPress version 5.6
-* Updated filtering functions.
-
-= 1.3.0 =
-* Tested with WordPress version 5.5.3
-
-= 1.2.9 =
-* Tested with WordPress version 5.5
-* Minor bugs Fixed.
-
-= 1.2.8 =
-* Tested with WordPress version 5.4.2
-* Focus Issue Fixed.
-
-= 1.2.7 =
-* Added template direction option for RTL sites.
-
-= 1.2.6 =
-* Bug fix for pagination.
-* Added option for changing "All" text.
-
-= 1.2.5 =
-* Added without pagination full posts
-* Added function for alt and title tag.
-
-= 1.2.4 =
-* Column CSS fixed
-* Anchor CSS fixed
-
-= 1.2.3 =
-* CSS Bug fixed
-
-= 1.2.2 =
-* Removed filtrizer.php.
-* Added Jquery filterizr.js
-
-= 1.2.1 =
-* jQuery Error fixed, now it's compatible with default WordPress themes.
-* Pagination bug fixed for the front page.
-
-= 1.2.0 =
-* Tested with WordPress version 5.3.1
-* Added All button option for filters.
-* Added tag filtering
-* Added Image Quality option.
-
-= 1.0.10 =
-* Tested with WordPress version 5.3
-
-= 1.0.9 =
-* Tested with WordPress version 5.2.2
-* Bug Fixed
-
-= 1.0.8 =
-* Tested with WordPress version 5.2.2
-* Additional changes: Description word setting is now changed in the character setting,
-
-= 1.0.7 =
-* Tested with WordPress version 5.2.1
-* Text Domain bug fixed.
-
-= 1.0.6 =
-* Tested with WordPress version 5.2.1
-* Blurry bug fixed.
-
-= 1.0.4 =
-* Tested with WordPress version 5.2.1
-* Added settings link on the plugins page,
-
-= 1.0.4 =
-* Tested with WordPress version 5.2.1
-
-= 1.0.3 =
-* Tested with WordPress version 5.1.1
-* Bug Fixed.
-
-= 1.0.2 =
-* Tested with WordPress version 5.1.1
-* Bug Fixed
-
-= 1.0.1 =
-* Tested with WordPress version 5.0.3
-* Bug Fixed.
-
-= 1.0.0 =
-* Tested with WordPress version 5.0.3
-* Bug Fix: yes,
-* (1) Compatible with page builders.
-* (2) Date error fixed.
-
-= 0.0.10 =
-* Tested with WordPress version 5.0.1
-* Enhancements: None,
-* Bug Fix: yes.
-* Additional changes: None,
-
-= 0.0.9 =
-* CSS Issue fixed.
-* Link modified.
-
-= 0.0.8 =
-*1. Added shortcode update Post Links. 2. contact us link added.
-
-= 0.0.7 =
-* Tested with WordPress version 4.9.8 
-* Enhancements: None
-* Bug Fix: Yes, appear on top of the page bug fixed.
-* Additional changes: None,
-
-= 0.0.6 =
-* Enhancements: None
-* Bug Fix: Js Errors fixed.
-* Additional changes: Yes Hindi Language Added
-
-= 0.0.5 =
-* Enhancements: None
-* Bug Fix: Js Errors fixed.
-* Additional changes: None
-
-= 0.0.4 =
-* Tested with WordPress version 4.9.6 
-* Enhancements: Plugin activation redirect set to the plugin settings page
-* Bug Fix: None
-* Additional changes: None
-
-= 0.0.3 =
-* Tested with WordPress version 4.9.4 
-* Enhancements: None
-* Bug Fix: Full-width image Bugs Fixed
-* Additional changes: None
-
-= 0.0.2 =
-* Tested with WordPress version 4.9.4 
-* Enhancements: None
-* Bug Fix: Font Bugs Fixed
-* Additional changes: None
-
-= 0.0.1 =
-* Tested with WordPress version 4.9.4 
-* Enhancements: None
-* Bug Fix: None
-* Additional changes: None
 
 == Upgrade Notice ==
 This is an initial release. Start with version 0.1. and share your feedback <a href="https://wordpress.org/support/view/plugin-reviews/blog-filter//">here</a>.
