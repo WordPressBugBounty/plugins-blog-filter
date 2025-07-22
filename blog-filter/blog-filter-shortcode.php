@@ -1,368 +1,244 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly.
+/**
+ * Plugin Shortcode: [AWL-BlogFilter]
+ *
+ * This file contains the main shortcode function that renders the blog filter gallery.
+ */
+
+if (!defined('ABSPATH')) {
+    exit; // Exit if accessed directly
 }
-add_shortcode( 'AWL-BlogFilter', 'awl_blog_filter_shortcode' );
-function awl_blog_filter_shortcode( $atts ) {
-	ob_start();
-	// js.
-	wp_enqueue_script( 'jquery' );
-	wp_enqueue_script( 'imagesloaded' );
-	// wp_enqueue_script('awl-bf-bootstrap-js', plugin_dir_url( __FILE__ ).'js/bootstrap.3.5.min.js', array('jquery'), '' , true);
-	wp_enqueue_script( 'awl-bf-jquery-filterizr-js', plugin_dir_url( __FILE__ ) . 'js/jquery.filterizr.js', array( 'jquery' ), '', false );
-	wp_enqueue_script( 'awl-bf-controls-js', plugin_dir_url( __FILE__ ) . 'js/controls.js', array( 'jquery' ), '', false );
-	// css.
-	wp_enqueue_style( 'awl-bootstrap-css', plugin_dir_url( __FILE__ ) . 'css/bootstrap.css' );
-	wp_enqueue_style( 'awl-font-awesome-4-min-css', plugin_dir_url( __FILE__ ) . 'css/font-awesome-4.min.css' );
-	wp_enqueue_style( 'awl-filter-css', plugin_dir_url( __FILE__ ) . 'css/blog-filter-output.css' );
-	wp_enqueue_style( 'awl-hover-css', plugin_dir_url( __FILE__ ) . 'css/hover.css' );
 
-	if ( isset( $atts['blog_direction'] ) ) {
-		$blog_direction = $atts['blog_direction'];
-	} else {
-		$blog_direction = 'ltr';
-	}
-	if ( isset( $atts['blog_fixed_grid'] ) ) {
-		$blog_fixed_grid = $atts['blog_fixed_grid'];
-	} else {
-		$blog_fixed_grid = 'no';
-	}
-	if(isset($atts['blog_col_large_desktops'])) {
-		$blog_col_large_desktops = $atts['blog_col_large_desktops'];
-	} else {
-		$blog_col_large_desktops = "col-lg-4";
-	}
-	if ( isset( $atts['blog_image'] ) ) {
-		$blog_image = $atts['blog_image'];
-	} else {
-		$blog_image = 'no';
-	}
-	if ( isset( $atts['blog_image_quality'] ) ) {
-		$blog_image_quality = $atts['blog_image_quality'];
-	} else {
-		$blog_image_quality = 'large';
-	}
-	if ( isset( $atts['blog_image_hover_effect'] ) ) {
-		$blog_image_hover_effect = $atts['blog_image_hover_effect'];
-	} else {
-		$blog_image_hover_effect = 'none';
-	}
-	if ( isset( $atts['blog_title'] ) ) {
-		$blog_title = $atts['blog_title'];
-	} else {
-		$blog_title = 'no';
-	}
-	if ( isset( $atts['blog_title_color'] ) ) {
-		$blog_title_color = $atts['blog_title_color'];
-	} else {
-		$blog_title_color = '#000';
-	}
-	if(isset($atts['blog_title_font_size'])) {
-		$blog_title_font_size = $atts['blog_title_font_size']; 
-	} else {
-		$blog_title_font_size = 25;
-	}
-	if ( isset( $atts['blog_desc'] ) ) {
-		$blog_desc = $atts['blog_desc'];
-	} else {
-		$blog_desc = 'no';
-	}
-	if ( isset( $atts['blog_desc_words'] ) ) {
-		$blog_desc_words = $atts['blog_desc_words'];
-	} else {
-		$blog_desc_words = '100';
-	}
-	if(isset($atts['blog_desc_font_size'])) {
-		$blog_desc_font_size = $atts['blog_desc_font_size'];
-	} else {
-		$blog_desc_font_size = 12;
-	}
-	if(isset($atts['blog_desc_color'])) {
-		$blog_desc_color = $atts['blog_desc_color'];
-	} else { 
-		$blog_desc_color = "#606060";
-	}
-	if(isset($atts['blog_desc_box_color'])) {
-		$blog_desc_box_color = $atts['blog_desc_box_color'];
-	} else {
-		$blog_desc_box_color = "#EDEEF0";
-	}	
-	if ( isset( $atts['link_open_new_tab'] ) ) {
-		$link_open_new_tab = $atts['link_open_new_tab'];
-	} else {
-		$link_open_new_tab = '';
-	}
-	if ( isset( $atts['blog_read_more'] ) ) {
-		$blog_read_more = $atts['blog_read_more'];
-	} else {
-		$blog_read_more = 'no';
-	}
-	if ( isset( $atts['blog_read_more_text'] ) ) {
-		$blog_read_more_text = $atts['blog_read_more_text'];
-	} else {
-		$blog_read_more_text = 'Read More';
-	}
-	if(isset($atts['link_on_date'])) {
-		$link_on_date = $atts['link_on_date'];
-	} else {
-		$link_on_date = "no";
-	}
-	if ( isset( $atts['blog_date'] ) ) {
-		$blog_date = $atts['blog_date'];
-	} else {
-		$blog_date = 'no';
-	}
-	if ( isset( $atts['blog_author'] ) ) {
-		$blog_author = $atts['blog_author'];
-	} else {
-		$blog_author = 'no';
-	}
-	if ( isset( $atts['blog_categories'] ) ) {
-		$blog_categories = $atts['blog_categories'];
-	} else {
-		$blog_categories = 'no';
-	}
-	if ( isset( $atts['blog_pagination'] ) ) {
-		$blog_pagination = $atts['blog_pagination'];
-	} else {
-		$blog_pagination = 'no';
-	}
-	if ( isset( $atts['blog_filter_all'] ) ) {
-		$blog_filter_all = $atts['blog_filter_all'];
-	} else {
-		$blog_filter_all = 'no';
-	}
-	if ( isset( $atts['blog_all_text'] ) ) {
-		$blog_all_text = $atts['blog_all_text'];
-	} else {
-		$blog_all_text = 'All';
-	}
-	if(isset($atts['filter_post_count'])) {
-		$filter_post_count = $atts['filter_post_count'];
-	} else {
-		$filter_post_count = "no";
-	}
-	if(isset($atts['blog_search'])) {
-		$blog_search = $atts['blog_search'];
-	} else {
-		$blog_search = "no";
-	}
-	if(isset($atts['blog_search_text'])) {
-		$blog_search_text = $atts['blog_search_text'];
-	} else {
-		$blog_search_text = "Search";
-	}
-	if ( isset( $atts['blog_buttons_color'] ) ) {
-		$blog_buttons_color = $atts['blog_buttons_color'];
-	} else {
-		$blog_buttons_color = '#a4a6ac';
-	}
-	if ( isset( $atts['blog_filters'] ) ) {
-		$blog_filters = $atts['blog_filters'];
-	} else {
-		$blog_filters = 'no';
-	}
-	if ( isset( $atts['blog_filtering'] ) ) {
-		$blog_filtering = $atts['blog_filtering'];
-	} else {
-		$blog_filtering = 'blog_category';
-	}
-	if ( isset( $atts['selected_categories'] ) ) {
-		$selected_categories = $atts['selected_categories'];
-	} else {
-		$selected_categories = '';
-	}
-	if ( isset( $atts['selected_tags'] ) ) {
-		$selected_tags = $atts['selected_tags'];
-	} else {
-		$selected_tags = '';
-	}
-	if ( isset( $atts['custom-css'] ) ) {
-		$custom_css = $atts['custom-css'];
-	} else {
-		$custom_css = '';
-	}
+add_shortcode('AWL-BlogFilter', 'awl_blog_filter_shortcode');
 
-	if ( $blog_pagination === 'no' ) {
-        // -1 tells WP_Query “give me ALL posts in one go”
-        $blog_per_page = -1;
-    } else {
-        $blog_per_page = 12;
+/**
+ * Renders the blog filter gallery based on shortcode attributes.
+ *
+ * @param array $atts User-defined shortcode attributes.
+ * @return string HTML output for the gallery.
+ */
+function awl_blog_filter_shortcode($user_atts) 
+{
+
+    // 1. --- Enqueue Scripts and Styles ---
+    // This ensures all necessary assets are loaded for the gallery to function.
+    wp_enqueue_script('imagesloaded');
+    wp_enqueue_script('awl-bf-filterizr-js');
+    wp_enqueue_script('awl-bf-underscore-js');
+    wp_enqueue_style('awl-bf-font-awesome-4-min-css');
+    wp_enqueue_style('awl-bf-filter-output-css');
+    wp_enqueue_style('awl-bf-hover-css');
+    wp_enqueue_style('awl-bf-swipebox-css');
+    wp_enqueue_script('awl-bf-swipebox-js');
+    wp_enqueue_script('awl-bf-bootstrap-js');
+
+    // css
+    wp_enqueue_style('awl-bf-bootstrap-css');
+
+	// 2. --- Process Shortcode Attributes ---
+    $defaults = bfg_get_shortcode_defaults(); // Use the central defaults function
+    $atts = shortcode_atts($defaults, $user_atts, 'AWL-BlogFilter');
+    // --- START: BACKWARD COMPATIBILITY LAYER ---
+    // This ensures old shortcodes using `selected_categories` or `selected_tags` still work.
+    // If the new 'selected_terms' is empty, check if an old attribute has a value.
+    if (empty($atts['selected_terms'])) {
+        if (!empty($user_atts['selected_categories'])) {
+            // If the old 'selected_categories' exists, use its value for the new 'selected_terms'.
+            $atts['selected_terms'] = $user_atts['selected_categories'];
+        } elseif (!empty($user_atts['selected_tags'])) {
+            // If the old 'selected_tags' exists, use its value for the new 'selected_terms'.
+            $atts['selected_terms'] = $user_atts['selected_tags'];
+        }
+    } 
+	
+	if (empty($atts['exclude_terms']) || $atts['exclude_terms'] == 'all') {
+         if (!empty($user_atts['exclude_categories'])) {
+            $atts['exclude_terms'] = $user_atts['exclude_categories'];
+        } elseif (!empty($user_atts['exclude_tags'])) {
+            $atts['exclude_terms'] = $user_atts['exclude_tags'];
+        }
     }
+	
+	
+	if (empty($atts['blog_filtering']) || $atts['blog_filtering'] == 'blog_category') {
+         if (!empty($user_atts['blog_filtering'])) {
+            $atts['blog_filtering'] = 'category';
+        } 
+    }
+	if (empty($atts['blog_filtering']) || $atts['blog_filtering'] == 'blog_tag') {
+         if (!empty($user_atts['blog_filtering'])) {
+            $atts['blog_filtering'] = 'post_tag';
+        } 
+    }
+	
+	
+	 // Do the same for the default filter term.
+    if (empty($atts['default_filter_term']) || $atts['default_filter_term'] == 'all') {
+         if (!empty($user_atts['default_cat_filter'])) {
+            $atts['default_filter_term'] = $user_atts['default_cat_filter'];
+        } elseif (!empty($user_atts['default_tag_filter'])) {
+            $atts['default_filter_term'] = $user_atts['default_tag_filter'];
+        }
+    }
+	
+	if (isset($user_atts['default_filter_term'])) {
+		$default_filter = $atts['default_filter_term'];
+	} else {
+		$default_filter = "all";
 
-	// color dark code
-	list($r, $g, $b) = sscanf( $blog_desc_box_color, '#%02x%02x%02x' );
-	$r               = $r - 24;
-	$g               = $g - 22;
-	$b               = $b - 19; ?>
-	<style>
-	<?php
+	}
 	
-	echo esc_html( $custom_css );
-	?>
-	
-	<?php
-	if ( $blog_direction == 'rtl' ) {
-		?>
-		.blog_filter_main {
-			direction: rtl;
+    // --- END: BACKWARD COMPATIBILITY LAYER ---
+    // Now, extract all attributes into local variables.
+    extract($atts);
+
+    $unique_id = rand(1, 1000);
+
+    //color dark code
+    list($r, $g, $b) = sscanf($blog_desc_box_color, "#%02x%02x%02x");
+    $r = $r - 24;
+    $g = $g - 22;
+    $b = $b - 19;
+
+    // Start output buffering to capture all HTML.
+    ob_start();
+
+    // Include the dynamic CSS file.
+    require('blog-filter-output-css.php');
+    ?>
+    <div id="BlogFilterMain-<?php echo $unique_id; ?>" class="blog_filter_main" version="<?php echo BF_PLUGIN_VER; ?>"
+        data-post-type="<?php echo $post_type; ?>" data-initload="<?php echo $blog_on_load_scroll; ?>" data-scrollflage="1">
+        <?php
+        // 3. --- Prepare and Run The Main Query ---
+        $paged = (get_query_var('paged')) ? get_query_var('paged') : ((get_query_var('page')) ? get_query_var('page') : 1);
+        $posts_per_page = ($blog_pagination == 'no' && $blog_load_more == 'no' && $blog_load_onscroll == 'no') ? -1 : (int) $blog_per_page_and_init_load;
+		
+		// If pagination is OFF and someone is on page >1, force a 404:
+		if ( $blog_pagination === 'no' && get_query_var('paged') > 1 ) {
+			global $wp_query;
+			// Tell WP this is a 404
+			$wp_query->set_404();
+			status_header( 404 );
+			nocache_headers();
+			// Load your theme’s 404 template and bail out
+			include( get_query_template( '404' ) );
+			exit;
 		}
-		<?php
-	} ?>
-	/* Image to background */
-	<?php if($blog_fixed_grid == 'yes') { ?>
-	.fit-in-content {
-		display:block;
-		height: 250px;
-		background-repeat: no-repeat !important;
-		background-size: cover !important;
-		background-position: center !important;	
-	}	
-	<?php } ?>
-	#bf_gallery_1 .portfolio_thumbnail {
-		border-radius: 0;
-		display: block;
-		height: auto;
-		line-height: 1.42857;
-		width: 100%;
-		float: left;
-	}
+		
+		$custom_query_args = array(
+			'post_type'      => $post_type,
+			'post_status'    => 'publish',
+			'posts_per_page' => $posts_per_page,
+			'paged'          => $paged,
+			// Only compute pagination counts when needed
+			'no_found_rows'  => ( $blog_pagination === 'no' ),
+		);
 
-	/* thumb spacing */
-	#bf_gallery_1 .col-xs-1, #bf_gallery_1 .col-sm-1, #bf_gallery_1 .col-md-1, #bf_gallery_1 .col-lg-1, #bf_gallery_1 .col-xs-2, #bf_gallery_1 .col-sm-2, #bf_gallery_1 .col-md-2, #bf_gallery_1 .col-lg-2, 
-	 #bf_gallery_1 .col-xs-3, #bf_gallery_1 .col-sm-3, #bf_gallery_1 .col-md-3, #bf_gallery_1 .col-lg-3, #bf_gallery_1 .col-xs-4, #bf_gallery_1 .col-sm-4, #bf_gallery_1 .col-md-4, #bf_gallery_1 .col-lg-4, 
-	 #bf_gallery_1 .col-xs-5, #bf_gallery_1 .col-sm-5, #bf_gallery_1 .col-md-5, #bf_gallery_1 .col-lg-5, #bf_gallery_1 .col-xs-6, #bf_gallery_1 .col-sm-6, #bf_gallery_1 .col-md-6, #bf_gallery_1 .col-lg-6, 
-	 #bf_gallery_1 .col-xs-7, #bf_gallery_1 .col-sm-7, #bf_gallery_1 .col-md-7, #bf_gallery_1 .col-lg-7, #bf_gallery_1 .col-xs-8, #bf_gallery_1 .col-sm-8, #bf_gallery_1 .col-md-8, #bf_gallery_1 .col-lg-8, 
-	 #bf_gallery_1 .col-xs-9, #bf_gallery_1 .col-sm-9, #bf_gallery_1 .col-md-9, #bf_gallery_1 .col-lg-9, #bf_gallery_1 .col-xs-10, #bf_gallery_1 .col-sm-10, #bf_gallery_1 .col-md-10, #bf_gallery_1 .col-lg-10, 
-	 #bf_gallery_1 .col-xs-11, #bf_gallery_1 .col-sm-11, #bf_gallery_1 .col-md-11, #bf_gallery_1 .col-lg-11, #bf_gallery_1 .col-xs-12, #bf_gallery_1 .col-sm-12, #bf_gallery_1 .col-md-12, #bf_gallery_1 .col-lg-12 {
-		padding-right: 5px !important;
-		padding-left: 5px !important;
-		padding-bottom: 5px !important;
-		padding-top: 5px !important;
-	}
-	
-	/* title box css*/
-	.bf_thumb_box_1 {
-		padding: inherit;
-		background-color: <?php echo esc_html( $blog_desc_box_color ); ?>;
-		border: 1px solid;
-		border-color: rgba( <?php echo $r; ?>, <?php echo $g; ?>, <?php echo $b; ?> );
-	}
-	.bf_title_box_1 {
-		padding-top: 5px;
-		padding-bottom: 10px;
-		padding-left: 8px;
-		padding-right: 8px;
-	}
-	
-	.bf_title_box_2 {
-		padding-top: 10px;
-		padding-bottom: 10px;
-		padding-left: 8px;
-		padding-right: 8px;
-	}
-	.bf_title_1 {
-		margin-top: 10px;
-		margin-bottom: 10px;
-		font-size: <?php echo esc_html( $blog_title_font_size ); ?>px !important;
-		color : <?php echo esc_html( $blog_title_color ); ?>;
-		font-weight: bold;
-	}
-	.bf_desc_1 {
-		font-size: <?php echo esc_html( $blog_desc_font_size ); ?>px;
-		color: <?php echo esc_html( $blog_desc_color ); ?>;
-		margin:10px 1px;
-	}
-	.bf_read_more_div_1 {
-		text-align: right;
-		margin:20px 0px 5px 0px;
-	}
-	.bf_read_more_1 {
-		text-decoration:none;
-	} 
-	.bf_read_more_1:hover {
-		text-decoration:none;
-	}
-	.snip0047 {
-		background-color: <?php echo esc_html( $blog_buttons_color ); ?> !important;
-	}
-	.snip0047:focus {
-		background-color: <?php echo esc_html( $blog_buttons_color ); ?> !important;
-	}
-	.snip0047:active {
-		background-color: <?php echo esc_html( $blog_buttons_color ); ?> !important;
-	}
-	
-	/* hover 1*/
-	.simplefilter {
-	  font-family: 'Raleway', Arial, sans-serif;
-	  text-align: center;
-	  text-transform: uppercase;
-	  font-weight: 500;
-	  letter-spacing: 1px;
-	  padding: 0;
-	  margin-top:20px;
-	  margin-bottom:20px;
-	}
-	.metaInfo {
-		margin-top: 10px;
-		margin-bottom: 10px;
-		padding: 0;
-		font-size: 14px;
-		font-weight: 600;
-		display:inline-block;
-	}
-	.metaInfo > span {
-		display: inline-block;
-		margin-right: 6px;
-		color: inherit;
-	}
-	.metaInfo > span > i > .blog_cat_icon {
-		height: 16px !important;
-		width: 20px !important;
-		opacity: 0.7;
-		margin-bottom: 2px
-	}
-	.metaInfo > span > i > .blog_tag_icon {
-		height: 22px !important;
-		width: 22px !important;
-		margin-bottom: 2px
-	}
-	.pagination {
-		display: inline-block;
-		padding-left: 0;
-		margin: 20px 0;
-		border-radius: 4px;
-	}
-	.pagination span { 
-		background : <?php echo esc_html( $blog_buttons_color ); ?>;
-		border: 1px solid #eaeaea;
-		display: inline-block;
-		text-align: center;
-		color: #FFFFFF;
-		padding: 4px 12px;
-		border-radius:5px;
-	}
-	.pagination span:hover { 
-		background : <?php echo esc_html( $blog_buttons_color ); ?>; 
-		color : #ffffff; 
-	}
-	.pagination a {
-		border: 1px solid <?php echo esc_html( $blog_buttons_color ); ?>;
-		display: inline-block;
-		text-align: center;
-		color: <?php echo esc_html( $blog_buttons_color ); ?>;
-		padding: 4px 12px;
-		border-radius:5px;
-	}
-	.pagination a:hover, .pagination a:focus {
-		background: <?php echo esc_html( $blog_buttons_color ); ?>;
-		color: #FFFFFF;
-		text-decoration:none;
-	}
-	</style>
-	<?php
-	require 'blog-filter-output.php';
-	wp_reset_query();
-	return ob_get_clean();
-} ?>
+		// --- START: NEW, ROBUST TAXONOMY LOGIC ---
+		// Explode, trim and cast to int in one go
+		$selected_terms_array = ! empty( $selected_terms )
+			? array_map( 'intval', array_map( 'trim', explode( ',', $selected_terms ) ) )
+			: array();
+
+		$exclude_terms_array = ! empty( $exclude_terms )
+			? array_map( 'intval', array_map( 'trim', explode( ',', $exclude_terms ) ) )
+			: array();
+
+		// Remove excluded IDs from your includes
+		if ( ! empty( $selected_terms_array ) && ! empty( $exclude_terms_array ) ) {
+			$selected_terms_array = array_diff( $selected_terms_array, $exclude_terms_array );
+		}
+		
+		$tax_query = [];
+
+		// Build the final tax_query
+		$tax_query = array( 'relation' => 'AND' );
+
+
+		// Only add an IN clause if there’s anything left to include
+		// 2) only push our taxonomy if the user actually selected terms
+		if ( ! empty( $selected_terms_array ) ) {
+			$tax_query[] = [
+				'taxonomy'         => $blog_filtering,
+				'field'            => 'term_id',
+				'terms'            => $selected_terms_array,
+				'operator'         => 'IN',
+				'include_children' => false,
+			];
+		}
+
+		// … you could push other tax_queries here if needed …
+
+		// 3) only attach the tax_query var if it has at least one clause
+		if ( ! empty( $tax_query ) ) {
+			// if you have more than one clause you may also want a 'relation' key:
+			// $tax_query['relation'] = 'AND';
+			$args['tax_query'] = $tax_query;
+		}
+
+
+		// Only add a NOT IN clause if there are terms to exclude
+		if ( ! empty( $exclude_terms_array ) ) {
+			$tax_query[] = array(
+				'taxonomy' => $blog_filtering,
+				'field'    => 'term_id',
+				'terms'    => $exclude_terms_array,
+				'operator' => 'NOT IN',
+			);
+		}
+
+		// Attach tax_query only when you have at least one condition
+		if ( count( $tax_query ) > 1 ) {
+			$custom_query_args['tax_query'] = $tax_query;
+		}
+
+		$custom_query = new WP_Query( $custom_query_args );
+
+        // 4. --- Generate HTML Output ---
+        $taxonomies = get_object_taxonomies($post_type);
+        if (!empty($taxonomies) && $post_type != 'page') {
+            include(BF_PLUGIN_DIR . "filtering/filters.php");
+        }
+        ?>
+        <div class="filtr-container filters-div bf_gallery_1-<?php echo esc_attr($unique_id); ?>" style="width:100%">
+            <?php
+            if ($custom_query->have_posts()) {
+                include('templates/blog-filter-content.php');
+            } else {
+                echo '<p class="bfg-no-posts-found">' . __('No posts found.', 'blog-filter') . '</p>';
+            }
+            ?>
+			<div class="blog_loader blog_loader-<?php echo $unique_id; ?>"></div>
+        </div>
+
+        <?php // Load More, Scroll, and Pagination Controls
+            if ($blog_load_more == "yes") { ?>
+            <div class="row text-center" style="padding:35px;"><button id="load-more-<?php echo $unique_id; ?>"
+                    class="btn snip0047 snip0047-<?php echo $unique_id; ?>"><span
+                        style="pointer-events: none;"><?php _e($load_more_text, 'blog-filter'); ?></span><i
+                        class="fa fa-circle-o-notch fa-spin" style="pointer-events: none;"></i></button></div>
+        <?php }
+            if ($blog_pagination == "yes") { ?>
+            <div class="blog_pagination-<?php echo $unique_id; ?>">
+                <?php
+                echo paginate_links(array(
+                    'total' => $custom_query->max_num_pages,
+                    'current' => $paged,
+                    'prev_text' => '<i class="fa fa-caret-left"></i>',
+                    'next_text' => '<i class="fa fa-caret-right"></i>',
+                ));
+                ?>
+            </div>
+        <?php }
+
+		// --- FIX: Include the correct file for JavaScript output ---
+		// An AJAX handler file should never be included directly.
+		include(BF_PLUGIN_DIR . "filtering/filters-ajax.php");
+        ?>
+    </div>
+    <?php
+    // 5. --- Cleanup ---
+    // Restore original Post Data and clean up the output buffer.
+    wp_reset_postdata();
+    return ob_get_clean();
+}

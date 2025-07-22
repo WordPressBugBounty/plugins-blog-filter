@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Blog FIlter Translation For Hungarian (Hungary)\n"
-"POT-Creation-Date: 2023-11-29 14:20+0530\n"
-"PO-Revision-Date: 2023-11-29 14:20+0530\n"
+"Project-Id-Version: Blog Filter Hungrian Translation\n"
+"POT-Creation-Date: 2023-12-12 15:24+0530\n"
+"PO-Revision-Date: 2023-12-12 15:25+0530\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: hu_HU\n"
@@ -14,681 +14,526 @@ msgstr ""
 "X-Poedit-KeywordsList: __;_e;esc_html_e\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: blog-filter-output.php:192
-msgid "By"
-msgstr "Szerző"
-
-#: blog-filter-settings.php:18
-msgid "Blog Filter Settings Page"
-msgstr "Blog Szűrő Beállítások Oldal"
-
-#: blog-filter-settings.php:25
-msgid "Column Settings"
-msgstr "Oszlop Beállítások"
-
-#: blog-filter-settings.php:30
-msgid "Template Right To Left"
-msgstr "Sablon Jobbról Balra"
-
-#: blog-filter-settings.php:41
-msgid "Same Size Grid"
-msgstr "Azonos Méretű Rács"
-
-#: blog-filter-settings.php:52
-msgid "Column On Large Desktop"
-msgstr "Oszlop Nagy Asztali Gépen"
-
-#: blog-filter-settings.php:56
-msgid "1 Column"
-msgstr "1 Oszlop"
-
-#: blog-filter-settings.php:57
-msgid "2 Column"
-msgstr "2 Oszlop"
-
-#: blog-filter-settings.php:58
-msgid "3 Column"
-msgstr "3 Oszlop"
-
-#: blog-filter-settings.php:59
-msgid "4 Column"
-msgstr "4 Oszlop"
-
-#: blog-filter-settings.php:60
-msgid "6 Column"
-msgstr "6 Oszlop"
-
-#: blog-filter-settings.php:61
-msgid "12 Column"
-msgstr "12 Oszlop"
-
-#: blog-filter-settings.php:67
-msgid "Column On Desktop"
-msgstr "Oszlop Asztali Gépen"
-
-#: blog-filter-settings.php:70 blog-filter-settings.php:78
-#: blog-filter-settings.php:86 blog-filter-settings.php:141
-#: blog-filter-settings.php:149 blog-filter-settings.php:198
-#: blog-filter-settings.php:206 blog-filter-settings.php:315
-#: blog-filter-settings.php:364 blog-filter-settings.php:372
-#: blog-filter-settings.php:380 blog-filter-settings.php:388
-#: blog-filter-settings.php:475 blog-filter-settings.php:483
-#: blog-filter-settings.php:491 blog-filter-settings.php:499
-#: blog-filter-settings.php:600 blog-filter-settings.php:608
-#: blog-filter-settings.php:616 blog-filter-settings.php:635
-#: blog-filter-settings.php:643 blog-filter-settings.php:662
-#: blog-filter-settings.php:670
-msgid "Upgrade To Pro"
-msgstr "Frissítés Pro Verzióra"
-
-#: blog-filter-settings.php:75
-msgid "Column On Tablet"
-msgstr "Oszlop Tableten"
-
-#: blog-filter-settings.php:83
-msgid "Column On Phone"
-msgstr "Oszlop Telefonon"
-
-#: blog-filter-settings.php:97
-msgid "Image Settings"
-msgstr "Kép Beállítások"
-
-#: blog-filter-settings.php:102
-msgid "Show Blog Images"
-msgstr "Blog Képek Megjelenítése"
-
-#: blog-filter-settings.php:113
-msgid "Image Quality"
-msgstr "Képminőség"
-
-#: blog-filter-settings.php:117
-msgid "Thumbnail"
-msgstr "Bélyegkép"
-
-#: blog-filter-settings.php:118
-msgid "Medium"
-msgstr "Közepes"
-
-#: blog-filter-settings.php:119
-msgid "Large"
-msgstr "Nagy"
-
-#: blog-filter-settings.php:120
-msgid "Full"
-msgstr "Teljes"
-
-#: blog-filter-settings.php:126
-msgid "Image Hover Effect"
-msgstr "Kép Rámutató Effektus"
-
-#: blog-filter-settings.php:130
-msgid "None"
-msgstr "Nincs"
-
-#: blog-filter-settings.php:131
-msgid "Hover 1"
-msgstr "Rámutató 1"
-
-#: blog-filter-settings.php:135
-msgid "Get more hover effect in Pro"
-msgstr "Több rámutató effektus a Pro verzióban"
-
-#: blog-filter-settings.php:138
-msgid "Link On Image"
-msgstr "Link a Képen"
-
-#: blog-filter-settings.php:146
-msgid "Lightbox On Image"
-msgstr "Lightbox a Képen"
-
-#: blog-filter-settings.php:160
-msgid "Title Settings"
-msgstr "Cím Beállítások"
-
-#: blog-filter-settings.php:165
-msgid "Show Blog Title"
-msgstr "Blog Címének Megjelenítése"
-
-#: blog-filter-settings.php:176
-msgid "Title Text Color"
-msgstr "Cím Szöveg Színe"
-
-#: blog-filter-settings.php:184
-msgid "Title Font Size"
-msgstr "Cím Betűmérete"
-
-#: blog-filter-settings.php:195
-msgid "Title Below The Image"
-msgstr "Cím a Kép Alatt"
-
-#: blog-filter-settings.php:203
-msgid "Link On Title"
-msgstr "Link a Címen"
-
-#: blog-filter-settings.php:217
-msgid "Description Settings"
-msgstr "Leírás Beállításai"
-
-#: blog-filter-settings.php:222
-msgid "Show Blog Description"
-msgstr "Blog Leírásának Megjelenítése"
-
-#: blog-filter-settings.php:233
-msgid "Description Text Color"
-msgstr "Leírás Szöveg Színe"
-
-#: blog-filter-settings.php:241
-msgid "Description Box Color"
-msgstr "Leírás Doboz Színe"
-
-#: blog-filter-settings.php:249
-msgid "Description Font Size"
-msgstr "Leírás Betűmérete"
-
-#: blog-filter-settings.php:260
-msgid "How Much Characters Show In Description"
-msgstr "Hány Karakter Jelenjen Meg a Leírásban"
-
-#: blog-filter-settings.php:274
-msgid "Post Meta Settings"
-msgstr "Bejegyzés Meta Beállítások"
-
-#: blog-filter-settings.php:279
-msgid "Show Post Date"
-msgstr "Bejegyzés Dátumának Megjelenítése"
-
-#: blog-filter-settings.php:290
-msgid "Show Post Author"
-msgstr "Bejegyzés Szerzőjének Megjelenítése"
-
-#: blog-filter-settings.php:301
-msgid "Show Post Categories"
-msgstr "Bejegyzés Kategóriáinak Megjelenítése"
-
-#: blog-filter-settings.php:312
-msgid "Show Post Tags"
-msgstr "Bejegyzés Címkéinek Megjelenítése"
-
-#: blog-filter-settings.php:326
-msgid "Link (URL) Settings"
-msgstr "Link (URL) Beállítások"
-
-#: blog-filter-settings.php:331
-msgid "Show Read More Link"
-msgstr "További Információk Link Megjelenítése"
-
-#: blog-filter-settings.php:342
-msgid "Text For Read More Link"
-msgstr "Szöveg a További Információk Linkhez"
-
-#: blog-filter-settings.php:350
-msgid "Link On Date"
-msgstr "Link a Dátumon"
-
-#: blog-filter-settings.php:361
-msgid "Link On Author"
-msgstr "Link a Szerzőn"
-
-#: blog-filter-settings.php:369
-msgid "Link On Category"
-msgstr "Link a Kategórián"
-
-#: blog-filter-settings.php:377
-msgid "Link On Tags"
-msgstr "Link a Címkéken"
-
-#: blog-filter-settings.php:385
-msgid "Link Open In New Tab"
-msgstr "Link Megnyitása Új Fülön"
-
-#: blog-filter-settings.php:399
-msgid "Filter Settings"
-msgstr "Szűrő Beállítások"
-
-#: blog-filter-settings.php:404
-msgid "Show Filters"
-msgstr "Szűrők Megjelenítése"
-
-#: blog-filter-settings.php:415
-msgid "Show Filter \"All\""
-msgstr "Minden Szűrő Megjelenítése"
-
-#: blog-filter-settings.php:426
-msgid "Text For \"All\" Button"
-msgstr "Szöveg a \"Minden\" Gombhoz"
-
-#: blog-filter-settings.php:434
-msgid "Show Post Count On Filters"
-msgstr "Bejegyzések Számának Megjelenítése a Szűrőkön"
-
-#: blog-filter-settings.php:445
-msgid "Buttons Color"
-msgstr "Gombok Színe"
-
-#: blog-filter-settings.php:453
-msgid "Blog Search Field"
-msgstr "Blog Keresőmező"
-
-#: blog-filter-settings.php:464
-msgid "Text For Search"
-msgstr "Szöveg a Kereséshez"
-
-#: blog-filter-settings.php:472
-msgid "Multi-Filter In Same Time"
-msgstr "Többszörös Szűrés Egyidejűleg"
-
-#: blog-filter-settings.php:480
-msgid "Select Default Filter"
-msgstr "Alapértelmezett Szűrő Kiválasztása"
-
-#: blog-filter-settings.php:488
-msgid "Exclude Posts"
-msgstr "Bejegyzések Kizárása"
-
-#: blog-filter-settings.php:496
-msgid "URL Based Filtering"
-msgstr "URL-Alapú Szűrés"
-
-#: blog-filter-settings.php:504
-msgid "Filtering with"
-msgstr "Szűrés Ezzel"
-
-#: blog-filter-settings.php:508 blog-filter-settings.php:524
-msgid "Category"
-msgstr "Kategória"
-
-#: blog-filter-settings.php:509
-msgid "Tag"
-msgstr "Címke"
-
-#: blog-filter-settings.php:523 blog-filter-settings.php:553
-msgid "ID"
-msgstr "Azonosító"
-
-#: blog-filter-settings.php:525
-msgid "Select"
-msgstr "Kiválasztás"
-
-#: blog-filter-settings.php:541
-msgid "Note: In free version you can use only 4 categories as filters"
-msgstr ""
-"Megjegyzés: Az ingyenes verzióban csak 4 kategória használható szűrőként"
-
-#: blog-filter-settings.php:554
-msgid "Post Tag"
-msgstr "Bejegyzés Címkéje"
-
-#: blog-filter-settings.php:571
-msgid "Note: In free version you can use only 4 tags as filters"
-msgstr "Megjegyzés: Az ingyenes verzióban csak 4 címke használható szűrőként"
-
-#: blog-filter-settings.php:581
-msgid "Pagination Settings"
-msgstr "Lapozás Beállításai"
-
-#: blog-filter-settings.php:586
-msgid "Pagination"
-msgstr "Lapozás"
-
-#: blog-filter-settings.php:597
-msgid "Blogs On Per Page"
-msgstr "Blogok Oldalanként"
-
-#: blog-filter-settings.php:605
-msgid "Load More"
-msgstr "Több Betöltése"
-
-#: blog-filter-settings.php:613
-msgid "Load On Scroll"
-msgstr "Görgéssel Betöltés"
-
-#: blog-filter-settings.php:627
-msgid "Post Order Settings"
-msgstr "Bejegyzés Sorrend Beállításai"
-
-#: blog-filter-settings.php:632
-msgid "Post Order By"
-msgstr "Bejegyzés Sorrendje Szerint"
-
-#: blog-filter-settings.php:640
-msgid "Post Order"
-msgstr "Bejegyzés Sorrendje"
-
-#: blog-filter-settings.php:654
-msgid "Thumbnail Settings"
-msgstr "Bélyegkép Beállításai"
-
-#: blog-filter-settings.php:659
-msgid "Thumbanil Hover Effect"
-msgstr "Bélyegkép Rámutató Effektus"
-
-#: blog-filter-settings.php:667
-msgid "Thumbnail Spacing"
-msgstr "Bélyegkép Távolsága"
-
-#: blog-filter-settings.php:681
-msgid "Try Pro Version"
-msgstr "Próbáld ki a Pro Verziót"
-
-#: blog-filter-settings.php:686
-msgid "Update Sortcode, Without Regenerate It"
-msgstr "Sortcode Frissítése Újragenerálás Nélkül"
-
-#: blog-filter-settings.php:689
-msgid "See Post"
-msgstr "Bejegyzés Megtekintése"
-
-#: blog-filter-settings.php:694
-msgid "Contact Us"
-msgstr "Lépjen Kapcsolatba Velünk"
-
-#: blog-filter-settings.php:697
-msgid "Contact"
-msgstr "Kapcsolat"
-
-#: blog-filter-settings.php:702
-msgid "See Live Demo of Pro"
-msgstr "Nézd meg a Pro Élő Demóját"
-
-#: blog-filter-settings.php:705
-msgid "Live Demo"
-msgstr "Élő Demo"
-
-#: blog-filter-settings.php:710
-msgid "Buy Pro"
-msgstr "Vásárolj Pro-t"
-
-#: blog-filter-settings.php:713
-msgid "Buy Pro Plugin"
-msgstr "Pro Plugin Vásárlása"
-
-#: blog-filter-settings.php:726
-msgid "Blog Filter"
-msgstr "Blog Szűrő"
-
-#: blog-filter-settings.php:729
-msgid "Version - "
-msgstr "Verzió - "
-
-#: blog-filter-settings.php:738
-msgid "[ Generate Sortcode ]"
-msgstr "[ Sortcode Generálása ]"
-
-#: blog-filter-settings.php:749
-msgid "Blog Filter Shortcode"
-msgstr "Blog Szűrő Rövidkód"
-
-#: blog-filter-settings.php:752
-msgid "Copy The Shortcode"
-msgstr "Rövidkód Másolása"
-
-#: blog-filter-settings.php:756
-msgid "Copy Sortcode"
-msgstr "Sortcode Másolása"
-
-#: blog-filter.php:44
+#: blog-filter-premium.php:30 blog-filter-settings.php:1047
 msgid "Blog Filter Premium"
 msgstr "Blog Szűrő Prémium"
 
-#: blog-filter.php:70
+#: blog-filter-premium.php:56
 msgid "Settings"
 msgstr "Beállítások"
 
-#: blog-filter.php:90
+#: blog-filter-premium.php:90
 msgid "Blog Filters Settings"
-msgstr "Blog Szűrők Beállításai"
+msgstr "A blogszűrők beállításai"
 
-#: class-tgm-plugin-activation.php:334
-msgid "Install Required Plugins"
-msgstr "Szükséges Pluginok Telepítése"
+#: blog-filter-settings.php:19
+msgid "Blog Filter Settings Page"
+msgstr "A blogszűrő beállítási oldala"
 
-#: class-tgm-plugin-activation.php:335
-msgid "Install Plugins"
-msgstr "Pluginok Telepítése"
+#: blog-filter-settings.php:26
+msgid "Template Settings"
+msgstr "Sablonbeállítások"
 
-#: class-tgm-plugin-activation.php:337
-#, php-format
-msgid "Installing Plugin: %s"
-msgstr "Plugin Telepítése: %s"
+#: blog-filter-settings.php:31
+msgid "Template Right To Left "
+msgstr "Sablon jobbról balra "
 
-#: class-tgm-plugin-activation.php:339
-#, php-format
-msgid "Updating Plugin: %s"
-msgstr "Plugin Frissítése: %s"
+#: blog-filter-settings.php:42
+msgid "Blog Template"
+msgstr "Blogsablon"
 
-#: class-tgm-plugin-activation.php:340
-msgid "Something went wrong with the plugin API."
-msgstr "Valami probléma adódott a plugin API-val."
+#: blog-filter-settings.php:46
+msgid "Template 1"
+msgstr "1. sablon"
 
-#: class-tgm-plugin-activation.php:392
-msgid "Return to Required Plugins Installer"
-msgstr "Vissza a Szükséges Pluginok Telepítőjéhez"
+#: blog-filter-settings.php:47
+msgid "Template 2"
+msgstr "2. sablon"
 
-#: class-tgm-plugin-activation.php:393
-msgid "Return to the Dashboard"
-msgstr "Vissza a Vezérlőpulthoz"
+#: blog-filter-settings.php:48
+msgid "Template 3"
+msgstr "3. sablon"
 
-#: class-tgm-plugin-activation.php:394 class-tgm-plugin-activation.php:3272
-msgid "Plugin activated successfully."
-msgstr "A plugin sikeresen aktiválva."
+#: blog-filter-settings.php:54
+msgid "Column On Large Desktop"
+msgstr "Oszlop a nagy asztalon"
 
-#: class-tgm-plugin-activation.php:395
-msgid "The following plugin was activated successfully:"
-msgstr "A következő plugin sikeresen aktiválva:"
+#: blog-filter-settings.php:58 blog-filter-settings.php:73
+#: blog-filter-settings.php:88 blog-filter-settings.php:102
+msgid "1 Column"
+msgstr "1 Oszlop"
 
-#: class-tgm-plugin-activation.php:397
-#, php-format
-msgid "No action taken. Plugin %1$s was already active."
-msgstr "Nem történt intézkedés. A %1$s plugin már aktív."
+#: blog-filter-settings.php:59 blog-filter-settings.php:74
+#: blog-filter-settings.php:89 blog-filter-settings.php:103
+msgid "2 Column"
+msgstr "2 Oszlop"
 
-#: class-tgm-plugin-activation.php:399
-#, php-format
-msgid ""
-"Plugin not activated. A higher version of %s is needed for this theme. "
-"Please update the plugin."
-msgstr ""
-"A plugin nem aktiválódott. Egy magasabb verziójú %s szükséges ehhez a "
-"témához. Kérjük, frissítse a plugint."
+#: blog-filter-settings.php:60 blog-filter-settings.php:75
+#: blog-filter-settings.php:90 blog-filter-settings.php:104
+msgid "3 Column"
+msgstr "3 Oszlop"
 
-#: class-tgm-plugin-activation.php:401
-#, php-format
-msgid "All plugins installed and activated successfully. %1$s"
-msgstr "Minden plugin sikeresen telepítve és aktiválva. %1$s"
+#: blog-filter-settings.php:61 blog-filter-settings.php:76
+#: blog-filter-settings.php:91 blog-filter-settings.php:105
+msgid "4 Column"
+msgstr "4 Oszlop"
 
-#: class-tgm-plugin-activation.php:402
-msgid "Dismiss this notice"
-msgstr "Értesítés Elutasítása"
+#: blog-filter-settings.php:62 blog-filter-settings.php:77
+#: blog-filter-settings.php:92
+msgid "6 Column"
+msgstr "6 Oszlop"
 
-#: class-tgm-plugin-activation.php:403
-msgid ""
-"There are one or more required or recommended plugins to install, update or "
-"activate."
-msgstr ""
-"Egy vagy több telepítendő, frissítendő vagy aktiválandó szükséges vagy "
-"ajánlott plugin van."
+#: blog-filter-settings.php:63 blog-filter-settings.php:78
+msgid "12 Column"
+msgstr "12 Oszlop"
 
-#: class-tgm-plugin-activation.php:404
-msgid "Please contact the administrator of this site for help."
-msgstr "Kérjük, lépjen kapcsolatba ezen oldal adminisztrátorával segítségért."
+#: blog-filter-settings.php:69
+msgid "Column On Desktop"
+msgstr "Oszlop az asztalon"
 
-#: class-tgm-plugin-activation.php:2095
-#, php-format
-msgid "TGMPA v%s"
-msgstr "TGMPA v%s"
+#: blog-filter-settings.php:84
+msgid "Column On Tablet"
+msgstr "Oszlop a táblagépen"
 
-#: class-tgm-plugin-activation.php:2386
-msgid "Required"
-msgstr "Szükséges"
+#: blog-filter-settings.php:98
+msgid "Column On Phone"
+msgstr "Oszlop Telefonon"
 
-#: class-tgm-plugin-activation.php:2389
-msgid "Recommended"
-msgstr "Ajánlott"
+#: blog-filter-settings.php:111
+msgid "Same Size Grid"
+msgstr "Azonos méretű rács"
 
-#: class-tgm-plugin-activation.php:2405
-msgid "WordPress Repository"
-msgstr "WordPress Tárhely"
+#: blog-filter-settings.php:128
+msgid "Image Settings"
+msgstr "Képbeállítások"
 
-#: class-tgm-plugin-activation.php:2408
-msgid "External Source"
-msgstr "Külső Forrás"
+#: blog-filter-settings.php:133
+msgid "Show Blog Images"
+msgstr "Blogképek megjelenítése"
 
-#: class-tgm-plugin-activation.php:2411
-msgid "Pre-Packaged"
-msgstr "Előre Csomagolt"
+#: blog-filter-settings.php:144
+msgid "Link On Image"
+msgstr "Link a képen"
 
-#: class-tgm-plugin-activation.php:2428
-msgid "Not Installed"
-msgstr "Nem Telepített"
+#: blog-filter-settings.php:155
+msgid "Lightbox On Image"
+msgstr "Kép Lightbox"
 
-#: class-tgm-plugin-activation.php:2432
-msgid "Installed But Not Activated"
-msgstr "Telepítve, De Nem Aktiválva"
+#: blog-filter-settings.php:166
+msgid "Image Hover Effect"
+msgstr "Kép lebegő hatás"
 
-#: class-tgm-plugin-activation.php:2434
-msgid "Active"
-msgstr "Aktív"
+#: blog-filter-settings.php:170 blog-filter-settings.php:830
+#: blog-filter-settings.php:850
+msgid "None"
+msgstr "Nincs"
 
-#: class-tgm-plugin-activation.php:2440
-msgid "Required Update not Available"
-msgstr "Szükséges Frissítés Nem Elérhető"
+#: blog-filter-settings.php:171
+msgid "Hover 1"
+msgstr "Mutasson 1"
 
-#: class-tgm-plugin-activation.php:2443
-msgid "Requires Update"
-msgstr "Frissítést Igényel"
+#: blog-filter-settings.php:172
+msgid "Hover 2"
+msgstr "Mutasson 2"
 
-#: class-tgm-plugin-activation.php:2446
-msgid "Update recommended"
-msgstr "Frissítés Ajánlott"
+#: blog-filter-settings.php:173
+msgid "Hover 3"
+msgstr "Mutasson 3"
 
-#: class-tgm-plugin-activation.php:2603
-msgid "Installed version:"
-msgstr "Telepített verzió:"
+#: blog-filter-settings.php:174
+msgid "Hover 4"
+msgstr "Mutasson 4"
 
-#: class-tgm-plugin-activation.php:2611
-msgid "Minimum required version:"
-msgstr "Minimálisan szükséges verzió:"
+#: blog-filter-settings.php:175
+msgid "Hover 5"
+msgstr "Mutasson 5"
 
-#: class-tgm-plugin-activation.php:2623
-msgid "Available version:"
-msgstr "Elérhető verzió:"
+#: blog-filter-settings.php:181
+msgid "Image Quality"
+msgstr "Képminőség"
 
-#: class-tgm-plugin-activation.php:2660
-msgid "Plugin"
-msgstr "Plugin"
+#: blog-filter-settings.php:185
+msgid "Thumbnail"
+msgstr "Indexkép"
 
-#: class-tgm-plugin-activation.php:2661
-msgid "Source"
-msgstr "Forrás"
+#: blog-filter-settings.php:186
+msgid "Medium"
+msgstr "Közepes"
 
-#: class-tgm-plugin-activation.php:2662
-msgid "Type"
-msgstr "Típus"
+#: blog-filter-settings.php:187
+msgid "Large"
+msgstr "Nagy"
 
-#: class-tgm-plugin-activation.php:2666
-msgid "Version"
-msgstr "Verzió"
+#: blog-filter-settings.php:188
+msgid "Full"
+msgstr "Tele"
 
-#: class-tgm-plugin-activation.php:2667
-msgid "Status"
-msgstr "Állapot"
+#: blog-filter-settings.php:200
+msgid "Title Settings"
+msgstr "Cím Beállítások"
 
-#: class-tgm-plugin-activation.php:2716
-#, php-format
-msgid "Install %2$s"
-msgstr "%2$s Telepítése"
+#: blog-filter-settings.php:205
+msgid "Show Blog Title"
+msgstr "Blog címének megjelenítése"
 
-#: class-tgm-plugin-activation.php:2721
-#, php-format
-msgid "Update %2$s"
-msgstr "%2$s Frissítése"
+#: blog-filter-settings.php:216
+msgid "Title Below The Image"
+msgstr "Cím a kép alatt"
 
-#: class-tgm-plugin-activation.php:2727
-#, php-format
-msgid "Activate %2$s"
-msgstr "%2$s Aktiválása"
+#: blog-filter-settings.php:227
+msgid "Link On Title"
+msgstr "Hivatkozás a címre"
 
-#: class-tgm-plugin-activation.php:2830
-msgid "Install"
-msgstr "Telepítés"
+#: blog-filter-settings.php:238
+msgid "Title Text Color"
+msgstr "Cím szövegének színe"
 
-#: class-tgm-plugin-activation.php:2836
-msgid "Update"
-msgstr "Frissítés"
+#: blog-filter-settings.php:246
+msgid "Title Font Size"
+msgstr "Cím betűmérete"
 
-#: class-tgm-plugin-activation.php:2839
-msgid "Activate"
-msgstr "Aktiválás"
+#: blog-filter-settings.php:263
+msgid "Description Settings"
+msgstr "Leírás beállításai"
 
-#: class-tgm-plugin-activation.php:2870
-msgid "No plugins were selected to be installed. No action taken."
-msgstr "Nem voltak kiválasztva telepítendő pluginok. Nem történt intézkedés."
+#: blog-filter-settings.php:268
+msgid "Show Blog Description"
+msgstr "Blog leírásának megjelenítése"
 
-#: class-tgm-plugin-activation.php:2872
-msgid "No plugins were selected to be updated. No action taken."
-msgstr "Nem voltak kiválasztva frissítendő pluginok. Nem történt intézkedés."
+#: blog-filter-settings.php:279
+msgid "Description Text Color"
+msgstr "Leírás szöveg színe"
 
-#: class-tgm-plugin-activation.php:2913
-msgid "No plugins are available to be installed at this time."
-msgstr "Jelenleg nincsenek telepíthető pluginok."
+#: blog-filter-settings.php:287
+msgid "Description Box Color"
+msgstr "Leírás doboz színe"
 
-#: class-tgm-plugin-activation.php:2915
-msgid "No plugins are available to be updated at this time."
-msgstr "Jelenleg nincsenek frissíthető pluginok."
+#: blog-filter-settings.php:295
+msgid "Description Font Size"
+msgstr "Leírás betűméret"
 
-#: class-tgm-plugin-activation.php:3271
-msgid "Plugin activation failed."
-msgstr "A plugin aktiválása sikertelen."
+#: blog-filter-settings.php:306
+msgid "How Much Characters Show In Description"
+msgstr "Mennyi karakter látható a leírásban"
 
-#: class-tgm-plugin-activation.php:3615
-#, php-format
-msgid "Updating Plugin %1$s (%2$d/%3$d)"
-msgstr "Plugin Frissítése %1$s (%2$d/%3$d)"
+#: blog-filter-settings.php:314
+msgid "Three Dots After Description"
+msgstr "Három pont a leírás után"
 
-#: class-tgm-plugin-activation.php:3618
-#, php-format
-msgid "An error occurred while installing %1$s: <strong>%2$s</strong>."
-msgstr "Hiba történt %1$s telepítése közben: <strong>%2$s</strong>."
+#: blog-filter-settings.php:331
+msgid "Post Meta Settings"
+msgstr "Post Meta beállítások"
 
-#: class-tgm-plugin-activation.php:3620
-#, php-format
-msgid "The installation of %1$s failed."
-msgstr "%1$s telepítése sikertelen."
+#: blog-filter-settings.php:336
+msgid "Show Post Date"
+msgstr "Feladás dátuma"
 
-#: class-tgm-plugin-activation.php:3624
-msgid ""
-"The installation and activation process is starting. This process may take a "
-"while on some hosts, so please be patient."
-msgstr ""
-"A telepítési és aktiválási folyamat elindul. Ez a folyamat egyes "
-"házigazdáknál időbe telhet, szíves türelmét kérjük."
+#: blog-filter-settings.php:347
+msgid "Date Below The Image"
+msgstr "Dátum a kép alatt"
 
-#: class-tgm-plugin-activation.php:3626
-#, php-format
-msgid "%1$s installed and activated successfully."
-msgstr "%1$s sikeresen telepítve és aktiválva."
+#: blog-filter-settings.php:358
+msgid "Show Post Author"
+msgstr "Bejegyzés szerzőjének megjelenítése"
 
-#: class-tgm-plugin-activation.php:3627
-msgid "All installations and activations have been completed."
-msgstr "Minden telepítés és aktiválás befejeződött."
+#: blog-filter-settings.php:369
+msgid "Author Below The Image"
+msgstr "Szerző a kép alatt"
 
-#: class-tgm-plugin-activation.php:3629
-#, php-format
-msgid "Installing and Activating Plugin %1$s (%2$d/%3$d)"
-msgstr "Plugin Telepítése és Aktiválása %1$s (%2$d/%3$d)"
+#: blog-filter-settings.php:380
+msgid "Show Post Categories"
+msgstr "Bejegyzés kategóriák megjelenítése"
 
-#: class-tgm-plugin-activation.php:3632
-msgid ""
-"The installation process is starting. This process may take a while on some "
-"hosts, so please be patient."
-msgstr ""
-"A telepítési folyamat elindul. Ez a folyamat egyes házigazdáknál időbe "
-"telhet, szíves türelmét kérjük."
+#: blog-filter-settings.php:391
+msgid "Show Post Tags"
+msgstr "Mutasd a bejegyzés címkéit"
 
-#: class-tgm-plugin-activation.php:3635
-msgid "All installations have been completed."
-msgstr "Minden telepítés befejeződött."
+#: blog-filter-settings.php:402
+msgid "Show Comments Count in Template 3"
+msgstr "Megjegyzések számának megjelenítése a 3. sablonban"
 
-#: class-tgm-plugin-activation.php:3637
-#, php-format
-msgid "Installing Plugin %1$s (%2$d/%3$d)"
-msgstr "Plugin Telepítése %1$s (%2$d/%3$d)"
+#: blog-filter-settings.php:419
+msgid "Link (URL) Settings"
+msgstr "Link (URL) beállítások"
+
+#: blog-filter-settings.php:424
+msgid "Show Read More Link"
+msgstr "Mutasd a Tovább linket"
+
+#: blog-filter-settings.php:435
+msgid "Link Open In New Tab"
+msgstr "Link megnyitása új lapon"
+
+#: blog-filter-settings.php:447
+msgid "Link On Date"
+msgstr "Link dátuma"
+
+#: blog-filter-settings.php:458
+msgid "Link On Author"
+msgstr "Hivatkozás a szerzőre"
+
+#: blog-filter-settings.php:469
+msgid "Link On Category"
+msgstr "Link On Kategória"
+
+#: blog-filter-settings.php:480
+msgid "Link On Tags"
+msgstr "Hivatkozás a címkékre"
+
+#: blog-filter-settings.php:492
+msgid "Text For Read More Link"
+msgstr "Szöveg További információ Link"
+
+#: blog-filter-settings.php:507
+msgid "Post Order Settings"
+msgstr "Utórendelés beállításai"
+
+#: blog-filter-settings.php:512
+msgid "Post Order By"
+msgstr "Utólagos rendelés"
+
+#: blog-filter-settings.php:516 blog-filter-settings.php:673
+msgid "Date"
+msgstr "Dátum"
+
+#: blog-filter-settings.php:517 blog-filter-settings.php:674
+msgid "Title"
+msgstr "Cím"
+
+#: blog-filter-settings.php:518 blog-filter-settings.php:675
+msgid "Slug"
+msgstr "URL Szegment"
+
+#: blog-filter-settings.php:524
+msgid "Post Order"
+msgstr "Utórendelés"
+
+#: blog-filter-settings.php:528 blog-filter-settings.php:685
+msgid "Ascending "
+msgstr "Növekvő "
+
+#: blog-filter-settings.php:529 blog-filter-settings.php:686
+msgid "Descending  "
+msgstr "Csökkenő "
+
+#: blog-filter-settings.php:542
+msgid "Thumbnail Settings"
+msgstr "Miniatűr beállítások"
+
+#: blog-filter-settings.php:547
+msgid "Thumbanil Hover Effect"
+msgstr "Miniatűr Lebegő hatás"
+
+#: blog-filter-settings.php:558
+msgid "Thumbnail Spacing"
+msgstr "Miniatűrök távolsága"
+
+#: blog-filter-settings.php:577
+msgid "Pagination & Load More Settings"
+msgstr "Oldalszámozás"
+
+#: blog-filter-settings.php:582
+msgid "Pagination"
+msgstr "Oldalszámozás"
+
+#: blog-filter-settings.php:593
+msgid "Load More"
+msgstr "Töltsön be többet"
+
+#: blog-filter-settings.php:604
+msgid "Load On Scroll"
+msgstr "Görgetés Betöltése"
+
+#: blog-filter-settings.php:616
+msgid "Pagination / Load More Button Color"
+msgstr "Oldalszámozás / Több betöltése gomb színe"
+
+#: blog-filter-settings.php:624
+msgid "Blogs On Per Page (First Page Load) / On initial Page Load"
+msgstr "Blogs On Per Page (First Page Load) / Kezdő oldalbetöltéskor"
+
+#: blog-filter-settings.php:632
+msgid "Blogs On Load More / On Scroll"
+msgstr "Blogok több betöltése / görgetéskor"
+
+#: blog-filter-settings.php:640
+msgid "Text For \"Load More\""
+msgstr "\"Továbbiak betöltése\" szövege"
+
+#: blog-filter-settings.php:648
+msgid "Text For \"No More Posts\""
+msgstr "\"Nincs több bejegyzés\" szöveg"
+
+#: blog-filter-settings.php:664
+msgid "Filter Order Settings"
+msgstr "Szűrési sorrend beállításai"
+
+#: blog-filter-settings.php:669
+msgid "Filter Order By"
+msgstr "Szűrés sorrendje"
+
+#: blog-filter-settings.php:681
+msgid "Filter Order"
+msgstr "Szűrési sorrend"
+
+#: blog-filter-settings.php:698
+msgid "Filter Settings"
+msgstr "Szűrőbeállítások"
+
+#: blog-filter-settings.php:703
+msgid "Filters In DropDown"
+msgstr "Szűrők a legördülő menüben"
+
+#: blog-filter-settings.php:714
+msgid "Show Filters"
+msgstr "Szűrők megjelenítése"
+
+#: blog-filter-settings.php:725
+msgid "Filter Style"
+msgstr "Szűrőstílus"
+
+#: blog-filter-settings.php:729
+msgid "Button Filter"
+msgstr "Gombszűrő"
+
+#: blog-filter-settings.php:730
+msgid "Dropdown Filter"
+msgstr "Legördülő szűrő"
+
+#: blog-filter-settings.php:736
+msgid "Show Post Count On Filters"
+msgstr "Hozzászólások számának megjelenítése a szűrőkön"
+
+#: blog-filter-settings.php:747
+msgid "Show Filter \"All\""
+msgstr "\"Összes\" szűrő megjelenítése"
+
+#: blog-filter-settings.php:758
+msgid "Text For \"All\" Button"
+msgstr "Szöveg a \"Mind\" gombhoz"
+
+#: blog-filter-settings.php:766
+msgid "Multi-Filter In Same Time"
+msgstr "Több szűrő ugyanabban az időben"
+
+#: blog-filter-settings.php:777
+msgid "\"And\" logic for Multi-Filter"
+msgstr "\"És\" logika a Multi-Filterhez"
+
+#: blog-filter-settings.php:788
+msgid "Blog Search Field"
+msgstr "Blog keresőmező"
+
+#: blog-filter-settings.php:799
+msgid "Text For Search"
+msgstr "Szöveg kereséshez"
+
+#: blog-filter-settings.php:807
+msgid "Buttons Color"
+msgstr "Gombok színe"
+
+#: blog-filter-settings.php:815
+msgid "Filtering with"
+msgstr "Szűrés -val"
+
+#: blog-filter-settings.php:819 blog-filter-settings.php:876
+#: blog-filter-settings.php:946
+msgid "Category"
+msgstr "Kategória"
+
+#: blog-filter-settings.php:820
+msgid "Tag"
+msgstr "Címke"
+
+#: blog-filter-settings.php:826
+msgid "Select Category Default Filter"
+msgstr "Válassza ki a Kategória alapértelmezett szűrőjét"
+
+#: blog-filter-settings.php:846
+msgid "Select Tag Default Filter"
+msgstr "Válassza ki a Címke alapértelmezett szűrőjét"
+
+#: blog-filter-settings.php:875 blog-filter-settings.php:904
+#: blog-filter-settings.php:945 blog-filter-settings.php:974
+msgid "ID"
+msgstr "ID"
+
+#: blog-filter-settings.php:905 blog-filter-settings.php:975
+msgid "Post Tag"
+msgstr "Bejegyzés Címke"
+
+#: blog-filter-settings.php:932
+msgid "Exclude Post"
+msgstr "Bejegyzés kizárása"
+
+#: blog-filter-settings.php:1001
+msgid "A WP Life Services"
+msgstr "A WP Élet Szolgáltatások"
+
+#: blog-filter-settings.php:1005
+msgid "Please Rate Us"
+msgstr "Kérjük, értékeljen minket"
+
+#: blog-filter-settings.php:1008
+msgid "Rate Us"
+msgstr "Értékeljen minket"
+
+#: blog-filter-settings.php:1013
+msgid "Update Shortcode, Without Regenerate It"
+msgstr "Frissítse a rövid kódot, újragenerálás nélkül"
+
+#: blog-filter-settings.php:1016
+msgid "See Post"
+msgstr "Lásd"
+
+#: blog-filter-settings.php:1021
+msgid "Product Support"
+msgstr "Terméktámogatás"
+
+#: blog-filter-settings.php:1024
+msgid "Support"
+msgstr "Támogatás"
+
+#: blog-filter-settings.php:1030
+msgid "Product Documentation"
+msgstr "Termékdokumentáció"
+
+#: blog-filter-settings.php:1033
+msgid "Documentation"
+msgstr "Dokumentáció"
+
+#: blog-filter-settings.php:1047
+msgid "Version - "
+msgstr "Verzió - "
+
+#: blog-filter-settings.php:1052
+msgid "[ Generate Shortcode ]"
+msgstr "[ Rövid kód generálása ]"
+
+#: blog-filter-settings.php:1066
+msgid "Blog Filter Shortcode"
+msgstr "Blogszűrő rövid kód"
+
+#: blog-filter-settings.php:1069
+msgid "Copy The Shortcode"
+msgstr "Másolja a rövid kódot"
+
+#: blog-filter-settings.php:1073
+msgid "Copy Shortcode"
+msgstr "Rövid kód másolása"
+
+#: filtering/filters.php:119
+msgid "Filter"
+msgstr "Szűrő"
+
+#: templates/blog-filter-content.php:87 templates/blog-filter-content.php:90
+#: templates/blog-filter-content.php:137 templates/blog-filter-content.php:140
+#: templates/blog-filter-content.php:246 templates/blog-filter-content.php:249
+#: templates/blog-filter-content.php:306 templates/blog-filter-content.php:309
+#: templates/blog-filter-content.php:446 templates/blog-filter-content.php:449
+msgid "By"
+msgstr "Bár"
+
+#: templates/blog-filter-content.php:456
+msgid " Comments"
+msgstr " Megjegyzések"

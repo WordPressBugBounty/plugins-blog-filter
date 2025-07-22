@@ -274,3 +274,8 @@ input::-moz-focus-outer {
 .iris-picker .iris-strip {
     height: 182.346px !important;
 }
+.not-allowed {
+	opacity: .3;
+	cursor: not-allowed;
+	
+}

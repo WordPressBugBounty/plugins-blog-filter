@@ -4,7 +4,7 @@ Donate link: https://paypal.me/awplife
 Tags: blog grid, post layout, blog layout, blog template, blog design
 Requires at least: 5.0
 Tested up to: 6.8.1
-Stable tag: 1.6.5
+Stable tag: 1.7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -222,6 +222,12 @@ The following are other recommended plugins by the author:
 * [Facebook Like Box Plugin](https://wordpress.org/plugins/facebook-likebox-widget-and-shortcode/ "Facebook Likebox Plugin") - Facebook Light Box Plugin For WordPress 
 
 == Changelog ==
+
+= 1.7.0 =
+* New Settings page Layout.
+* Custom Post type for pages.
+* Load more Post feature.
+* Many post options added.
 
 = 1.6.5 =
 * Paging issue fixed.
