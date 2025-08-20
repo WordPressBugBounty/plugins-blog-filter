@@ -3,8 +3,8 @@ Contributors: awordpresslife, razipathhan, hanif0991, muhammadshahid, fkfaisalkh
 Donate link: https://paypal.me/awplife
 Tags: blog grid, post layout, blog layout, blog template, blog design
 Requires at least: 5.0
-Tested up to: 6.8.1
-Stable tag: 1.7.0
+Tested up to: 6.8.2
+Stable tag: 1.7.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -164,6 +164,7 @@ Layout Options – The plugin should allow you to set a column width, gutter siz
 2. Blog Filter Gallery Without Featured Image
 3. Blog Filter (blog post Portfolio) Filter Layout
 4. Blog Filter Gallery Without Featured Images
+5. New Settings Page Layout
 
 == Frequently Asked Questions ==
 
@@ -222,6 +223,10 @@ The following are other recommended plugins by the author:
 * [Facebook Like Box Plugin](https://wordpress.org/plugins/facebook-likebox-widget-and-shortcode/ "Facebook Likebox Plugin") - Facebook Light Box Plugin For WordPress 
 
 == Changelog ==
+
+= 1.7.1 =
+* Loadmore color issue fixed.
+* Tested on WordPress 6.8.2
 
 = 1.7.0 =
 * New Settings page Layout.

@@ -37,7 +37,10 @@ function awl_blog_filter_shortcode($user_atts)
 
 	// 2. --- Process Shortcode Attributes ---
     $defaults = bfg_get_shortcode_defaults(); // Use the central defaults function
+	
+	
     $atts = shortcode_atts($defaults, $user_atts, 'AWL-BlogFilter');
+	
     // --- START: BACKWARD COMPATIBILITY LAYER ---
     // This ensures old shortcodes using `selected_categories` or `selected_tags` still work.
     // If the new 'selected_terms' is empty, check if an old attribute has a value.

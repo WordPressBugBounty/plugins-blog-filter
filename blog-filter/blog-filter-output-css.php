@@ -34,7 +34,7 @@
 	}
 	
 	.blog_pagination-<?php echo $unique_id; ?> span { 
-		background : <?php echo $blog_pagination_color; ?> !important;
+		background : <?php echo $blog_pagination_loadmore_color; ?> !important;
 		border: 1px solid #eaeaea;
 		display: inline-block;
 		text-align: center;
@@ -43,20 +43,20 @@
 		border-radius:5px;
 	}
 	.blog_pagination-<?php echo $unique_id; ?> span:hover { 
-		background : <?php echo $blog_pagination_color; ?> !important;
+		background : <?php echo $blog_pagination_loadmore_color; ?> !important;
 		color : #ffffff; 
 	}
 	.blog_pagination-<?php echo $unique_id; ?> a {
-		border: 1px solid <?php echo $blog_pagination_color; ?> !important;
+		border: 1px solid <?php echo $blog_pagination_loadmore_color; ?> !important;
 		display: inline-block;
 		text-align: center;
-		color: <?php echo $blog_pagination_color; ?> !important;
+		color: <?php echo $blog_pagination_loadmore_color; ?> !important;
 		padding: 4px 12px;
 		border-radius:5px;
 		transition: 0.7s;
 	}
 	.blog_pagination-<?php echo $unique_id; ?> a:hover, .blog_pagination-<?php echo $unique_id; ?> a:focus {
-		background: <?php echo $blog_pagination_color; ?> !important;
+		background: <?php echo $blog_pagination_loadmore_color; ?> !important;
 		color: #FFFFFF !important;
 		text-decoration:none;
 	}
@@ -100,7 +100,7 @@
 		transition-delay: 0.8s;
 		text-align:center;
 		margin: 0 auto;
-		background-color: <?php echo $blog_pagination_color; ?> !important;
+		background-color: <?php echo $blog_pagination_loadmore_color; ?> !important;
 	}
 	#load-more-<?php echo $unique_id; ?>:focus {
 		box-shadow: none !important
@@ -112,7 +112,7 @@
 	  width: 13px;
 	  height: 13px;
 	  border-radius: 50%;
-	  background: <?php echo $blog_pagination_color; ?> !important;
+	  background: <?php echo $blog_pagination_loadmore_color; ?> !important;
 	  animation-timing-function: cubic-bezier(0, 1, 1, 0);
 	}
 	

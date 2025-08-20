@@ -4,7 +4,7 @@ if (!defined('ABSPATH'))
 /**
 Plugin Name: Blog Filter
 Description: Blog Filter For WordPress Blog With Multiple Filters
-Version: 1.7.0
+Version: 1.7.1
 Author: A WP Life
 Author URI: http://awplife.com/
 Text Domain: blog-filter
@@ -39,7 +39,7 @@ if (!class_exists('Awl_Blog_Filter')) {
 		protected function _constants()
 		{
 			//Plugin Version
-			define('BF_PLUGIN_VER', '1.7.0');
+			define('BF_PLUGIN_VER', '1.7.1');
 
 			//Plugin Text Domain
 			define("'blog-filter'", "blog-filter");
@@ -135,7 +135,6 @@ if (!class_exists('Awl_Blog_Filter')) {
 					'blog_pagination_loadmore_color' => '#58BBEE',
 					'blog_per_page_and_init_load' => '12',
 					'blog_on_load_scroll' => '3',
-					'blog_pagination_color' => '#58BBEE',
 					'load_more_text' => 'Load More',
 					'no_more_text' => 'No More Posts',
 
