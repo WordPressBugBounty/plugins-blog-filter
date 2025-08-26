@@ -4,26 +4,12 @@ if (!defined('ABSPATH'))
 /**
 Plugin Name: Blog Filter
 Description: Blog Filter For WordPress Blog With Multiple Filters
-Version: 1.7.1
+Version: 1.7.2
 Author: A WP Life
 Author URI: http://awplife.com/
 Text Domain: blog-filter
 Domain Path: /languages
 **/
-
-// redirect user to Blog Filter plugin setting page.
-register_activation_hook( __FILE__, 'awl_blog_filter_activate' );
-function awl_blog_filter_activate() {
-	add_option( 'alw_blog_filter_do_activation_redirect', true );
-}
-add_action( 'admin_init', 'awl_blog_filter_page_redirect' );
-function awl_blog_filter_page_redirect() {
-	if ( get_option( 'alw_blog_filter_do_activation_redirect', false ) ) {
-		delete_option( 'alw_blog_filter_do_activation_redirect' );
-		wp_safe_redirect( 'edit.php?page=blog-filter-settings-page' );
-		exit;
-	}
-}
 
 if (!class_exists('Awl_Blog_Filter')) {
 
@@ -39,7 +25,7 @@ if (!class_exists('Awl_Blog_Filter')) {
 		protected function _constants()
 		{
 			//Plugin Version
-			define('BF_PLUGIN_VER', '1.7.1');
+			define('BF_PLUGIN_VER', '1.7.2');
 
 			//Plugin Text Domain
 			define("'blog-filter'", "blog-filter");
