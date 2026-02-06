@@ -1715,7 +1715,7 @@ wp_enqueue_style('blog-filter-tailwind', plugin_dir_url(__FILE__) . 'css/styles.
 			shortcode = shortcode + ' selected_terms="' + selected_terms.join(',') + '"';
 		}
 
-		shortcode = shortcode + ' custom-css="' + ' "';
+		shortcode = shortcode + ' custom_css="' + ' "';
 
 		shortcode = shortcode + ' ]';
 

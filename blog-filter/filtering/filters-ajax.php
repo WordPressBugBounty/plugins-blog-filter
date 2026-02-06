@@ -82,13 +82,13 @@ jQuery(function() {
 		});
 		<?php
 		if (isset($default_filter) && $default_filter != "all") {
-			?>
+		?>
 			jQuery("#<?php echo $default_filter; ?>").addClass('active');
 			jQuery("#all").removeClass("active");
 			<?php
 		}
 
-		?>
+			?>
 
 		// Animate loader off screen
 		jQuery(".blog_loader").hide();
@@ -248,13 +248,13 @@ jQuery(function() {
 			//console.log(loadedItems);
 			if (filter_image_len == loadedItems) {
 				<?php if ($blog_load_more == "yes") { ?>
-					button[0].childNodes[0].innerHTML = '<?php echo $no_more_text; ?>';
+					button[0].childNodes[0].textContent = <?php echo wp_json_encode($no_more_text); ?>;
 					button[0].style.pointerEvents = "none";
 					button.removeClass('active');
 				<?php } ?>
 			} else {
 				<?php if ($blog_load_more == "yes") { ?>
-					button[0].childNodes[0].innerHTML = '<?php echo $load_more_text; ?>';
+					button[0].childNodes[0].textContent = <?php echo wp_json_encode($load_more_text); ?>;
 					button[0].style.pointerEvents = "auto";
 					button.removeClass('active');
 				<?php } ?>
@@ -436,7 +436,7 @@ jQuery(function() {
 					complete: function () { },
 					success: function (data) {
 						if (jQuery.trim(data) != '') {
-							button[0].childNodes[0].innerHTML = '<?php echo $load_more_text; ?>';
+							button[0].childNodes[0].textContent = <?php echo wp_json_encode($load_more_text); ?>;
 							button.removeClass('active');
 							options<?php echo $unique_id; ?> = {
 								/*animationDuration: 0.5,*/
@@ -492,7 +492,7 @@ jQuery(function() {
 							jQuery('.bfg-lightbox-<?php echo $unique_id; ?>').swipebox();
 						} else {
 							//alert('No More Posts');
-							button[0].childNodes[0].innerHTML = '<?php echo $no_more_text; ?>';
+							button[0].childNodes[0].textContent = <?php echo wp_json_encode($no_more_text); ?>;
 							button[0].style.pointerEvents = "none";
 							button.removeClass('active');
 						}

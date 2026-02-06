@@ -4,12 +4,12 @@ if (!defined('ABSPATH'))
 /**
 Plugin Name: Blog Filter
 Description: Blog Filter For WordPress Blog With Multiple Filters
-Version: 1.7.2
+Version: 1.7.4
 Author: A WP Life
 Author URI: http://awplife.com/
 Text Domain: blog-filter
 Domain Path: /languages
-**/
+ **/
 
 if (!class_exists('Awl_Blog_Filter')) {
 
@@ -25,7 +25,7 @@ if (!class_exists('Awl_Blog_Filter')) {
 		protected function _constants()
 		{
 			//Plugin Version
-			define('BF_PLUGIN_VER', '1.7.2');
+			define('BF_PLUGIN_VER', '1.7.4');
 
 			//Plugin Text Domain
 			define("'blog-filter'", "blog-filter");
@@ -41,7 +41,6 @@ if (!class_exists('Awl_Blog_Filter')) {
 
 			//Plugin Directory URL
 			define('BF_PLUGIN_URL', plugin_dir_url(__FILE__));
-
 		} // end of constructor function
 
 		protected function _hooks()
@@ -66,7 +65,7 @@ if (!class_exists('Awl_Blog_Filter')) {
 
 			function bfg_get_shortcode_defaults()
 			{
-				 return array(
+				return array(
 					// General & Post Type Settings
 					'post_type' => 'post',
 					'blog_direction' => 'ltr',
@@ -99,7 +98,7 @@ if (!class_exists('Awl_Blog_Filter')) {
 					'blog_desc_color' => '#606060',
 					'blog_desc_box_color' => '#EDEEF0',
 					'three_dots' => 'yes',
-					
+
 					// Links and Display
 					'link_on_date' => 'no',
 
@@ -141,7 +140,7 @@ if (!class_exists('Awl_Blog_Filter')) {
 					// Taxonomy Filtering
 					'blog_filtering' => 'blog_category',
 					'default_filter_term' => 'all',
-					
+
 					'selected_terms' => '',
 
 					// Custom CSS
@@ -161,7 +160,6 @@ if (!class_exists('Awl_Blog_Filter')) {
 			add_action('wp_ajax_get_taxonomies_for_post_type', array(&$this, 'bfg_get_taxonomies_callback'));
 
 			add_action('wp_ajax_get_terms_for_taxonomy', array(&$this, 'bfg_get_terms_for_taxonomy_callback'));
-
 		}// end of hook function
 
 		/**
@@ -241,7 +239,7 @@ if (!class_exists('Awl_Blog_Filter')) {
 
 				// Build Inclusion Table HTML
 				ob_start();
-				?>
+?>
 				<div class="bfg-overflow-auto" style="max-height: 415px;">
 					<table class="bfg-w-full bfg-border-collapse bfg-border bfg-border-gray-300">
 						<thead>
@@ -268,7 +266,7 @@ if (!class_exists('Awl_Blog_Filter')) {
 							<?php endforeach; ?>
 						</tbody>
 					</table>
-					<p><b><?php esc_html_e( 'Note: In free version you can use only 4 taxonomy as filters', 'blog-filter' ); ?></b></p>
+					<p><b><?php esc_html_e('Note: In free version you can use only 4 taxonomy as filters', 'blog-filter'); ?></b></p>
 				</div>
 				<?php
 				$table_html = ob_get_clean();
@@ -305,9 +303,8 @@ if (!class_exists('Awl_Blog_Filter')) {
 						</tbody>
 					</table>
 				</div>
-				<?php
+<?php
 				$exclude_table_html = ob_get_clean();
-
 			} else {
 				$table_html = '<p>' . __('No terms found for this taxonomy.', 'blog-filter') . '</p>';
 				$exclude_table_html = $table_html;
@@ -377,5 +374,4 @@ if (!class_exists('Awl_Blog_Filter')) {
 	$pf_post_filter_object = new Awl_Blog_Filter();
 	//Shortcode page
 	require_once('blog-filter-shortcode.php');
-
 } ?>

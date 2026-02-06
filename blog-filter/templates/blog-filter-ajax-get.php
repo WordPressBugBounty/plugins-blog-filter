@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Blog Filter - AJAX Load More Handler
  *
@@ -20,16 +21,28 @@ check_ajax_referer('load_more_nonce', 'nonce');
 // Get the original shortcode attributes that were passed from the JavaScript.
 $user_atts = isset($_POST['bfg_query_vars']) ? (array) $_POST['bfg_query_vars'] : array();
 
-    $defaults = bfg_get_shortcode_defaults();
+// Sanitize critical fields in user_atts for security
+if (isset($user_atts['post_type'])) {
+    $user_atts['post_type'] = sanitize_key($user_atts['post_type']);
+}
+if (isset($user_atts['blog_filtering'])) {
+    $user_atts['blog_filtering'] = sanitize_key($user_atts['blog_filtering']);
+}
+if (isset($user_atts['selected_terms'])) {
+    // Sanitize as comma-separated integers
+    $user_atts['selected_terms'] = implode(',', array_map('intval', array_filter(explode(',', $user_atts['selected_terms']))));
+}
 
-    // CORRECTED: Use shortcode_atts() to merge user's attributes with defaults.
-    // The user's attributes are in the $user_atts variable.
-    $atts = shortcode_atts($defaults, $user_atts, 'AWL-BlogFilter');
-    
-    // For convenience, extract attributes into local variables (e.g., $post_type, $blog_template).
-    extract($atts);
+$defaults = bfg_get_shortcode_defaults();
 
-   //echo $blog_buttons_color;
+// CORRECTED: Use shortcode_atts() to merge user's attributes with defaults.
+// The user's attributes are in the $user_atts variable.
+$atts = shortcode_atts($defaults, $user_atts, 'AWL-BlogFilter');
+
+// For convenience, extract attributes into local variables (e.g., $post_type, $blog_template).
+extract($atts);
+
+//echo $blog_buttons_color;
 
 // Sanitize all expected attributes with defaults.
 //$post_type           = isset($atts['post_type']) ? sanitize_text_field($atts['post_type']) : 'post';
@@ -41,7 +54,21 @@ $user_atts = isset($_POST['bfg_query_vars']) ? (array) $_POST['bfg_query_vars'] 
 
 // Get data sent directly from the AJAX call.
 $displayed_posts     = isset($_POST['displayed_posts']) ? array_map('intval', $_POST['displayed_posts']) : array();
-$targetFilter        = isset($_POST['targetFilter']) ? $_POST['targetFilter'] : 'all';
+
+// Sanitize targetFilter - must be 'all' or integer term ID(s)
+$targetFilter = 'all';
+if (isset($_POST['targetFilter'])) {
+    $raw_filter = $_POST['targetFilter'];
+    if (is_array($raw_filter)) {
+        // Multiple filters: sanitize each as integer
+        $targetFilter = array_map('intval', $raw_filter);
+    } elseif ($raw_filter === 'all') {
+        $targetFilter = 'all';
+    } else {
+        // Single filter: sanitize as integer
+        $targetFilter = intval($raw_filter);
+    }
+}
 
 $unique_id = isset($_POST['unique_id']) ? intval($_POST['unique_id']) : rand(1, 1000);
 
@@ -71,10 +98,9 @@ if ($targetFilter !== 'all' && !empty($blog_filtering)) {
         'field'     => 'term_id',
         'terms'     => is_array($targetFilter) ? $targetFilter : array($targetFilter), // Ensure terms are an array.
     );
-}
-else if ($targetFilter === 'all' && !empty($blog_filtering) && !empty($selected_terms)) {
+} else if ($targetFilter === 'all' && !empty($blog_filtering) && !empty($selected_terms)) {
     // If filter is "All", fall back to the original terms selected in the shortcode.
-     $tax_query[] = array(
+    $tax_query[] = array(
         'taxonomy' => $blog_filtering,
         'field'    => 'term_id',
         'terms'    => explode(',', $selected_terms),
@@ -97,9 +123,9 @@ $custom_query = new WP_Query($custom_query_args);
 
 if ($custom_query->have_posts()) :
     // Pass all the necessary variables from the original shortcode attributes to the template.
-   
-       require('blog-filter-content.php');
-   
+
+    require('blog-filter-content.php');
+
 endif;
 
 // Always exit correctly in WordPress AJAX handlers.

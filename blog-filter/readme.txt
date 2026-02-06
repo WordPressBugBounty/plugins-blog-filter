@@ -1,76 +1,120 @@
-=== Blog Filter - Advanced Post Filtering with Categories Or Tags, Post Portfolio Gallery, Blog Design Template, Blog Post Layout ===
+=== Blog Filter Post Filtering  ===
 Contributors: awordpresslife, razipathhan, hanif0991, muhammadshahid, fkfaisalkhan007, sharikkhan007, zishlife, FARAZFRANK
 Donate link: https://paypal.me/awplife
-Tags: blog grid, post layout, blog layout, blog template, blog design
+Tags: blog filter, post grid, blog layout, category filter, tag filter
 Requires at least: 5.0
-Tested up to: 6.8.2
-Stable tag: 1.7.2
+Tested up to: 6.9
+Requires PHP: 7.0
+Stable tag: 1.7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Blog Filter: Effortlessly organize posts with grid designs, masonry layouts, and category/tag filters. Create stunning post portfolios and galleries.
+Blog Filter helps users display posts in filterable grid and masonry layouts. Organize content by categories or tags with customizable designs.
 
 == Description ==
 
-The Blog Filter offers an unmatched solution for post-filtering with post category or post tags on WordPress blog sites. Perfect for both beginners and experts, this plugin seamlessly integrates with your blogs.
+**Blog Filter** is a WordPress plugin designed to help website owners display their blog posts in organized, filterable layouts. Whether you run a personal blog, news site, or content-heavy portal, this plugin provides an intuitive way for visitors to browse and discover posts based on categories or tags.
 
-Boasting a sleek and user-friendly interface, the Blog Filter showcases your posts in an elegant grid layout. Want to help your visitors find exactly what they're seeking? Just a single click on a category or tag, and they'll see the related posts instantly.
+The plugin automatically fetches your existing WordPress posts and displays them in a grid or masonry layout. Visitors can click on filter buttons to instantly see posts from specific categories or tags, making content discovery much easier on sites with large archives.
 
-Installation is a breeze: simply install, activate, and you're good to go. No fuss. No complex settings. Plus, with our unique shortcode generator, you can effortlessly display the filtered blog posts or post portfolio anywhere on your site.
+[youtube https://www.youtube.com/watch?v=7Ue3eIM3nu4]
 
-Dive deeper into customization with a myriad of options at your fingertips. Adjust colors, toggle visibility for titles, details, permalink, and gallery buttons, and even select your desired image quality. Whether you prefer high-resolution images or faster, smaller ones, the Blog Filter has got you covered.
+**Upgrade To Premium -  <a href="https://awplife.com/wordpress-plugins/blog-filter-wordpress-plugin/">Blog Filter Plugin</a>**
 
-Experience the future of blog and post filtering with the Blog Filter plugin.
+**Premium <a href="https://awplife.com/demo/blog-filter-premium/">Blog Filter Plugin Demo</a>**
 
-**Upgrade To Premium Blog Filter Plugin - <a href="https://awplife.com/wordpress-plugins/blog-filter-wordpress-plugin/">Click Here</a>**
+= What Does Blog Filter Do? =
 
-**Check Premium Blog Filter Plugin Demo - <a href="https://awplife.com/demo/blog-filter-premium/">Click Here</a>**
+At its core, Blog Filter takes your WordPress posts and presents them in a visually organized manner. Instead of showing posts in a traditional chronological list, you can display them in:
 
-== QUICK & EASIEST SETUP GUID FOR BLOG FILTER PLUGIN ==
+* **Grid Layouts** - Posts arranged in neat rows and columns
+* **Masonry Layouts** - Pinterest-style arrangement that optimizes space by eliminating gaps between posts of different heights
 
-1. Install the plugin.
-2. Go to "Plugins Menu > Blog Filter Settings".
-3. Customize the appearance and functionality.
-4. Generate and use the shortcode wherever you want to display filtered blog posts.
-5. Enjoy a dynamic, filtered post display on your website!
+The filtering functionality lets visitors click on category or tag buttons to view only the posts that match their interests. This happens dynamically on the page without requiring a reload.
 
-https://www.youtube.com/watch?v=sg_q6JYNges
+= Who Can Benefit From This Plugin? =
 
-### The plugin is available in following languages:
+**Content Publishers**: If your site has hundreds of articles across multiple topics, filtering helps readers find relevant content quickly.
 
-Arabic (ar)
-Chinese (zh_CN)
-Finnish (fi_FI)
-French (fr_FR)
-German (de_DE)
-Hindi (hi_IN)
-Hungarian (hu_HU)
-Italian (it_IT)
-Indonesian (id_ID)
-Japanese (ja_JP)
-Dutch (nl_NL)
-Russian (ru_RU)
-Spanish (es_ES)
-Polish (pl_PL)
-Portuguese (pt_PT)
-Hebrew (he_IL)
-And you can translate the plugin in your native language easily.
+**News Websites**: Organize stories by categories like sports, technology, entertainment, and let users toggle between sections.
+
+**Educational Blogs**: Students and researchers can filter posts by subject matter or topic tags.
+
+**Portfolio Blogs**: Showcase written work or case studies with easy category-based navigation.
+
+**Magazine-Style Sites**: Present content in a visually appealing grid that resembles magazine layouts.
+
+= Quick Setup Guide =
+
+1. Install and activate the plugin through your WordPress dashboard
+2. Navigate to "Plugins Menu > Blog Filter Settings"
+3. Configure the appearance and filtering options
+4. Copy the generated shortcode
+5. Paste the shortcode into any page, post, or widget area
+
+That's it. The plugin handles the rest automatically.
+
+= Available Languages =
+
+Blog Filter supports multiple languages out of the box:
+
+* Arabic (ar)
+* Chinese (zh_CN)
+* Dutch (nl_NL)
+* Finnish (fi_FI)
+* French (fr_FR)
+* German (de_DE)
+* Hebrew (he_IL)
+* Hindi (hi_IN)
+* Hungarian (hu_HU)
+* Indonesian (id_ID)
+* Italian (it_IT)
+* Japanese (ja_JP)
+* Polish (pl_PL)
+* Portuguese (pt_PT)
+* Russian (ru_RU)
+* Spanish (es_ES)
+
+You can also translate the plugin into your native language using standard WordPress translation methods.
 
 == Blog Filter Features ==
 
-* Too Easy - It can automatically fetch all blog data, you don't have to do anything.
-* Blog Filters - Easy way to show Blog Posts with filters like a post portfolio.
-* Filtering with Categories - Post categories will be used to filter out posts.
-* Filtering with Tags - Post tags will be used to filter out posts.
-* Blog Grid, Post Grid - You can show your All blog posts in the grid layout.
-* Image quality option - You can select the quality of an image you are going to display.
-* Responsive Layout - This plugin is fully responsive and compatible with all devices like PC, Mac, tab, phone
-* Post Links - You don't have to do anything it will auto-connect with your single post pages.
-* Blog Post Title - show image title/label grid blog post images.
-* Masonry Layout - This plugin is auto-masonry.
-* Blog Multi Color For Filters - apply multiple colors for the filters button.
+= Automatic Post Detection =
+The plugin automatically pulls in your existing WordPress posts. There's no manual entry required - just install, configure your display preferences, and your posts appear in the filtered layout.
 
-Get much more with pro version 5.7 of the Blog filter, make filterable post grid gallery.
+= Category and Tag Filtering =
+Choose whether to filter posts by categories, tags, or both. Filter buttons appear above your post grid, allowing visitors to narrow down content with a single click.
+
+= Responsive Grid Layout =
+Posts display in a grid format that adapts to screen sizes. Whether someone visits on a desktop monitor, tablet, or smartphone, the layout adjusts accordingly.
+
+= Masonry Arrangement =
+Enable masonry layout to create that Pinterest-style look where posts of varying heights fit together without awkward gaps. This works particularly well when your posts have featured images of different dimensions.
+
+= Image Quality Control =
+Select the image resolution for displayed thumbnails. You can opt for high-resolution images on design-focused sites, or choose smaller sizes for faster page loads.
+
+= Multi-Color Filter Buttons =
+Apply different colors to your filter buttons to match your site's design or to help visitors visually distinguish between categories.
+
+= Post Titles and Details =
+Show or hide post titles, dates, authors, and other metadata. Control what information appears beneath each post thumbnail.
+
+= Automatic Post Links =
+Each post in the grid links directly to its full single post page. No additional configuration needed.
+
+= Shortcode-Based Placement =
+Use the generated shortcode to place your filtered post grid anywhere on your site - pages, posts, sidebar widgets, or page builder sections.
+
+= Load More Functionality =
+Instead of pagination, you can enable a "Load More" button that fetches additional posts without page reloads.
+
+= Custom Post Type Support =
+Display posts from custom post types, not just standard WordPress posts.
+
+== Premium Version Features ==
+
+The premium version of Blog Filter includes additional capabilities:
 
 = BLOG FILTER PREMIUM FEATURES WITH DEMO =
 
@@ -80,183 +124,178 @@ Get much more with pro version 5.7 of the Blog filter, make filterable post grid
 * [Blog Filter Premium Multiple Column Layout](https://awplife.com/demo/blog-filter-premium/column-layout/ "Blog Filter Premium (Blog Post Grid Layout with filters)")
 * [Blog Filter Premium Without Image](https://awplife.com/demo/blog-filter-premium/blog-filter-without-image/ "Blog Filter Premium (Blog Post without Image Layout with filters)")
 * [Blog Filter Premium Without Filters](https://awplife.com/demo/blog-filter-premium/blog-without-filter/ "Blog Filter Premium (Blog Post without Filters Layout)")
-* [Blog Filter Premium With Hover Effects](https://awplife.com/demo/blog-filter-premium/hover-effect-1/ "Blog Filter Premium (Blog Post Multi Hover Effects )")
-* [Blog Filter Premium With Lightbox](https://awplife.com/demo/blog-filter-premium/ "Blog Filter Premium (Blog Post Image With Lightbox )")
-* [Blog Filter Premium With Single Post Link On Image](https://awplife.com/demo/blog-filter-premium/ "Blog Filter Premium (Blog Post Image With Single Post Link On Image )")
-* [Blog Filter Premium With Second Variation for Title, Date & Autor](https://awplife.com/demo/blog-filter-premium/second-veriation/ "Blog Filter Premium (Blog Post Image With Second Variation for Title, Date & Autor )")
+* [Blog Filter Premium With Hover Effects](https://awplife.com/demo/blog-filter-premium/hover-effect-1/ "Blog Filter Premium (Blog Post Multi Hover Effects)")
+* [Blog Filter Premium With Lightbox](https://awplife.com/demo/blog-filter-premium/ "Blog Filter Premium (Blog Post Image With Lightbox)")
+* [Blog Filter Premium With Single Post Link On Image](https://awplife.com/demo/blog-filter-premium/ "Blog Filter Premium (Blog Post Image With Single Post Link On Image)")
+* [Blog Filter Premium With Second Variation for Title, Date & Author](https://awplife.com/demo/blog-filter-premium/second-veriation/ "Blog Filter Premium (Blog Post Image With Second Variation for Title, Date & Author)")
 
-**Get Premium Version With More Features**
+= Premium Features Include =
 
-* Easy & Simple
-* Responsive
-* Filtration
-* Add Unlimited Filters
-* Unlimited Filter colors
-* Masonry Layout
-* Blog Grid, Post Grid.
-* Multiple Column Layouts
-* Bootstrap Based
-* 5 Hover Effect
-* Light Box Pop-up Style Blog Filter (blog post Portfolio)
-* Blog Title
-* Blog Filter in Widget
-* SEO Friendly Blog Post Portfolio
-* Simple & User-Friendly Custom Plugin Dashboard
-* Custom CSS
-* Easy To Implement Anywhere Into WordPress
-* Easily Customizable
-* Fast, Friendly & Quality Support
-* The Blog Filter (blog post Portfolio) plugin is very easy to use it also user-friendly and well-designed, you can easily create your portfolio in a few minutes. The portfolio setting is created with a dropdown toggle bar to separate the settings, the user can easily understand and easily configure the settings of the portfolio. The link option filters option and description option come below the image. 
-* The Blog Filter (blog post Portfolio) gallery is fully responsive and works well with all devices like desktops, tablets iPhone,s, etc. 
-* You can change unlimited colors in the Blog Filter (blog post Portfolio), change title & description background colors, change title description color, and also change the border color of images. 
-* Beautifully created masonry Blog Filter (blog post Portfolio) gallery
-* Link option with both themes you can also set a read more or view button and give a link into it or give the link on Blog Filter (blog post Portfolio)
-* Set multiple column layouts like 1 column, 2 columns, 3 columns, or 4 columns in post grids
+* Multiple pre-designed templates
+* Up to 4-column layouts
+* Five hover effects for post thumbnails
+* Lightbox popup for featured images
+* Unlimited filter colors
+* Custom CSS option for advanced styling
+* Widget support for sidebar placement
+* Additional post metadata display options
+* Bootstrap-based framework
+* Priority support
 
-== Easiest Way To Add Filters or Category in Blog (Plog Post Portfolio) ==
-The first blog plugin in WordPress for a showing Blog posts with filters.
+== Understanding Masonry Layouts ==
 
-== Fully responsive Blog Filter (blog post Portfolio) ==
-Blog Filter (blog post Portfolio) is fully responsive and managed according to your devices.
+Masonry layout arranges elements in a grid where items are positioned to fill vertical space efficiently. Unlike traditional grids where each row has the same height, masonry allows items of different sizes to stack closely together.
 
-== Image Lightboxes In Blog Filter (blog post Portfolio) ==
+This layout style became popular through sites like Pinterest and works well for:
 
-= Blog Filter (blog post Portfolio) Swipebox Lightbox =
+* Posts with varied featured image dimensions
+* Content archives with mixed media types
+* Visual portfolios and galleries
+* Magazine-style homepage designs
 
-Swipebox is a jQuery "lightbox" plugin for desktop, mobile, and tablet.
+Blog Filter handles masonry calculations automatically. You enable the option, and the plugin takes care of positioning each post to minimize empty space.
 
-== Main Features ==
+== Lightbox Functionality ==
 
-Blog Grid, Post Grid.
-Swipe gestures for mobile
-Keyboard Navigation for desktop
-CSS transitions with jQuery fall-back
-Retina support for UI icons
-Easy CSS customization
-Compatibility with Chrome, Safari, Firefox, Opera, IE9+, IOS4+, Android, and windows phones.
+The premium version includes Swipebox lightbox integration, which displays featured images in an overlay popup. Key lightbox features:
 
-= Blog Filter (blog post Portfolio) Custom CSS Option =
-Custom CSS is part of Custom Design, which is a feature of the WordPress.com Premium and WordPress.com Business plans. CSS stands for Cascading Style Sheets. It is a markup language that controls the appearance of HTML elements on a web page.
-
-== Defining Masonry Layout in Blog Filter (blog post Portfolio) ==
-The term Masonry layout probably owes its name to the popular jQuery Masonry plugin that is used to generate this type of layout. Masonry layout is also referred to as the Pinterest Style Layout, as www.pinterest.com was the first major website to use this layout style.
-
-Blog Filter (blog post Portfolio) masonry is a grid layout based on columns. Unlike other grid layouts, it doesn’t have fixed-height rows. Basically, the Masonry layout optimizes the use of space inside the web page by reducing any unnecessary gaps. Without this type of layout, certain restrictions are required to maintain the structure of the layout.
-
-Developers and designers are accustomed to seeing web pages laid out with CSS floats. But this common type of layout doesn’t take the size of the elements into consideration. Instead, it adds elements one after another, first in the horizontal direction, then vertically. 
-The following image shows a typical web page that uses floats for layout:
-
-= Blog Filter (blog post Portfolio) Features of Masonry Layout Plugins =
-
-The plugins listed in the previous section contain unique features in addition to the common feature set. It is difficult to understand the difference between each plugin just by looking at a Masonry layout generated by each one. All of the layouts will appear quite similar. It is important to consider the available features before choosing a plugin. Generally, most plugins provide an API and documentation for identifying their features.
-
-I suggest looking at the available features of each plugin before making your choice. I have compiled the following list of common features from the plugins listed in the previous section. These are some of the main features, but each plugin also has its own unique ones. It’s up to you to choose the best plugin based on your application requirements.
-
-Blog Filter (blog post Portfolio) Column sizes – Masonry layouts can have fixed-size columns or dynamic columns. Fixed-size columns are the norm. It is better to choose a plugin that allows dynamic columns, as it enhances flexibility.
-Sorting and Filtering – Plugins like Isotope allow you to sort and filter the elements without losing the structure of the layout. It is a good feature to have when you need dynamic Masonry layouts.
-Animation – Unlike normal layouts, Masonry layouts change completely with the addition or removal of elements. Because of this, it is better to have animation effects for adjusting elements – this creates an awesome user experience.
-Dynamic Elements – Generally, we create the layout on page load using the available elements. But some sites might require the ability to add or remove elements without refreshing. In such cases, the plugin should have the ability to auto-adjust the layout to provide the optimal structure.
-Layout Options – The plugin should allow you to set a column width, gutter size, alignment, Blog Post Filter, Post Grid Desgin Template, Post Or Blog Portfolio, Post Gallery, portfolio gallery, masonry layout, category filter, tag filter etc.
+* Swipe gestures for mobile navigation
+* Keyboard navigation on desktop
+* CSS transitions with jQuery fallback
+* Retina-ready UI icons
+* Browser compatibility: Chrome, Safari, Firefox, Opera, IE9+, iOS 4+, Android, Windows Phone
 
 == Screenshots ==
 
-1. Blog Filter Gallery With Filters
-2. Blog Filter Gallery Without Featured Image
-3. Blog Filter (blog post Portfolio) Filter Layout
-4. Blog Filter Gallery Without Featured Images
-5. New Settings Page Layout
+1. Blog Filter Gallery with category filters
+2. Blog Filter Gallery without featured images
+3. Blog Filter Layout with post filtering
+4. Blog Filter Gallery displaying posts without images
+5. Settings page interface
+
+== Installation ==
+
+= From WordPress Dashboard =
+1. Go to Plugins > Add New
+2. Search for "Blog Filter"
+3. Click Install Now, then Activate
+4. Find Blog Filter Settings in your admin menu
+
+= Manual Installation =
+1. Download the plugin zip file
+2. Extract and upload the `blog-filter` folder to `/wp-content/plugins/`
+3. Activate through the Plugins menu
+4. Configure settings and generate your shortcode
 
 == Frequently Asked Questions ==
 
-Have any queries?
+= How do I display the filtered posts on my site? =
 
-Please post your question on the plugin support forum
+After configuring your settings, copy the shortcode displayed in the Blog Filter admin panel. Paste this shortcode into any page, post, or text widget where you want the filtered post grid to appear.
 
+= Can I filter by both categories and tags? =
+
+Yes. In the settings, you choose whether to use post categories, post tags, or both as your filter criteria.
+
+= Does the plugin work with custom post types? =
+
+The premium version includes custom post type support. You can display and filter content from any registered post type.
+
+= Will this slow down my website? =
+
+The plugin is designed with performance in mind. You can also select lower image resolutions to reduce page load times on image-heavy layouts.
+
+= Is the layout mobile-friendly? =
+
+Yes. The grid layout is fully responsive and adjusts to fit screens of all sizes, from large desktop monitors to mobile phones.
+
+= Can I customize the appearance? =
+
+The settings panel includes options for colors, visibility toggles, and layout preferences. The premium version adds custom CSS support for more advanced styling.
+
+= What if I need help? =
+
+Post your questions on the WordPress plugin support forum:
 https://wordpress.org/support/plugin/blog-filter/
 
-= Recommended Plugins =
+== Recommended Plugins ==
 
-The following are other recommended plugins by the author:
+Other plugins from the same development team:
 
-* [Instagram Type Gallery](https://wordpress.org/plugins/insta-type-gallery/ "Best Instagram Type Gallery") - The Instagram Type Gallery Plugin to create an awesome Layout. 
+* [Portfolio Filter Gallery](https://wordpress.org/plugins/portfolio-filter-gallery/ "Portfolio Filter Gallery") - Create filterable image galleries for portfolios, photography, and artwork.
 
-*Buy Premium Plugin - <a href="http://awplife.com/product/instagram-type-gallery-premium/">Click Here</a>*
+* [Instagram Type Gallery](https://wordpress.org/plugins/insta-type-gallery/ "Instagram Type Gallery") - Display images in Instagram-inspired grid layouts.
 
-* [Portfolio Filter Gallery](https://wordpress.org/plugins/portfolio-filter-gallery/ "Best Portfolio Filter Gallery") - The Gallery Plugin to create an awesome Portfolio Filter Gallery Plugin in minutes. 
+* [Grid Gallery](https://wordpress.org/plugins/new-grid-gallery/ "Grid Gallery Plugin") - Simple grid layout for image galleries in posts, pages, and widgets.
 
-*Buy Premium Plugin - <a href="http://awplife.com/product/portfolio-filter-gallery-premium/">Click Here</a>*
+* [Image Gallery](https://wordpress.org/plugins/new-image-gallery/ "Image Gallery Plugin") - Lightbox-enabled gallery for displaying images.
 
-* [Best Grid Gallery Plugin](https://wordpress.org/plugins/new-grid-gallery/ "Best Grid Galley Plugin") - Easy Grid Gallery Widget - Displaying your image in Page & Post widget/sidebar area very easy. Allows you to customize it to look exactly what you want.
+* [Photo Gallery](https://wordpress.org/plugins/new-photo-gallery/ "Photo Gallery Plugin") - Versatile gallery supporting photos, videos, links, and maps.
 
-*Buy Premium Plugin - <a href="http://awplife.com/product/grid-gallery-premium/">Click Here</a>*
+* [Responsive Slider Gallery](https://wordpress.org/plugins/responsive-slider-gallery/ "Slider Plugin") - Create responsive image sliders with shortcode placement.
 
-* [Image Gallery Plugin](https://wordpress.org/plugins/new-image-gallery/ "Image Gallery Plugin") - Gallery Lightbox - Displays all gallery images into the lightbox slider in just a few seconds.
+* [Video Gallery](https://wordpress.org/plugins/new-video-gallery/ "Video Gallery Plugin") - Display video content in organized gallery layouts.
 
-*Buy Premium Plugin - <a href="http://awplife.com/product/image-gallery-premium/">Click Here</a>*
+* [Contact Form Widget](https://wordpress.org/plugins/new-contact-form-widget/ "Contact Form Plugin") - Add contact forms via shortcodes and widgets.
 
-* [Photo Gallery Plugin](https://wordpress.org/plugins/new-photo-gallery/ "Image Gallery Plugin") - Displays all  Photo Gallery, Video Gallery, Link Gallery, and Map Gallery into WordPress in just a few seconds.
+* [Social Media Widget](https://wordpress.org/plugins/new-social-media-widget/ "Social Media Widget") - Display social media profile links in your sidebar.
 
-*Buy Premium Plugin - <a href="http://awplife.com/product/photo-gallery-premium/">Click Here</a>*
+* [Slider Responsive Slideshow](https://wordpress.org/plugins/slider-responsive-slideshow/ "Responsive Slider Plugin") - Lightweight responsive slider for WordPress.
 
-* [Slider Plugin](https://wordpress.org/plugins/responsive-slider-gallery/ "Slider Plugin") - Fully Responsive Slider Gallery For WordPress ,You can Show Slider Into Page/Post & Widget/Sidebar By Generate Shortcode.
-
-*Buy Premium Plugin - <a href="http://awplife.com/product/responsive-slider-gallery-premium/">Click Here</a>*
-
-* [Contact Form](https://wordpress.org/plugins/new-contact-form-widget/ "Contact Form Plugin") - Contact Form Widget Shortcode Plugin For WordPress.
-
-*Buy Premium Plugin - <a href="http://awplife.com/product/contact-form-premium/">Click Here</a>*
-
-* [Social Media Plugin](https://wordpress.org/plugins/new-social-media-widget/ "Social Media") - Display your Social Media Plugin into Widget/Sidebar in WordPress site with very easily.
-
-*Buy Premium Plugin - <a href="http://awplife.com/product/social-media-widget-premium//">Click Here</a>*
-
-* [Best Responsive Slider Plugin](https://wordpress.org/plugins/slider-responsive-slideshow/ "Responsive Slider Plugin") - Fully Responsive Light Weight Easy Powerful WordPress Slider Slideshow Plugin.
-
-*Buy Premium Plugin - <a href="http://awplife.com/product/slider-responsive-slideshow-premium//">Click Here</a>*
-
-* [Video Gallery Plugin](https://wordpress.org/plugins/new-video-gallery/ "Best Video Gallery Plugin") - The Best Responsive video gallery For WordPress.
-
-*Buy Premium Plugin - <a href="http://awplife.com/product/video-gallery-premium/">Click Here</a>*
-
-* [Facebook Like Share Follow Button](https://wordpress.org/plugins/new-facebook-like-share-follow-button/ "Facebook Like Share Follow Button") - Display your Facebook Like Share Follow Button Plugin into Page/Post & Widget/Sidebar in WordPress sites very easily.
- 
-* [Facebook Like Box Plugin](https://wordpress.org/plugins/facebook-likebox-widget-and-shortcode/ "Facebook Likebox Plugin") - Facebook Light Box Plugin For WordPress 
+* [Facebook Like Box](https://wordpress.org/plugins/facebook-likebox-widget-and-shortcode/ "Facebook Likebox Plugin") - Embed Facebook page like boxes on your site.
 
 == Changelog ==
 
+= 1.7.4 =
+* Security: Fixed Stored Cross-Site Scripting (XSS) vulnerability
+* Security: Added proper output escaping for all shortcode attributes
+* Security: Sanitized custom CSS output with wp_strip_all_tags()
+* Security: Fixed unsafe innerHTML assignments in JavaScript with textContent
+* Security: Sanitized AJAX targetFilter parameter
+* Security: Fixed $_GET['filter'] handling with proper sanitization
+* Security: Added sanitization for critical bfg_query_vars fields
+* Improved: Added esc_attr() and esc_html() escaping throughout templates
+* Improved: Better input validation for AJAX handlers
+
+= 1.7.3 =
+* Tested compatibility with WordPress 6.9
+
 = 1.7.2 =
-* Removed Force Redirection to settings page on activation.
+* Removed automatic redirect to settings page after activation
+* Tested compatibility with WordPress 6.8.3
 
 = 1.7.1 =
-* Loadmore color issue fixed.
-* Tested on WordPress 6.8.2
+* Fixed load more button color styling issue
+* Tested compatibility with WordPress 6.8.2
 
 = 1.7.0 =
-* New Settings page Layout.
-* Custom Post type for pages.
-* Load more Post feature.
-* Many post options added.
+* Redesigned settings page interface
+* Added custom post type support for pages
+* Introduced load more post feature
+* Added multiple new post display options
 
 = 1.6.5 =
-* Paging issue fixed.
+* Fixed pagination issue
 
 = 1.6.4 =
-* Text Domain error fixed.
+* Resolved text domain error
 
 = 1.6.3 =
-* Tested on WordPress 6.8.1
-* Fixed the extra page URLs generating when the pagination is disabled.
+* Tested compatibility with WordPress 6.8.1
+* Fixed issue with extra page URLs generating when pagination is disabled
 
 = 1.6.2 =
-* Tested on WordPress 6.8
-* Regular plugin check and update.
+* Tested compatibility with WordPress 6.8
+* Regular maintenance and updates
 
 = 1.6.1 =
-* Translation added for hebrew.
+* Added Hebrew language translation
 
 = 1.6.0 =
-* Tested on WordPress 6.7.1
-* Regular plugin check and update.
+* Tested compatibility with WordPress 6.7.1
+* Regular maintenance and updates
 
 == Upgrade Notice ==
-This is an initial release. Start with version 0.1. and share your feedback <a href="https://wordpress.org/support/view/plugin-reviews/blog-filter//">here</a>.
+
+= 1.7.4 =
+Important security update. Fixes Stored XSS vulnerability. All users should update immediately.
