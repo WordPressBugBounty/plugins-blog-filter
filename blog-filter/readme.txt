@@ -3,9 +3,9 @@ Contributors: awordpresslife, razipathhan, hanif0991, muhammadshahid, fkfaisalkh
 Donate link: https://paypal.me/awplife
 Tags: blog filter, post grid, blog layout, category filter, tag filter
 Requires at least: 5.0
-Tested up to: 6.9
+Tested up to: 6.9.1
 Requires PHP: 7.0
-Stable tag: 1.7.4
+Stable tag: 1.7.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -245,6 +245,9 @@ Other plugins from the same development team:
 * [Facebook Like Box](https://wordpress.org/plugins/facebook-likebox-widget-and-shortcode/ "Facebook Likebox Plugin") - Embed Facebook page like boxes on your site.
 
 == Changelog ==
+
+= 1.7.5 =
+* Default variables fixed.
 
 = 1.7.4 =
 * Security: Fixed Stored Cross-Site Scripting (XSS) vulnerability

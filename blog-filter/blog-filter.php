@@ -4,7 +4,7 @@ if (!defined('ABSPATH'))
 /**
 Plugin Name: Blog Filter
 Description: Blog Filter For WordPress Blog With Multiple Filters
-Version: 1.7.4
+Version: 1.7.5
 Author: A WP Life
 Author URI: http://awplife.com/
 Text Domain: blog-filter
@@ -25,7 +25,7 @@ if (!class_exists('Awl_Blog_Filter')) {
 		protected function _constants()
 		{
 			//Plugin Version
-			define('BF_PLUGIN_VER', '1.7.4');
+			define('BF_PLUGIN_VER', '1.7.5');
 
 			//Plugin Text Domain
 			define("'blog-filter'", "blog-filter");
@@ -79,36 +79,36 @@ if (!class_exists('Awl_Blog_Filter')) {
 					'blog_col_phones' => 'col-xs-12',
 
 					// Image Settings
-					'blog_image' => 'yes',
+					'blog_image' => 'no',
 					'blog_image_link' => 'no',
 					'blog_image_lightbox' => 'no',
 					'blog_image_hover_effect' => 'none',
 					'blog_image_quality' => 'large',
 
 					// Title Settings
-					'blog_title' => 'yes',
+					'blog_title' => 'no',
 					'blog_title_font_size' => 25,
 					'blog_title_color' => '#000',
 					'blog_title_below_image' => 'no',
 
 					// Description Settings
-					'blog_desc' => 'yes',
+					'blog_desc' => 'no',
 					'blog_desc_characters' => '100',
 					'blog_desc_font_size' => 12,
 					'blog_desc_color' => '#606060',
 					'blog_desc_box_color' => '#EDEEF0',
-					'three_dots' => 'yes',
+					'three_dots' => 'no',
 
 					// Links and Display
 					'link_on_date' => 'no',
 
 					// Read More
-					'blog_read_more' => 'yes',
+					'blog_read_more' => 'no',
 					'blog_read_more_text' => 'Read More',
 
 					// Metadata Display
-					'blog_date' => 'yes',
-					'blog_date_below_image' => 'yes',
+					'blog_date' => 'no',
+					'blog_date_below_image' => 'no',
 					'blog_author' => 'no',
 					'blog_author_below_image' => 'no',
 					'blog_categories' => 'no',
@@ -124,9 +124,9 @@ if (!class_exists('Awl_Blog_Filter')) {
 					'no_more_text' => 'No More Posts',
 
 					// Filters
-					'blog_filters' => 'yes',
+					'blog_filters' => 'no',
 					'filter_post_count' => 'no',
-					'blog_filter_all' => 'yes',
+					'blog_filter_all' => 'no',
 					'blog_all_text' => 'All',
 					'blog_first_filter_selected' => 'no',
 
