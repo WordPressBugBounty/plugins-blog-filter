@@ -45,16 +45,15 @@ wp_enqueue_style('blog-filter-tailwind', plugin_dir_url(__FILE__) . 'css/styles.
 				<!-- Right side: version + button in a single flex item -->
 				<div class="bfg-flex bfg-items-center bfg-space-x-4">
 					<span class="bfg-text-gray-500 bfg-text-sm">
-					<?php _e('Try Pro Version – 5.9.0', 'blog-filter'); ?>
+						<?php _e('Try Pro Version – 5.9.0', 'blog-filter'); ?>
 					</span>
 					<a
-					class="bfg-bg-[#6dbe73] bfg-hover:bg-green-600 bfg-text-white bfg-font-semibold
+						class="bfg-bg-[#6dbe73] bfg-hover:bg-green-600 bfg-text-white bfg-font-semibold
 					bfg-px-4 bfg-py-2 bfg-rounded-md bfg-shadow-lg bfg-transition bfg-duration-200"
-					target="_blank"
-					href="https://awplife.com/product/blog-filter-wordpress-plugin/"
-					style="text-decoration:none"
-					>
-					<?php _e('Upgrade To Pro', 'blog-filter'); ?>
+						target="_blank"
+						href="https://awplife.com/product/blog-filter-wordpress-plugin/"
+						style="text-decoration:none">
+						<?php _e('Upgrade To Pro', 'blog-filter'); ?>
 					</a>
 				</div>
 
@@ -269,23 +268,23 @@ wp_enqueue_style('blog-filter-tailwind', plugin_dir_url(__FILE__) . 'css/styles.
 										$args = array(
 											'public' => true,
 										);
-										$post_types = get_post_types( $args, 'objects' );
-										$selected_post_type = get_option( 'your_plugin_post_type_setting', 'post' );
+										$post_types = get_post_types($args, 'objects');
+										$selected_post_type = get_option('your_plugin_post_type_setting', 'post');
 
-										if ( ! empty( $post_types ) ) {
-											foreach ( $post_types as $post_type ) {
+										if (! empty($post_types)) {
+											foreach ($post_types as $post_type) {
 												// Only 'post' and 'page' should be selectable
-												$is_enabled  = in_array( $post_type->name, array( 'post', 'page' ), true );
+												$is_enabled  = in_array($post_type->name, array('post', 'page'), true);
 												$disabled    = $is_enabled ? '' : 'disabled';
 												// We only allow selecting 'post' or 'page'; ignore saved values for others
-												$is_selected = ( $is_enabled && $post_type->name === $selected_post_type ) ? 'selected' : '';
+												$is_selected = ($is_enabled && $post_type->name === $selected_post_type) ? 'selected' : '';
 
 												printf(
 													'<option value="%s" %s %s>%s</option>' . "\n",
-													esc_attr( $post_type->name ),
+													esc_attr($post_type->name),
 													$disabled,
 													$is_selected,
-													esc_html( $post_type->label )
+													esc_html($post_type->label)
 												);
 											}
 										}
@@ -333,7 +332,7 @@ wp_enqueue_style('blog-filter-tailwind', plugin_dir_url(__FILE__) . 'css/styles.
 										class="bfg-border bfg-rounded bfg-px-3 bfg-py-2 bfg-w-auto">
 										<option value="template1"><?php _e('Template 1', 'blog-filter'); ?></option>
 										<option value="template1" disabled><?php _e('Template 2', 'blog-filter'); ?></option>
-										<option value="template1"disabled><?php _e('Template 3', 'blog-filter'); ?></option>
+										<option value="template1" disabled><?php _e('Template 3', 'blog-filter'); ?></option>
 									</select>
 								</div>
 
@@ -395,9 +394,44 @@ wp_enqueue_style('blog-filter-tailwind', plugin_dir_url(__FILE__) . 'css/styles.
 										<option value="col-xs-3"><?php _e('4 Column', 'blog-filter'); ?> &nbsp </option>
 									</select>
 								</div>
+
+								<!-- Disable Bootstrap CSS -->
+								<div class="bfg-flex bfg-justify-between bfg-items-center">
+									<p class="bfg-mb-0 bfg-font-medium">
+										<?php _e('Disable Bootstrap CSS', 'blog-filter'); ?>
+									</p>
+									<label class="bfg-relative bfg-inline-flex bfg-items-center bfg-cursor-pointer">
+										<input type="checkbox" id="disable_bootstrap_css" name="disable_bootstrap_css" value="yes"
+											class="bfg-sr-only bfg-peer" onchange="toggleSwitch(this)">
+										<div
+											class="bfg-w-11 bfg-h-6 bfg-bg-gray-200 bfg-rounded-full bfg-peer-checked:bfg-bg-skyCustom bfg-transition">
+										</div>
+										<div
+											class="bfg-absolute bfg-top-0.5 bfg-left-0.5 bfg-w-5 bfg-h-5 bfg-bg-white bfg-rounded-full bfg-shadow bfg-transform bfg-transition-transform bfg-peer-checked:bfg-translate-x-5">
+										</div>
+									</label>
+								</div>
+
+								<!-- Disable Bootstrap JS -->
+								<div class="bfg-flex bfg-justify-between bfg-items-center">
+									<p class="bfg-mb-0 bfg-font-medium">
+										<?php _e('Disable Bootstrap JS', 'blog-filter'); ?>
+									</p>
+									<label class="bfg-relative bfg-inline-flex bfg-items-center bfg-cursor-pointer">
+										<input type="checkbox" id="disable_bootstrap_js" name="disable_bootstrap_js" value="yes"
+											class="bfg-sr-only bfg-peer" onchange="toggleSwitch(this)">
+										<div
+											class="bfg-w-11 bfg-h-6 bfg-bg-gray-200 bfg-rounded-full bfg-peer-checked:bfg-bg-skyCustom bfg-transition">
+										</div>
+										<div
+											class="bfg-absolute bfg-top-0.5 bfg-left-0.5 bfg-w-5 bfg-h-5 bfg-bg-white bfg-rounded-full bfg-shadow bfg-transform bfg-transition-transform bfg-peer-checked:bfg-translate-x-5">
+										</div>
+									</label>
+								</div>
+
 								<div class="bfg-border bfg-border-gray-300 bfg-rounded-lg bfg-p-4 bfg-mt-4">
 									<h3 class="bfg-text-lg bfg-font-semibold bfg-mb-4">
-										<?php esc_html_e( 'More options in pro', 'blog-filter' ); ?>
+										<?php esc_html_e('More options in pro', 'blog-filter'); ?>
 									</h3>
 									<div>
 										<div id=""
@@ -409,9 +443,9 @@ wp_enqueue_style('blog-filter-tailwind', plugin_dir_url(__FILE__) . 'css/styles.
 									<!-- Filter Style Dropdown -->
 									<div class="bfg-flex bfg-justify-between bfg-items-center bfg-opacity-50 bfg-cursor-not-allowed bfg-mb-3">
 										<p class="bfg-mb-0 bfg-font-medium"><?php _e('2 Pro Templates', 'blog-filter'); ?></p>
-										
+
 									</div>
-									
+
 								</div>
 							</div>
 						</div>
@@ -432,7 +466,7 @@ wp_enqueue_style('blog-filter-tailwind', plugin_dir_url(__FILE__) . 'css/styles.
 										</option>
 									</select>
 								</div>
-								
+
 								<div id="bfg_term_table_container" class="bfg-flex-col bfg-gap-4 bfg-hidden">
 									<div id="bfg_term_table_loader" class="bfg-text-center bfg-py-4">
 										<p><?php _e('Loading terms...', 'blog-filter'); ?></p>
@@ -443,7 +477,7 @@ wp_enqueue_style('blog-filter-tailwind', plugin_dir_url(__FILE__) . 'css/styles.
 								<div class="bfg-flex bfg-justify-between bfg-items-center">
 									<p class="bfg-mb-0 bfg-font-medium"><?php _e('Show Filters', 'blog-filter'); ?></p>
 									<label class="bfg-relative bfg-inline-flex bfg-items-center bfg-cursor-pointer">
-										<input type="checkbox" id="blog_filters" name="blog_filters" value="yes" checked class="bfg-sr-only bfg-peer" >
+										<input type="checkbox" id="blog_filters" name="blog_filters" value="yes" checked class="bfg-sr-only bfg-peer">
 										<div
 											class="bfg-w-11 bfg-h-6 bfg-bg-gray-200 bfg-rounded-full bfg-peer-checked:bfg-bg-skyCustom bfg-transition">
 										</div>
@@ -475,7 +509,7 @@ wp_enqueue_style('blog-filter-tailwind', plugin_dir_url(__FILE__) . 'css/styles.
 									</p>
 									<label class="bfg-relative bfg-inline-flex bfg-items-center bfg-cursor-pointer">
 										<input type="checkbox" id="blog_filter_all" name="blog_filter_all" value="yes"
-											checked class="bfg-sr-only bfg-peer" checked >
+											checked class="bfg-sr-only bfg-peer" checked>
 										<div
 											class="bfg-w-11 bfg-h-6 bfg-bg-gray-200 bfg-rounded-full bfg-peer-checked:bfg-bg-skyCustom bfg-transition">
 										</div>
@@ -500,7 +534,7 @@ wp_enqueue_style('blog-filter-tailwind', plugin_dir_url(__FILE__) . 'css/styles.
 									</p>
 									<label class="bfg-relative bfg-inline-flex bfg-items-center bfg-cursor-pointer">
 										<input type="checkbox" id="blog_search" name="blog_search" value="yes" checked
-											class="bfg-sr-only bfg-peer" >
+											class="bfg-sr-only bfg-peer">
 										<div
 											class="bfg-w-11 bfg-h-6 bfg-bg-gray-200 bfg-rounded-full bfg-peer-checked:bfg-bg-skyCustom bfg-transition">
 										</div>
@@ -526,49 +560,49 @@ wp_enqueue_style('blog-filter-tailwind', plugin_dir_url(__FILE__) . 'css/styles.
 											name="blog_buttons_color" value="#58BBEE" default-color="#58BBEE">
 									</label>
 								</div>
-								
+
 								<div class="bfg-border bfg-border-gray-300 bfg-rounded-lg bfg-p-4 bfg-mt-4">
 									<h3 class="bfg-text-lg bfg-font-semibold bfg-mb-4">
-										<?php esc_html_e( 'Filter options in pro', 'blog-filter' ); ?>
+										<?php esc_html_e('Filter options in pro', 'blog-filter'); ?>
 									</h3>
 									<div>
 										<div id=""
 											class="bfg-flex bfg-justify-between bfg-items-center bfg-opacity-50 bfg-cursor-not-allowed bfg-mb-3">
 											<label for="bfg_term_select"
 												class="bfg-font-medium"><?php _e('Select Default Filter Term', 'blog-filter'); ?></label>
-											
+
 										</div>
 									</div>
 									<!-- Filter Style Dropdown -->
 									<div class="bfg-flex bfg-justify-between bfg-items-center bfg-opacity-50 bfg-cursor-not-allowed bfg-mb-3">
 										<p class="bfg-mb-0 bfg-font-medium"><?php _e('Filter Style', 'blog-filter'); ?></p>
-										
+
 									</div>
 									<!-- Filters In Dropdown Toggle -->
 									<div class="bfg-flex bfg-justify-between bfg-items-center bfg-opacity-50 bfg-cursor-not-allowed bfg-mb-3">
 										<p class="bfg-mb-0 bfg-font-medium">
 											<?php _e('Filters In Dropdown', 'blog-filter'); ?>
 										</p>
-										
+
 									</div>
-									
+
 									<div class="bfg-flex bfg-justify-between bfg-items-center bfg-opacity-50 bfg-cursor-not-allowed bfg-mb-3">
 										<p class="bfg-mb-0 bfg-font-medium">
 											<?php _e('Multi-Filter In Same Time', 'blog-filter'); ?>
 										</p>
-										
+
 									</div>
 									<div class="bfg-flex bfg-justify-between bfg-items-center bfg-opacity-50 bfg-cursor-not-allowed bfg-mb-3">
 										<p class="bfg-mb-0 bfg-font-medium">
 											<?php _e('"And" logic for Multi-Filter', 'blog-filter'); ?>
 										</p>
-										
+
 									</div>
 									<div class="bfg-flex bfg-justify-between bfg-items-center bfg-opacity-50 bfg-cursor-not-allowed bfg-mb-3">
 										<p class="bfg-mb-0 bfg-font-medium">
 											<?php _e('URL Based Filtering', 'blog-filter'); ?>
 										</p>
-										
+
 									</div>
 								</div>
 
@@ -618,45 +652,45 @@ wp_enqueue_style('blog-filter-tailwind', plugin_dir_url(__FILE__) . 'css/styles.
 										class="bfg-border bfg-rounded bfg-px-3 bfg-py-2 bfg-w-auto">
 										<option value="none"><?php _e('None', 'blog-filter'); ?> &nbsp &nbsp </option>
 										<option value="hover1" selected><?php _e('Hover 1', 'blog-filter'); ?></option>
-										<option value="hover1"disabled><?php _e('Hover 2', 'blog-filter'); ?></option>
-										<option value="hover1"disabled><?php _e('Hover 3', 'blog-filter'); ?></option>
-										<option value="hover1"disabled><?php _e('Hover 4', 'blog-filter'); ?></option>
-										<option value="hover1"disabled><?php _e('Hover 5', 'blog-filter'); ?></option>
+										<option value="hover1" disabled><?php _e('Hover 2', 'blog-filter'); ?></option>
+										<option value="hover1" disabled><?php _e('Hover 3', 'blog-filter'); ?></option>
+										<option value="hover1" disabled><?php _e('Hover 4', 'blog-filter'); ?></option>
+										<option value="hover1" disabled><?php _e('Hover 5', 'blog-filter'); ?></option>
 									</select>
 								</div>
-								
+
 
 								<div class="bfg-border bfg-border-gray-300 bfg-rounded-lg bfg-p-4 bfg-mt-4">
-								  <h3 class="bfg-text-lg bfg-font-semibold bfg-mb-4">
-									<?php esc_html_e( 'Image options in pro', 'blog-filter' ); ?>
-								  </h3>
+									<h3 class="bfg-text-lg bfg-font-semibold bfg-mb-4">
+										<?php esc_html_e('Image options in pro', 'blog-filter'); ?>
+									</h3>
 
-								  <div class="bfg-flex bfg-justify-between bfg-items-center bfg-opacity-50 bfg-cursor-not-allowed bfg-mb-3">
-									<p class="bfg-mb-0 bfg-font-medium"><?php esc_html_e( 'Get more hover effect in Pro', 'blog-filter' ); ?></p>
-									
-								  </div>
-								  
-								  <div class="bfg-flex bfg-justify-between bfg-items-center bfg-opacity-50 bfg-cursor-not-allowed bfg-mb-3">
-									<p class="bfg-mb-0 bfg-font-medium"><?php _e('Link On Image', 'blog-filter'); ?></p>
-									
-								  </div>
+									<div class="bfg-flex bfg-justify-between bfg-items-center bfg-opacity-50 bfg-cursor-not-allowed bfg-mb-3">
+										<p class="bfg-mb-0 bfg-font-medium"><?php esc_html_e('Get more hover effect in Pro', 'blog-filter'); ?></p>
 
-								  <div class="bfg-flex bfg-justify-between bfg-items-center bfg-opacity-50 bfg-cursor-not-allowed bfg-mb-3">
-									<p class="bfg-mb-0 bfg-font-medium"><?php _e('Lightbox On Image', 'blog-filter'); ?></p>
-									
-								  </div>
+									</div>
 
-								  <div class="bfg-flex bfg-justify-between bfg-items-center bfg-opacity-50 bfg-cursor-not-allowed bfg-mb-3">
-									<p class="bfg-mb-0 bfg-font-medium"><?php _e('Thumbnail Hover Effect', 'blog-filter'); ?></p>
-									
-								  </div>
+									<div class="bfg-flex bfg-justify-between bfg-items-center bfg-opacity-50 bfg-cursor-not-allowed bfg-mb-3">
+										<p class="bfg-mb-0 bfg-font-medium"><?php _e('Link On Image', 'blog-filter'); ?></p>
 
-								  <div class="bfg-flex bfg-justify-between bfg-items-center bfg-opacity-50 bfg-cursor-not-allowed bfg-mb-3">
-									<p class="bfg-mb-0 bfg-font-medium"><?php _e('Thumbnail Spacing', 'blog-filter'); ?></p>
-									
-								  </div>
+									</div>
+
+									<div class="bfg-flex bfg-justify-between bfg-items-center bfg-opacity-50 bfg-cursor-not-allowed bfg-mb-3">
+										<p class="bfg-mb-0 bfg-font-medium"><?php _e('Lightbox On Image', 'blog-filter'); ?></p>
+
+									</div>
+
+									<div class="bfg-flex bfg-justify-between bfg-items-center bfg-opacity-50 bfg-cursor-not-allowed bfg-mb-3">
+										<p class="bfg-mb-0 bfg-font-medium"><?php _e('Thumbnail Hover Effect', 'blog-filter'); ?></p>
+
+									</div>
+
+									<div class="bfg-flex bfg-justify-between bfg-items-center bfg-opacity-50 bfg-cursor-not-allowed bfg-mb-3">
+										<p class="bfg-mb-0 bfg-font-medium"><?php _e('Thumbnail Spacing', 'blog-filter'); ?></p>
+
+									</div>
 								</div>
-				
+
 							</div>
 						</div>
 
@@ -826,7 +860,7 @@ wp_enqueue_style('blog-filter-tailwind', plugin_dir_url(__FILE__) . 'css/styles.
 									</p>
 									<label class="bfg-relative bfg-inline-flex bfg-items-center bfg-cursor-pointer">
 										<input type="checkbox" id="blog_read_more" name="blog_read_more" value="yes"
-											checked class="bfg-sr-only bfg-peer" checked >
+											checked class="bfg-sr-only bfg-peer" checked>
 										<div
 											class="bfg-w-11 bfg-h-6 bfg-bg-gray-200 bfg-rounded-full bfg-peer-checked:bfg-bg-skyCustom bfg-transition">
 										</div>
@@ -840,7 +874,7 @@ wp_enqueue_style('blog-filter-tailwind', plugin_dir_url(__FILE__) . 'css/styles.
 									<p class="bfg-mb-0 bfg-font-medium"><?php _e('Link On Date', 'blog-filter'); ?></p>
 									<label class="bfg-relative bfg-inline-flex bfg-items-center bfg-cursor-pointer">
 										<input type="checkbox" id="link_on_date" name="link_on_date" value="yes"
-											class="bfg-sr-only bfg-peer" >
+											class="bfg-sr-only bfg-peer">
 										<div
 											class="bfg-w-11 bfg-h-6 bfg-bg-gray-200 bfg-rounded-full bfg-peer-checked:bfg-bg-skyCustom bfg-transition">
 										</div>
@@ -857,44 +891,44 @@ wp_enqueue_style('blog-filter-tailwind', plugin_dir_url(__FILE__) . 'css/styles.
 									<input type="text" id="blog_read_more_text" name="blog_read_more_text" value="Read More"
 										class="bfg-border bfg-rounded bfg-px-3 bfg-py-2 bfg-w-auto">
 								</div>
-								
+
 								<div class="bfg-border bfg-border-gray-300 bfg-rounded-lg bfg-p-4 bfg-mt-4">
-								  <h3 class="bfg-text-lg bfg-font-semibold bfg-mb-4">
-									<?php esc_html_e( 'More link options in pro', 'blog-filter' ); ?>
-								  </h3>
+									<h3 class="bfg-text-lg bfg-font-semibold bfg-mb-4">
+										<?php esc_html_e('More link options in pro', 'blog-filter'); ?>
+									</h3>
 
-								  <!-- Link Open In New Tab -->
-								  <div class="bfg-flex bfg-justify-between bfg-items-center bfg-opacity-50 bfg-cursor-not-allowed bfg-mb-3">
-									<p class="bfg-mb-0 bfg-font-medium"><?php _e('Link Open In New Tab', 'blog-filter'); ?></p>
-									
-								  </div>
+									<!-- Link Open In New Tab -->
+									<div class="bfg-flex bfg-justify-between bfg-items-center bfg-opacity-50 bfg-cursor-not-allowed bfg-mb-3">
+										<p class="bfg-mb-0 bfg-font-medium"><?php _e('Link Open In New Tab', 'blog-filter'); ?></p>
 
-								  <!-- Link On Title -->
-								  <div class="bfg-flex bfg-justify-between bfg-items-center bfg-opacity-50 bfg-cursor-not-allowed bfg-mb-3">
-									<p class="bfg-mb-0 bfg-font-medium"><?php _e('Link On Title', 'blog-filter'); ?></p>
-									
-								  </div>
+									</div>
 
-								  <!-- Link On Author -->
-								  <div class="bfg-flex bfg-justify-between bfg-items-center bfg-opacity-50 bfg-cursor-not-allowed bfg-mb-3">
-									<p class="bfg-mb-0 bfg-font-medium"><?php _e('Link On Author', 'blog-filter'); ?></p>
-									
-								  </div>
+									<!-- Link On Title -->
+									<div class="bfg-flex bfg-justify-between bfg-items-center bfg-opacity-50 bfg-cursor-not-allowed bfg-mb-3">
+										<p class="bfg-mb-0 bfg-font-medium"><?php _e('Link On Title', 'blog-filter'); ?></p>
 
-								  <!-- Link On Category -->
-								  <div class="bfg-flex bfg-justify-between bfg-items-center bfg-opacity-50 bfg-cursor-not-allowed bfg-mb-3">
-									<p class="bfg-mb-0 bfg-font-medium"><?php _e('Link On Category', 'blog-filter'); ?></p>
-									
-								  </div>
+									</div>
 
-								  <!-- Link On Tags -->
-								  <div class="bfg-flex bfg-justify-between bfg-items-center bfg-opacity-50 bfg-cursor-not-allowed">
-									<p class="bfg-mb-0 bfg-font-medium"><?php _e('Link On Tags', 'blog-filter'); ?></p>
-									
-								  </div>
+									<!-- Link On Author -->
+									<div class="bfg-flex bfg-justify-between bfg-items-center bfg-opacity-50 bfg-cursor-not-allowed bfg-mb-3">
+										<p class="bfg-mb-0 bfg-font-medium"><?php _e('Link On Author', 'blog-filter'); ?></p>
+
+									</div>
+
+									<!-- Link On Category -->
+									<div class="bfg-flex bfg-justify-between bfg-items-center bfg-opacity-50 bfg-cursor-not-allowed bfg-mb-3">
+										<p class="bfg-mb-0 bfg-font-medium"><?php _e('Link On Category', 'blog-filter'); ?></p>
+
+									</div>
+
+									<!-- Link On Tags -->
+									<div class="bfg-flex bfg-justify-between bfg-items-center bfg-opacity-50 bfg-cursor-not-allowed">
+										<p class="bfg-mb-0 bfg-font-medium"><?php _e('Link On Tags', 'blog-filter'); ?></p>
+
+									</div>
 								</div>
 
-								
+
 							</div>
 						</div>
 
@@ -1020,29 +1054,29 @@ wp_enqueue_style('blog-filter-tailwind', plugin_dir_url(__FILE__) . 'css/styles.
 							</div>
 							<div class="bfg-grid bfg-grid-cols-1 bfg-gap-6 bfg-p-6">
 								<div class="bfg-border bfg-border-gray-300 bfg-rounded-lg bfg-p-4 bfg-mt-4">
-								  <h3 class="bfg-text-lg bfg-font-semibold bfg-mb-4">
-									<?php esc_html_e( 'Available in Pro', 'blog-filter' ); ?>
-								  </h3>
+									<h3 class="bfg-text-lg bfg-font-semibold bfg-mb-4">
+										<?php esc_html_e('Available in Pro', 'blog-filter'); ?>
+									</h3>
 
-								  <!-- Post Order By -->
-								  <div class="bfg-flex bfg-justify-between bfg-items-center bfg-opacity-50 bfg-cursor-not-allowed bfg-mb-3">
-									<p class="bfg-mb-0 bfg-font-medium"><?php _e('Post Order By', 'blog-filter'); ?></p>
-									<select disabled class="bfg-border bfg-rounded bfg-px-3 bfg-py-2 bfg-w-auto">
-									  <option selected><?php _e('Date', 'blog-filter'); ?></option>
-									  <option ><?php _e('Title', 'blog-filter'); ?></option>
-									  <option ><?php _e('Slug', 'blog-filter'); ?></option>
-									  <option ><?php _e('Random', 'blog-filter'); ?></option>
-									</select>
-								  </div>
+									<!-- Post Order By -->
+									<div class="bfg-flex bfg-justify-between bfg-items-center bfg-opacity-50 bfg-cursor-not-allowed bfg-mb-3">
+										<p class="bfg-mb-0 bfg-font-medium"><?php _e('Post Order By', 'blog-filter'); ?></p>
+										<select disabled class="bfg-border bfg-rounded bfg-px-3 bfg-py-2 bfg-w-auto">
+											<option selected><?php _e('Date', 'blog-filter'); ?></option>
+											<option><?php _e('Title', 'blog-filter'); ?></option>
+											<option><?php _e('Slug', 'blog-filter'); ?></option>
+											<option><?php _e('Random', 'blog-filter'); ?></option>
+										</select>
+									</div>
 
-								  <!-- Post Order -->
-								  <div class="bfg-flex bfg-justify-between bfg-items-center bfg-opacity-50 bfg-cursor-not-allowed">
-									<p class="bfg-mb-0 bfg-font-medium"><?php _e('Post Order', 'blog-filter'); ?></p>
-									<select disabled class="bfg-border bfg-rounded bfg-px-3 bfg-py-2 bfg-w-auto">
-									  <option ><?php _e('Ascending', 'blog-filter'); ?></option>
-									  <option selected><?php _e('Descending', 'blog-filter'); ?></option>
-									</select>
-								  </div>
+									<!-- Post Order -->
+									<div class="bfg-flex bfg-justify-between bfg-items-center bfg-opacity-50 bfg-cursor-not-allowed">
+										<p class="bfg-mb-0 bfg-font-medium"><?php _e('Post Order', 'blog-filter'); ?></p>
+										<select disabled class="bfg-border bfg-rounded bfg-px-3 bfg-py-2 bfg-w-auto">
+											<option><?php _e('Ascending', 'blog-filter'); ?></option>
+											<option selected><?php _e('Descending', 'blog-filter'); ?></option>
+										</select>
+									</div>
 								</div>
 							</div>
 
@@ -1052,28 +1086,28 @@ wp_enqueue_style('blog-filter-tailwind', plugin_dir_url(__FILE__) . 'css/styles.
 
 								<div class="bfg-grid bfg-grid-cols-1 bfg-gap-6">
 									<div class="bfg-border bfg-border-gray-300 bfg-rounded-lg bfg-p-4 bfg-mt-4">
-									  <h3 class="bfg-text-lg bfg-font-semibold bfg-mb-4">
-										<?php esc_html_e( 'Available in Pro', 'blog-filter' ); ?>
-									  </h3>
+										<h3 class="bfg-text-lg bfg-font-semibold bfg-mb-4">
+											<?php esc_html_e('Available in Pro', 'blog-filter'); ?>
+										</h3>
 
-									  <!-- Filter Order By -->
-									  <div class="bfg-flex bfg-justify-between bfg-items-center bfg-opacity-50 bfg-cursor-not-allowed bfg-mb-3">
-										<p class="bfg-mb-0 bfg-font-medium"><?php _e('Filter Order By', 'blog-filter'); ?></p>
-										<select disabled class="bfg-border bfg-rounded bfg-px-3 bfg-py-2 bfg-w-auto">
-										  <option ><?php _e('Date', 'blog-filter'); ?></option>
-										  <option  selected><?php _e('Title', 'blog-filter'); ?></option>
-										  <option ><?php _e('Slug', 'blog-filter'); ?></option>
-										</select>
-									  </div>
+										<!-- Filter Order By -->
+										<div class="bfg-flex bfg-justify-between bfg-items-center bfg-opacity-50 bfg-cursor-not-allowed bfg-mb-3">
+											<p class="bfg-mb-0 bfg-font-medium"><?php _e('Filter Order By', 'blog-filter'); ?></p>
+											<select disabled class="bfg-border bfg-rounded bfg-px-3 bfg-py-2 bfg-w-auto">
+												<option><?php _e('Date', 'blog-filter'); ?></option>
+												<option selected><?php _e('Title', 'blog-filter'); ?></option>
+												<option><?php _e('Slug', 'blog-filter'); ?></option>
+											</select>
+										</div>
 
-									  <!-- Filter Order -->
-									  <div class="bfg-flex bfg-justify-between bfg-items-center bfg-opacity-50 bfg-cursor-not-allowed">
-										<p class="bfg-mb-0 bfg-font-medium"><?php _e('Filter Order', 'blog-filter'); ?></p>
-										<select disabled class="bfg-border bfg-rounded bfg-px-3 bfg-py-2 bfg-w-auto">
-										  <option  selected><?php _e('Ascending', 'blog-filter'); ?></option>
-										  <option ><?php _e('Descending', 'blog-filter'); ?></option>
-										</select>
-									  </div>
+										<!-- Filter Order -->
+										<div class="bfg-flex bfg-justify-between bfg-items-center bfg-opacity-50 bfg-cursor-not-allowed">
+											<p class="bfg-mb-0 bfg-font-medium"><?php _e('Filter Order', 'blog-filter'); ?></p>
+											<select disabled class="bfg-border bfg-rounded bfg-px-3 bfg-py-2 bfg-w-auto">
+												<option selected><?php _e('Ascending', 'blog-filter'); ?></option>
+												<option><?php _e('Descending', 'blog-filter'); ?></option>
+											</select>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -1090,7 +1124,7 @@ wp_enqueue_style('blog-filter-tailwind', plugin_dir_url(__FILE__) . 'css/styles.
 									<p class="bfg-mb-0 bfg-font-medium"><?php _e('Pagination', 'blog-filter'); ?></p>
 									<label class="bfg-relative bfg-inline-flex bfg-items-center bfg-cursor-pointer">
 										<input type="checkbox" id="blog_pagination" name="blog_pagination" value="yes"
-											checked class="bfg-sr-only bfg-peer" >
+											checked class="bfg-sr-only bfg-peer">
 										<div
 											class="bfg-w-11 bfg-h-6 bfg-bg-gray-200 bfg-rounded-full bfg-peer-checked:bfg-bg-skyCustom bfg-transition">
 										</div>
@@ -1105,7 +1139,7 @@ wp_enqueue_style('blog-filter-tailwind', plugin_dir_url(__FILE__) . 'css/styles.
 									<p class="bfg-mb-0 bfg-font-medium"><?php _e('Load More', 'blog-filter'); ?></p>
 									<label class="bfg-relative bfg-inline-flex bfg-items-center bfg-cursor-pointer">
 										<input type="checkbox" id="blog_load_more" name="blog_load_more" value="yes"
-											 class="bfg-sr-only bfg-peer" >
+											class="bfg-sr-only bfg-peer">
 										<div
 											class="bfg-w-11 bfg-h-6 bfg-bg-gray-200 bfg-rounded-full bfg-peer-checked:bfg-bg-skyCustom bfg-transition">
 										</div>
@@ -1116,19 +1150,19 @@ wp_enqueue_style('blog-filter-tailwind', plugin_dir_url(__FILE__) . 'css/styles.
 								</div>
 
 								<div class="bfg-border bfg-border-gray-300 bfg-rounded-lg bfg-p-4 bfg-mt-4">
-								  <h3 class="bfg-text-lg bfg-font-semibold bfg-mb-4">
-									<?php esc_html_e( 'Infinite scroll in Pro', 'blog-filter' ); ?>
-								  </h3>
+									<h3 class="bfg-text-lg bfg-font-semibold bfg-mb-4">
+										<?php esc_html_e('Infinite scroll in Pro', 'blog-filter'); ?>
+									</h3>
 
-								  <!-- Load On Scroll Toggle -->
-								  <div class="bfg-flex bfg-justify-between bfg-items-center bfg-opacity-50 bfg-cursor-not-allowed">
-									<p class="bfg-mb-0 bfg-font-medium"><?php _e('Load On Scroll', 'blog-filter'); ?></p>
-									<label class="bfg-relative bfg-inline-flex bfg-items-center">
-									  <input type="checkbox" disabled class="bfg-sr-only">
-									  <div class="bfg-w-11 bfg-h-6 bfg-bg-gray-200 bfg-rounded-full"></div>
-									  <div class="bfg-absolute bfg-top-0.5 bfg-left-0.5 bfg-w-5 bfg-h-5 bfg-bg-white bfg-rounded-full bfg-shadow"></div>
-									</label>
-								  </div>
+									<!-- Load On Scroll Toggle -->
+									<div class="bfg-flex bfg-justify-between bfg-items-center bfg-opacity-50 bfg-cursor-not-allowed">
+										<p class="bfg-mb-0 bfg-font-medium"><?php _e('Load On Scroll', 'blog-filter'); ?></p>
+										<label class="bfg-relative bfg-inline-flex bfg-items-center">
+											<input type="checkbox" disabled class="bfg-sr-only">
+											<div class="bfg-w-11 bfg-h-6 bfg-bg-gray-200 bfg-rounded-full"></div>
+											<div class="bfg-absolute bfg-top-0.5 bfg-left-0.5 bfg-w-5 bfg-h-5 bfg-bg-white bfg-rounded-full bfg-shadow"></div>
+										</label>
+									</div>
 								</div>
 
 								<!-- Pagination / Load More Button Color -->
@@ -1137,7 +1171,7 @@ wp_enqueue_style('blog-filter-tailwind', plugin_dir_url(__FILE__) . 'css/styles.
 										<?php _e('Pagination / Load More Button Color', 'blog-filter'); ?>
 									</p>
 									<input type="color" id="blog_pagination_color" name="blog_pagination_color"
-										value="#58BBEE"	class="bfg-border bfg-rounded bfg-px-2 bfg-py-1 bfg-w-24">
+										value="#58BBEE" class="bfg-border bfg-rounded bfg-px-2 bfg-py-1 bfg-w-24">
 								</div>
 
 								<!-- Blogs Per Page -->
@@ -1188,7 +1222,7 @@ wp_enqueue_style('blog-filter-tailwind', plugin_dir_url(__FILE__) . 'css/styles.
 							</div>
 							<div class="bfg-border bfg-border-gray-300 bfg-rounded-lg bfg-p-4 bfg-mt-4 bfg-opacity-50 bfg-cursor-not-allowed">
 								<h3 class="bfg-text-lg bfg-font-semibold bfg-mb-4">
-									<?php esc_html_e( 'Exclude post by categories or tags in Pro', 'blog-filter' ); ?>
+									<?php esc_html_e('Exclude post by categories or tags in Pro', 'blog-filter'); ?>
 								</h3>
 								<div id="bfg_exclude_term_table_container" class="bfg-p-6">
 									<p><?php _e('Please select a Post Type and a Taxonomy to see exclusion options.', 'blog-filter'); ?>
@@ -1202,8 +1236,9 @@ wp_enqueue_style('blog-filter-tailwind', plugin_dir_url(__FILE__) . 'css/styles.
 
 			<div class="bfg-flex bfg-items-center bfg-justify-between bfg-border-b  bfg-p-8 bfg-bg-white ">
 				<h1 class="bfg-text-xl bfg-font-bold bfg-flex-1"><?php _e('Blog Filter', 'blog-filter'); ?>
-				<span class="bfg-text-gray-500 bfg-text-sm"><?php _e('Version - ', 'blog-filter');
-					echo BF_PLUGIN_VER; ?></span></h1>
+					<span class="bfg-text-gray-500 bfg-text-sm"><?php _e('Version - ', 'blog-filter');
+																echo BF_PLUGIN_VER; ?></span>
+				</h1>
 				<button type="button" onclick="BfGetShortcode();" class="bfg-bg-[#6dbe73] bfg-hover:bg-green-600 bfg-text-white bfg-font-semibold 
 					   bfg-px-4 bfg-py-2 bfg-rounded-md bfg-shadow-lg bfg-transition bfg-duration-200">
 					<?php _e('[ Generate Shortcode ]', 'blog-filter'); ?>
@@ -1323,7 +1358,6 @@ wp_enqueue_style('blog-filter-tailwind', plugin_dir_url(__FILE__) . 'css/styles.
 </style>
 
 <script>
-
 	function showTab(event, tabId) {
 		// Hide all settings tab content
 		document.querySelectorAll('.settings-tab').forEach(tab => tab.classList.add('bfg-hidden'));
@@ -1354,11 +1388,11 @@ wp_enqueue_style('blog-filter-tailwind', plugin_dir_url(__FILE__) . 'css/styles.
 			currentTarget: defaultTab
 		}, 'general');
 	});
-	
-	
-	jQuery(document).ready(function (jQuery) {
+
+
+	jQuery(document).ready(function(jQuery) {
 		// --- AJAX for fetching TAXONOMIES based on POST TYPE ---
-		jQuery('#post_type').on('change', function () {
+		jQuery('#post_type').on('change', function() {
 			var selectedPostType = jQuery(this).val();
 			var taxonomyDropdown = jQuery('#bfg_taxonomy_select');
 
@@ -1374,13 +1408,13 @@ wp_enqueue_style('blog-filter-tailwind', plugin_dir_url(__FILE__) . 'css/styles.
 				'action': 'get_taxonomies_for_post_type',
 				'post_type': selectedPostType,
 				'security': '<?php echo wp_create_nonce("bfg_admin_nonce"); ?>'
-			}, function (response) {
+			}, function(response) {
 				taxonomyDropdown.html(response.success ? response.data : '<option value=""><?php _e('Error', 'blog-filter'); ?></option>');
 			});
 		});
 
 		// --- AJAX for fetching all TERM data (dropdown, include table, exclude table) ---
-		jQuery('#bfg_taxonomy_select').on('change', function () {
+		jQuery('#bfg_taxonomy_select').on('change', function() {
 			var selectedTaxonomy = jQuery(this).val();
 			var termDropdownContainer = jQuery('#bfg_term_select').parent();
 			var termDropdown = jQuery('#bfg_term_select');
@@ -1407,7 +1441,7 @@ wp_enqueue_style('blog-filter-tailwind', plugin_dir_url(__FILE__) . 'css/styles.
 				'action': 'get_terms_for_taxonomy',
 				'taxonomy': selectedTaxonomy,
 				'security': '<?php echo wp_create_nonce("bfg_admin_nonce"); ?>'
-			}, function (response) {
+			}, function(response) {
 				if (response.success) {
 					// Populate all elements from the single response object
 					termDropdown.html(response.data.dropdown);
@@ -1419,17 +1453,17 @@ wp_enqueue_style('blog-filter-tailwind', plugin_dir_url(__FILE__) . 'css/styles.
 					includeTableContainer.html(errorMsg);
 					excludeTableContainer.html(errorMsg);
 				}
-				
+
 				// Filter selecetion limit
-				jQuery('.bfg-term-checkbox').click(function () {
+				jQuery('.bfg-term-checkbox').click(function() {
 					jQuery(this).next().next().prop('disabled', !this.checked)
 					jQuery('.bfg-term-checkbox').not(':checked').prop('disabled', jQuery('.bfg-term-checkbox:checked').length == 4);
 				});
 
-				
+
 			});
 		});
-		
+
 
 		// On page load, trigger the change handler if a post type is already selected
 		// This is useful for when you save the settings and the page reloads.
@@ -1631,7 +1665,7 @@ wp_enqueue_style('blog-filter-tailwind', plugin_dir_url(__FILE__) . 'css/styles.
 		} else {
 			shortcode = shortcode + '';
 		}
-		
+
 		var blog_pagination_LoadMore_color = jQuery("#blog_pagination_color").val();
 		if (blog_pagination_LoadMore_color) {
 			//console.log(blog_pagination);
@@ -1705,7 +1739,7 @@ wp_enqueue_style('blog-filter-tailwind', plugin_dir_url(__FILE__) . 'css/styles.
 
 		// Get all checked term IDs from the dynamic table
 		var selected_terms = [];
-		jQuery('.bfg-term-checkbox:checked').map(function () {
+		jQuery('.bfg-term-checkbox:checked').map(function() {
 			selected_terms.push(this.value);
 		});
 
@@ -1716,6 +1750,14 @@ wp_enqueue_style('blog-filter-tailwind', plugin_dir_url(__FILE__) . 'css/styles.
 		}
 
 		shortcode = shortcode + ' custom_css="' + ' "';
+
+		if (jQuery("#disable_bootstrap_css").prop('checked') == true) {
+			shortcode = shortcode + ' disable_bootstrap_css="yes"';
+		}
+
+		if (jQuery("#disable_bootstrap_js").prop('checked') == true) {
+			shortcode = shortcode + ' disable_bootstrap_js="yes"';
+		}
 
 		shortcode = shortcode + ' ]';
 
@@ -1736,22 +1778,22 @@ wp_enqueue_style('blog-filter-tailwind', plugin_dir_url(__FILE__) . 'css/styles.
 
 	}
 
-	jQuery(document).ready(function () {
+	jQuery(document).ready(function() {
 		// isotope effect function
 
 		//range slider
-		var rangeSlider = function () {
+		var rangeSlider = function() {
 			var slider = jQuery('.range-slider'),
 				range = jQuery('.range-slider__range'),
 				value = jQuery('.range-slider__value');
 
-			slider.each(function () {
-				value.each(function () {
+			slider.each(function() {
+				value.each(function() {
 					var value = jQuery(this).prev().attr('value');
 					jQuery(this).html(value);
 				});
 
-				range.on('input', function () {
+				range.on('input', function() {
 					jQuery(this).next(value).html(this.value);
 				});
 			});
@@ -1759,7 +1801,7 @@ wp_enqueue_style('blog-filter-tailwind', plugin_dir_url(__FILE__) . 'css/styles.
 		rangeSlider();
 		jQuery('.checkbox_cat:not(:checked)').attr('checked', true);
 		//checkbox
-		jQuery('#all_checked_category').click(function () {
+		jQuery('#all_checked_category').click(function() {
 
 			if (this.checked == false) {
 				jQuery('.checkbox_cat:checked').attr('checked', false);
@@ -1768,7 +1810,7 @@ wp_enqueue_style('blog-filter-tailwind', plugin_dir_url(__FILE__) . 'css/styles.
 			}
 		});
 		jQuery('.checkbox_tag:not(:checked)').attr('checked', true);
-		jQuery('#all_checked_tag').click(function () {
+		jQuery('#all_checked_tag').click(function() {
 			if (this.checked == false) {
 				jQuery('.checkbox_tag:checked').attr('checked', false);
 			} else {
@@ -1777,19 +1819,19 @@ wp_enqueue_style('blog-filter-tailwind', plugin_dir_url(__FILE__) . 'css/styles.
 		});
 
 		//color-picker
-		(function (jQuery) {
-			jQuery(function () {
+		(function(jQuery) {
+			jQuery(function() {
 				// Add Color Picker to all inputs that have 'color-field' class
 				jQuery('#blog_title_color, #blog_desc_color, #blog_desc_box_color, #blog_pagination_color, #blog_buttons_color').wpColorPicker();
 
 			});
 		})(jQuery);
-		jQuery(document).ajaxComplete(function () {
+		jQuery(document).ajaxComplete(function() {
 			jQuery('#blog_title_color, #blog_desc_color, #blog_desc_box_color, #blog_pagination_color, #blog_buttons_color').wpColorPicker();
 		});
 
-		
-		jQuery('#blog_pagination').change(function () {
+
+		jQuery('#blog_pagination').change(function() {
 			var blog_pagination = jQuery('#blog_pagination').prop('checked');
 			//console.log(blog_pagination);
 			if (blog_pagination == true) {
@@ -1800,7 +1842,7 @@ wp_enqueue_style('blog-filter-tailwind', plugin_dir_url(__FILE__) . 'css/styles.
 			}
 		});
 
-		jQuery('#blog_load_more').change(function () {
+		jQuery('#blog_load_more').change(function() {
 			var blog_load_more = jQuery('#blog_load_more').prop('checked');
 			if (blog_load_more == true) {
 				jQuery("#blog_pagination").prop('checked', false);
@@ -1809,6 +1851,6 @@ wp_enqueue_style('blog-filter-tailwind', plugin_dir_url(__FILE__) . 'css/styles.
 				jQuery('.pls').addClass('not-allowed');
 			}
 		});
-		
+
 	});
 </script>

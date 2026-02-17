@@ -31,10 +31,15 @@ function awl_blog_filter_shortcode($user_atts)
     wp_enqueue_style('awl-bf-hover-css');
     wp_enqueue_style('awl-bf-swipebox-css');
     wp_enqueue_script('awl-bf-swipebox-js');
-    wp_enqueue_script('awl-bf-bootstrap-js');
-
-    // css
-    wp_enqueue_style('awl-bf-bootstrap-css');
+    // Bootstrap JS & CSS (conditionally loaded based on shortcode attributes)
+    $defaults = bfg_get_shortcode_defaults();
+    $temp_atts = shortcode_atts($defaults, $user_atts, 'AWL-BlogFilter');
+    if ($temp_atts['disable_bootstrap_js'] !== 'yes') {
+        wp_enqueue_script('awl-bf-bootstrap-js');
+    }
+    if ($temp_atts['disable_bootstrap_css'] !== 'yes') {
+        wp_enqueue_style('awl-bf-bootstrap-css');
+    }
 
     // 2. --- Process Shortcode Attributes ---
     $defaults = bfg_get_shortcode_defaults(); // Use the central defaults function

@@ -4,7 +4,7 @@ if (!defined('ABSPATH'))
 /**
 Plugin Name: Blog Filter
 Description: Blog Filter For WordPress Blog With Multiple Filters
-Version: 1.7.5
+Version: 1.7.6
 Author: A WP Life
 Author URI: http://awplife.com/
 Text Domain: blog-filter
@@ -25,7 +25,7 @@ if (!class_exists('Awl_Blog_Filter')) {
 		protected function _constants()
 		{
 			//Plugin Version
-			define('BF_PLUGIN_VER', '1.7.5');
+			define('BF_PLUGIN_VER', '1.7.6');
 
 			//Plugin Text Domain
 			define("'blog-filter'", "blog-filter");
@@ -142,6 +142,10 @@ if (!class_exists('Awl_Blog_Filter')) {
 					'default_filter_term' => 'all',
 
 					'selected_terms' => '',
+
+					// Bootstrap
+					'disable_bootstrap_css' => 'no',
+					'disable_bootstrap_js' => 'no',
 
 					// Custom CSS
 					'custom_css' => '',
