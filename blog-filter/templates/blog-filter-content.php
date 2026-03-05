@@ -4,7 +4,7 @@ if (!defined('ABSPATH'))
 
 if ($custom_query->have_posts()):
 	$abc = 0;
-	if (isset($_POST['action'])) {
+	if (isset($_POST['action'])) { // phpcs:ignore WordPress.Security.NonceVerification.Missing -- Nonce verified in blog-filter-ajax-get.php via check_ajax_referer().
 		$blog_load = $blog_on_load_scroll;
 	} else {
 		$blog_load = $blog_per_page_and_init_load;
@@ -45,7 +45,7 @@ if ($custom_query->have_posts()):
 		}
 		// --- END: NEW DYNAMIC CODE ---
 ?>
-		<div style="opacity:0;" id="bf_<?php echo get_the_ID(); ?>" data-category="<?php echo esc_attr($keys); ?>"
+		<div style="opacity:0;" id="bf_<?php echo esc_attr(get_the_ID()); ?>" data-category="<?php echo esc_attr($keys); ?>"
 			data-sort="<?php echo esc_attr($filter_value_name); ?>"
 			class="<?php echo esc_attr(str_replace(",", "", $keys)); ?> pfg_theme_1 filtr-item filtr_item_1 single_one <?php echo esc_attr($blog_col_large_desktops); ?> <?php echo esc_attr($blog_col_desktops); ?> <?php echo esc_attr($blog_col_tablets); ?> <?php echo esc_attr($blog_col_phones); ?>">
 			<?php
@@ -54,13 +54,13 @@ if ($custom_query->have_posts()):
 			// ------------ ********** -----------------//
 			if ($blog_template == 'template1') { ?>
 				<div
-					class="post-box bf_thumb_box_1-<?php echo $unique_id; ?> ">
-					<div class="bf_title_box_1-<?php echo $unique_id; ?> bf_title_box_1 fit-text-main" maxlength="20">
+					class="post-box bf_thumb_box_1-<?php echo esc_attr($unique_id); ?> ">
+					<div class="bf_title_box_1-<?php echo esc_attr($unique_id); ?> bf_title_box_1 fit-text-main" maxlength="20">
 
 						<?php
 						if ($blog_title_below_image == "no") {
 							if ($blog_title == "yes") { ?>
-								<h2 class="bf_title_1-<?php echo $unique_id; ?> blog_title_1 fit-text"><?php the_title(); ?></h2>
+								<h2 class="bf_title_1-<?php echo esc_attr($unique_id); ?> blog_title_1 fit-text"><?php the_title(); ?></h2>
 							<?php
 							}
 						}
@@ -73,7 +73,7 @@ if ($custom_query->have_posts()):
 									<?php
 									if ($link_on_date == "yes") { ?>
 										<span class="blog_date"><i class="fa fa-calendar"></i> <a class="blog_date_a"
-												href="<?php echo get_day_link($year, $month, $day); ?>"><?php the_time('j F, Y'); ?></a>
+												href="<?php echo esc_url(get_day_link($year, $month, $day)); ?>"><?php the_time('j F, Y'); ?></a>
 										</span>
 									<?php
 									} else { ?>
@@ -87,7 +87,7 @@ if ($custom_query->have_posts()):
 						if ($blog_author_below_image == "no") {
 							if ($blog_author == "yes") { ?>
 								<div class="blog_metaInfo">
-									<span class="blog_author"><i class="fa fa-user-o"></i> <?php _e('By') ?> <?php the_author(); ?> </span>
+									<span class="blog_author"><i class="fa fa-user-o"></i> <?php esc_html_e('By', 'blog-filter') ?> <?php the_author(); ?> </span>
 								</div>
 						<?php
 							}
@@ -97,11 +97,11 @@ if ($custom_query->have_posts()):
 					<?php // Image Content 
 					include(BF_PLUGIN_DIR . "templates/blog-img-content.php"); ?>
 
-					<div class="bf_title_box_2-<?php echo $unique_id; ?> bf_title_box_2 fit-text-main">
+					<div class="bf_title_box_2-<?php echo esc_attr($unique_id); ?> bf_title_box_2 fit-text-main">
 						<?php
 						if ($blog_title_below_image == "yes") {
 							if ($blog_title == "yes") { ?>
-								<h2 class="bf_title_1-<?php echo $unique_id; ?> blog_title_1 fit-text"><?php the_title(); ?></h2>
+								<h2 class="bf_title_1-<?php echo esc_attr($unique_id); ?> blog_title_1 fit-text"><?php the_title(); ?></h2>
 							<?php
 							}
 						}
@@ -114,7 +114,7 @@ if ($custom_query->have_posts()):
 									<?php
 									if ($link_on_date == "yes") { ?>
 										<span class="blog_date"><i class="fa fa-calendar"></i> <a class="blog_date_a"
-												href="<?php echo get_day_link($year, $month, $day); ?>"><?php the_time('j F, Y'); ?></a>
+												href="<?php echo esc_url(get_day_link($year, $month, $day)); ?>"><?php the_time('j F, Y'); ?></a>
 										</span>
 									<?php
 									} else { ?>
@@ -128,35 +128,35 @@ if ($custom_query->have_posts()):
 						if ($blog_author_below_image == "yes") {
 							if ($blog_author == "yes") { ?>
 								<div class="blog_metaInfo">
-									<span class="blog_author"><i class="fa fa-user-o"></i> <?php _e('By') ?> <?php the_author(); ?> </span>
+									<span class="blog_author"><i class="fa fa-user-o"></i> <?php esc_html_e('By', 'blog-filter') ?> <?php the_author(); ?> </span>
 								</div>
 							<?php
 							}
 						}
 						if ($blog_categories == "yes") { ?>
 							<div class="blog_metaInfo">
-								<span class="blog_cat"><i class=""><img class="blog_cat_icon" src="<?php echo BF_PLUGIN_URL ?>img/cat.png"></i>
+								<span class="blog_cat"><i class=""><img class="blog_cat_icon" src="<?php echo esc_url(BF_PLUGIN_URL) ?>img/cat.png"></i>
 									<?php
 									$categories = get_the_category();
 									$separator = ", ";
 									$output = '';
 									if ($categories) {
 										foreach ($categories as $category) {
-											$output .= $category->cat_name . $separator;
+											$output .= esc_html($category->cat_name) . $separator;
 										}
-										echo trim($output, $separator);
+										echo esc_html(trim($output, $separator));
 									} ?>
 								</span>
 							</div><!-- end meta -->
 						<?php
 						}
 						if ($blog_desc == "yes") { ?>
-							<div class="bf_desc_1-<?php echo $unique_id; ?> blog_desc fit-text">
+							<div class="bf_desc_1-<?php echo esc_attr($unique_id); ?> blog_desc fit-text">
 								<?php
 								if ($three_dots == "yes") {
-									echo stripcslashes(substr(get_the_excerpt(), 0, $blog_desc_characters)) . '...';
+									echo esc_html(wp_strip_all_tags(substr(get_the_excerpt(), 0, $blog_desc_characters))) . '...';
 								} else {
-									echo stripcslashes(substr(get_the_excerpt(), 0, $blog_desc_characters));
+									echo esc_html(wp_strip_all_tags(substr(get_the_excerpt(), 0, $blog_desc_characters)));
 								} ?>
 							</div>
 						<?php
@@ -166,15 +166,15 @@ if ($custom_query->have_posts()):
 								<?php
 								if (get_the_tags()) { ?>
 									<span class="blog_tag"><i class=""><img class="blog_tag_icon"
-												src="<?php echo BF_PLUGIN_URL ?>img/tag.png"></i> <?php $post_tags = get_the_tags();
-																									$separator = ', ';
-																									$output = '';
-																									if (!empty($post_tags)) {
-																										foreach ($post_tags as $tag) {
-																											$output .= __($tag->name) . $separator;
-																										}
-																									}
-																									echo trim($output, $separator); ?>
+												src="<?php echo esc_url(BF_PLUGIN_URL) ?>img/tag.png"></i> <?php $post_tags = get_the_tags();
+																											$separator = ', ';
+																											$output = '';
+																											if (!empty($post_tags)) {
+																												foreach ($post_tags as $tag) {
+																													$output .= esc_html($tag->name) . $separator;
+																												}
+																											}
+																											echo esc_html(trim($output, $separator)); ?>
 									</span>
 								<?php
 								} ?>
@@ -195,7 +195,7 @@ if ($custom_query->have_posts()):
 			}
 			// ------------ / TEMPLATE 1 End -----------------//
 			?>
-			<input type="hidden" value="<?php echo get_the_ID(); ?>" class="displayed_posts">
+			<input type="hidden" value="<?php echo esc_attr(get_the_ID()); ?>" class="displayed_posts">
 		</div>
 <?php
 		$abc++;

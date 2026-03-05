@@ -10,7 +10,15 @@ if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly
 }
 
-add_shortcode('AWL-BlogFilter', 'awl_blog_filter_shortcode');
+add_shortcode('AWL-BlogFilter', 'bf_blog_filter_shortcode');
+
+// Backward compatibility wrapper
+if (! function_exists('awl_blog_filter_shortcode')) {
+    function awl_blog_filter_shortcode($user_atts)
+    {
+        return bf_blog_filter_shortcode($user_atts);
+    }
+}
 
 /**
  * Renders the blog filter gallery based on shortcode attributes.
@@ -18,14 +26,13 @@ add_shortcode('AWL-BlogFilter', 'awl_blog_filter_shortcode');
  * @param array $atts User-defined shortcode attributes.
  * @return string HTML output for the gallery.
  */
-function awl_blog_filter_shortcode($user_atts)
+function bf_blog_filter_shortcode($user_atts)
 {
 
     // 1. --- Enqueue Scripts and Styles ---
     // This ensures all necessary assets are loaded for the gallery to function.
     wp_enqueue_script('imagesloaded');
     wp_enqueue_script('awl-bf-filterizr-js');
-    wp_enqueue_script('awl-bf-underscore-js');
     wp_enqueue_style('awl-bf-font-awesome-4-min-css');
     wp_enqueue_style('awl-bf-filter-output-css');
     wp_enqueue_style('awl-bf-hover-css');
@@ -100,7 +107,7 @@ function awl_blog_filter_shortcode($user_atts)
     // Now, extract all attributes into local variables.
     extract($atts);
 
-    $unique_id = rand(1, 1000);
+    $unique_id = wp_rand(1, 1000);
 
     //color dark code
     list($r, $g, $b) = sscanf($blog_desc_box_color, "#%02x%02x%02x");
@@ -114,8 +121,8 @@ function awl_blog_filter_shortcode($user_atts)
     // Include the dynamic CSS file.
     require('blog-filter-output-css.php');
 ?>
-    <div id="BlogFilterMain-<?php echo $unique_id; ?>" class="blog_filter_main" version="<?php echo BF_PLUGIN_VER; ?>"
-        data-post-type="<?php echo $post_type; ?>" data-initload="<?php echo $blog_on_load_scroll; ?>" data-scrollflage="1">
+    <div id="BlogFilterMain-<?php echo esc_attr($unique_id); ?>" class="blog_filter_main" version="<?php echo esc_attr(BF_PLUGIN_VER); ?>"
+        data-post-type="<?php echo esc_attr($post_type); ?>" data-initload="<?php echo esc_attr($blog_on_load_scroll); ?>" data-scrollflage="1">
         <?php
         // 3. --- Prepare and Run The Main Query ---
         $paged = (get_query_var('paged')) ? get_query_var('paged') : ((get_query_var('page')) ? get_query_var('page') : 1);
@@ -213,10 +220,10 @@ function awl_blog_filter_shortcode($user_atts)
             if ($custom_query->have_posts()) {
                 include('templates/blog-filter-content.php');
             } else {
-                echo '<p class="bfg-no-posts-found">' . __('No posts found.', 'blog-filter') . '</p>';
+                echo '<p class="bfg-no-posts-found">' . esc_html__('No posts found.', 'blog-filter') . '</p>';
             }
             ?>
-            <div class="blog_loader blog_loader-<?php echo $unique_id; ?>"></div>
+            <div class="blog_loader blog_loader-<?php echo esc_attr($unique_id); ?>"></div>
         </div>
 
         <?php // Load More, Scroll, and Pagination Controls
@@ -229,12 +236,12 @@ function awl_blog_filter_shortcode($user_atts)
         if ($blog_pagination == "yes") { ?>
             <div class="blog_pagination-<?php echo esc_attr($unique_id); ?>">
                 <?php
-                echo paginate_links(array(
+                echo wp_kses_post(paginate_links(array(
                     'total' => $custom_query->max_num_pages,
                     'current' => $paged,
                     'prev_text' => '<i class="fa fa-caret-left"></i>',
                     'next_text' => '<i class="fa fa-caret-right"></i>',
-                ));
+                )));
                 ?>
             </div>
         <?php }

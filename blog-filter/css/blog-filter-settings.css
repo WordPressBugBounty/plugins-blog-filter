@@ -1,46 +1,51 @@
 /* return to top button css*/
 #return-to-top {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: #496481;
-    width: 50px;
-    height: 50px;
-    display: block;
-    text-decoration: none;
-    -webkit-border-radius: 35px;
-    -moz-border-radius: 35px;
-    border-radius: 35px;
-    display: none;
-    -webkit-transition: all 0.3s linear;
-    -moz-transition: all 0.3s ease;
-    -ms-transition: all 0.3s ease;
-    -o-transition: all 0.3s ease;
-    transition: all 0.3s ease;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #496481;
+  width: 50px;
+  height: 50px;
+  display: block;
+  text-decoration: none;
+  -webkit-border-radius: 35px;
+  -moz-border-radius: 35px;
+  border-radius: 35px;
+  display: none;
+  -webkit-transition: all 0.3s linear;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
 }
+
 #return-to-top i {
-    color: #fff;
-    margin: 0;
-    position: relative;
-    left: 16px;
-    top: 13px;
-    font-size: 19px;
-    -webkit-transition: all 0.3s ease;
-    -moz-transition: all 0.3s ease;
-    -ms-transition: all 0.3s ease;
-    -o-transition: all 0.3s ease;
-    transition: all 0.3s ease;
+  color: #fff;
+  margin: 0;
+  position: relative;
+  left: 16px;
+  top: 13px;
+  font-size: 19px;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
 }
+
 #return-to-top:hover {
-    background: #0073AA;
+  background: #0073AA;
 }
+
 #return-to-top:hover i {
-    color: #fff;
-    top: 5px;
-} 
-#return-to-top:focus {
-    outline: none;
+  color: #fff;
+  top: 5px;
 }
+
+#return-to-top:focus {
+  outline: none;
+}
+
 /* The switch - the box around the slider */
 .switch {
   position: relative;
@@ -50,7 +55,9 @@
 }
 
 /* Hide default HTML checkbox */
-.switch input {display:none;}
+.switch input {
+  display: none;
+}
 
 /* The slider */
 .slider {
@@ -77,15 +84,15 @@
   transition: .4s;
 }
 
-input:checked + .slider {
+input:checked+.slider {
   background-color: #2196F3;
 }
 
-input:focus + .slider {
+input:focus+.slider {
   box-shadow: 0 0 1px #2196F3;
 }
 
-input:checked + .slider:before {
+input:checked+.slider:before {
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
   transform: translateX(26px);
@@ -115,11 +122,12 @@ input:checked + .slider:before {
   outline: none;
   padding: 0;
   margin: 2px;
-  display:inline !important;
+  display: inline !important;
 }
+
 .range-slider__range::-webkit-slider-thumb {
   -webkit-appearance: none;
-   appearance: none;
+  appearance: none;
   width: 20px;
   height: 20px;
   border-radius: 50%;
@@ -128,12 +136,15 @@ input:checked + .slider:before {
   -webkit-transition: background .15s ease-in-out;
   transition: background .15s ease-in-out;
 }
+
 .range-slider__range::-webkit-slider-thumb:hover {
   background: #2196F3;
 }
+
 .range-slider__range:active::-webkit-slider-thumb {
   background: #2196F3;
 }
+
 .range-slider__range::-moz-range-thumb {
   width: 20px;
   height: 20px;
@@ -144,9 +155,11 @@ input:checked + .slider:before {
   -webkit-transition: background .15s ease-in-out;
   transition: background .15s ease-in-out;
 }
+
 .range-slider__range::-moz-range-thumb:hover {
   background: #177EE5;
 }
+
 .range-slider__range:active::-moz-range-thumb {
   background: #2196F3;
 }
@@ -163,6 +176,7 @@ input:checked + .slider:before {
   padding: 5px 10px;
   margin-left: 8px;
 }
+
 .range-slider__value:after {
   position: absolute !important;
   top: 8px;
@@ -204,53 +218,67 @@ input::-moz-focus-outer {
 }
 
 @-webkit-keyframes spin {
-  0% { -webkit-transform: rotate(0deg); }
-  100% { -webkit-transform: rotate(360deg); }
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 #wpcontent {
-    padding-left: 20px;
-    padding-right: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
+
 #wpfooter {
-	display:none;
+  display: none;
 }
 
 .bf_footer_title {
-	color:#FFFFFF;
+  color: #FFFFFF;
 }
 
 .bf_pannel_bottom {
-	position: fixed;
-	bottom: 0;
-	width: 90%;
-	
-	opacity:0.8;
-	background:#58BBEE;
+  position: fixed;
+  bottom: 0;
+  width: 90%;
+
+  opacity: 0.8;
+  background: #58BBEE;
 
 }
+
 .bf_button {
-    background-color: #4CAF50; /* Green */
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 6px 2px;
-    -webkit-transition-duration: 0.4s; /* Safari */
-    transition-duration: 0.4s;
-    cursor: pointer;
+  background-color: #4CAF50;
+  /* Green */
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 6px 2px;
+  -webkit-transition-duration: 0.4s;
+  /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
 }
 
 .button_1:hover {
-	background-color: #3e8e41
+  background-color: #3e8e41
 }
 
 .button_1:active {
@@ -259,23 +287,288 @@ input::-moz-focus-outer {
 }
 
 .button_1 {
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-	border-radius:5px;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 5px;
 }
 
 /* color-picker CSS */
 .iris-picker {
-    width: 205px !important;
-	z-index: 999;
+  width: 205px !important;
+  z-index: 999;
 }
+
 .iris-picker .iris-square {
-    width: 72% !important;
+  width: 72% !important;
 }
+
 .iris-picker .iris-strip {
-    height: 182.346px !important;
+  height: 182.346px !important;
 }
+
 .not-allowed {
-	opacity: .3;
-	cursor: not-allowed;
-	
+  opacity: .3;
+  cursor: not-allowed;
+
+}
+
+/* =============================================
+   Tailwind CDN Replacement Rules
+   These classes were previously JIT-compiled by the Tailwind CDN.
+   Added here to maintain styling after CDN removal.
+   ============================================= */
+
+/* Arbitrary background colors */
+.bfg-bg-\[\#6dbe73\] {
+  background-color: #6dbe73;
+}
+
+.bfg-bg-\[aliceblue\] {
+  background-color: aliceblue;
+}
+
+.bfg-bg-\[white\] {
+  background-color: white;
+}
+
+/* Hover states */
+.bfg-hover\:bg-green-600:hover {
+  background-color: #16a34a;
+}
+
+.hover\:bfg-bg-\[aliceblue\]:hover {
+  background-color: aliceblue;
+}
+
+.hover\:bfg-text-gray-700:hover {
+  color: #374151;
+}
+
+/* Custom border color */
+.bfg-border-skyCustom {
+  border-color: #0ea5e9;
+}
+
+/* Modal/popup arbitrary values */
+.bfg-bg-black\/50 {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.bfg-top-\[15\%\] {
+  top: 15%;
+}
+
+.bfg-left-\[40\%\] {
+  left: 40%;
+}
+
+.bfg-translate-x-\[50\%\] {
+  --tw-translate-x: 50%;
+  transform: translateX(50%);
+}
+
+.bfg-translate-y-\[50\%\] {
+  --tw-translate-y: 50%;
+  transform: translateY(50%);
+}
+
+.bfg-w-\[35rem\] {
+  width: 35rem;
+}
+
+/* Responsive prefix classes */
+.sm\:bfg-py-24 {
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
+
+.sm\:bfg-text-xl\/8 {
+  font-size: 1.25rem;
+  line-height: 2rem;
+}
+
+.lg\:bfg-px-8 {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.lg\:bfg-mx-0 {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+/* =============================================
+   Upgrade to Pro Tab Styles
+   ============================================= */
+.bf-upgrade-hero {
+  background: linear-gradient(135deg, #1e3a5f 0%, #2d6a4f 100%);
+  color: #fff;
+  text-align: center;
+  padding: 40px 30px;
+  border-radius: 8px;
+  margin: 20px;
+}
+
+.bf-upgrade-hero h2 {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: #fff;
+}
+
+.bf-upgrade-hero p {
+  font-size: 15px;
+  opacity: 0.9;
+  max-width: 600px;
+  margin: 0 auto 20px;
+  line-height: 1.6;
+  color: #e0e0e0;
+}
+
+.bf-upgrade-btn {
+  display: inline-block;
+  background: #f59e0b;
+  color: #1a1a1a !important;
+  font-weight: 700;
+  padding: 12px 28px;
+  border-radius: 6px;
+  text-decoration: none !important;
+  font-size: 15px;
+  transition: background 0.2s, transform 0.2s;
+  border: none;
+  cursor: pointer;
+}
+
+.bf-upgrade-btn:hover {
+  background: #d97706;
+  transform: translateY(-1px);
+  color: #1a1a1a !important;
+  text-decoration: none !important;
+}
+
+.bf-features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  padding: 0 20px 20px;
+}
+
+.bf-feature-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  transition: box-shadow 0.2s;
+}
+
+.bf-feature-card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.bf-feature-icon {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.bf-feature-card h3 {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #1e3a5f;
+}
+
+.bf-feature-card p {
+  font-size: 13px;
+  color: #6b7280;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.bf-comparison-section {
+  padding: 0 20px 20px;
+}
+
+.bf-comparison-title {
+  font-size: 22px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 16px;
+  color: #1e3a5f;
+}
+
+.bf-comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.bf-comparison-table thead tr {
+  background: #1e3a5f;
+}
+
+.bf-comparison-table th {
+  padding: 12px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  text-align: center;
+}
+
+.bf-comparison-table th.bf-feature-col {
+  text-align: left;
+  width: 55%;
+}
+
+.bf-comparison-table th.bf-pro-col {
+  background: #2d6a4f;
+}
+
+.bf-comparison-table td {
+  padding: 10px 16px;
+  font-size: 13px;
+  border-bottom: 1px solid #f0f0f0;
+  text-align: center;
+  color: #374151;
+}
+
+.bf-comparison-table td:first-child {
+  text-align: left;
+  font-weight: 500;
+}
+
+.bf-comparison-table tbody tr:nth-child(even) {
+  background: #f9fafb;
+}
+
+.bf-comparison-table tbody tr:hover {
+  background: #f0f4f8;
+}
+
+.bf-pro-value {
+  background: rgba(45, 106, 79, 0.05);
+}
+
+.bf-yes {
+  color: #16a34a;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.bf-no {
+  color: #dc2626;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.bf-upgrade-cta {
+  text-align: center;
+  padding: 24px 20px 30px;
+}
+
+.bf-upgrade-cta p {
+  font-size: 15px;
+  color: #4b5563;
+  margin-bottom: 16px;
 }

@@ -1,5 +1,8 @@
+<?php
+if (! defined('ABSPATH')) exit; // Exit if accessed directly
+?>
 <style>
-	.bf_gallery_1-<?php echo $unique_id; ?> .portfolio_thumbnail {
+	.bf_gallery_1-<?php echo esc_attr($unique_id); ?> .portfolio_thumbnail {
 		border-radius: 0;
 		display: block;
 		height: auto;
@@ -11,54 +14,54 @@
 
 	/* thumb spacing */
 
-	.bf_gallery_1-<?php echo $unique_id; ?> .col-xs-1,
-	.bf_gallery_1-<?php echo $unique_id; ?> .col-sm-1,
-	.bf_gallery_1-<?php echo $unique_id; ?> .col-md-1,
-	.bf_gallery_1-<?php echo $unique_id; ?> .col-lg-1,
-	.bf_gallery_1-<?php echo $unique_id; ?> .col-xs-2,
-	.bf_gallery_1-<?php echo $unique_id; ?> .col-sm-2,
-	.bf_gallery_1-<?php echo $unique_id; ?> .col-md-2,
-	.bf_gallery_1-<?php echo $unique_id; ?> .col-lg-2,
-	.bf_gallery_1-<?php echo $unique_id; ?> .col-xs-3,
-	.bf_gallery_1-<?php echo $unique_id; ?> .col-sm-3,
-	.bf_gallery_1-<?php echo $unique_id; ?> .col-md-3,
-	.bf_gallery_1-<?php echo $unique_id; ?> .col-lg-3,
-	.bf_gallery_1-<?php echo $unique_id; ?> .col-xs-4,
-	.bf_gallery_1-<?php echo $unique_id; ?> .col-sm-4,
-	.bf_gallery_1-<?php echo $unique_id; ?> .col-md-4,
-	.bf_gallery_1-<?php echo $unique_id; ?> .col-lg-4,
-	.bf_gallery_1-<?php echo $unique_id; ?> .col-xs-5,
-	.bf_gallery_1-<?php echo $unique_id; ?> .col-sm-5,
-	.bf_gallery_1-<?php echo $unique_id; ?> .col-md-5,
-	.bf_gallery_1-<?php echo $unique_id; ?> .col-lg-5,
-	.bf_gallery_1-<?php echo $unique_id; ?> .col-xs-6,
-	.bf_gallery_1-<?php echo $unique_id; ?> .col-sm-6,
-	.bf_gallery_1-<?php echo $unique_id; ?> .col-md-6,
-	.bf_gallery_1-<?php echo $unique_id; ?> .col-lg-6,
-	.bf_gallery_1-<?php echo $unique_id; ?> .col-xs-7,
-	.bf_gallery_1-<?php echo $unique_id; ?> .col-sm-7,
-	.bf_gallery_1-<?php echo $unique_id; ?> .col-md-7,
-	.bf_gallery_1-<?php echo $unique_id; ?> .col-lg-7,
-	.bf_gallery_1-<?php echo $unique_id; ?> .col-xs-8,
-	.bf_gallery_1-<?php echo $unique_id; ?> .col-sm-8,
-	.bf_gallery_1-<?php echo $unique_id; ?> .col-md-8,
-	.bf_gallery_1-<?php echo $unique_id; ?> .col-lg-8,
-	.bf_gallery_1-<?php echo $unique_id; ?> .col-xs-9,
-	.bf_gallery_1-<?php echo $unique_id; ?> .col-sm-9,
-	.bf_gallery_1-<?php echo $unique_id; ?> .col-md-9,
-	.bf_gallery_1-<?php echo $unique_id; ?> .col-lg-9,
-	.bf_gallery_1-<?php echo $unique_id; ?> .col-xs-10,
-	.bf_gallery_1-<?php echo $unique_id; ?> .col-sm-10,
-	.bf_gallery_1-<?php echo $unique_id; ?> .col-md-10,
-	.bf_gallery_1-<?php echo $unique_id; ?> .col-lg-10,
-	.bf_gallery_1-<?php echo $unique_id; ?> .col-xs-11,
-	.bf_gallery_1-<?php echo $unique_id; ?> .col-sm-11,
-	.bf_gallery_1-<?php echo $unique_id; ?> .col-md-11,
-	.bf_gallery_1-<?php echo $unique_id; ?> .col-lg-11,
-	.bf_gallery_1-<?php echo $unique_id; ?> .col-xs-12,
-	.bf_gallery_1-<?php echo $unique_id; ?> .col-sm-12,
-	.bf_gallery_1-<?php echo $unique_id; ?> .col-md-12,
-	.bf_gallery_1-<?php echo $unique_id; ?> .col-lg-12 {
+	.bf_gallery_1-<?php echo esc_attr($unique_id); ?> .col-xs-1,
+	.bf_gallery_1-<?php echo esc_attr($unique_id); ?> .col-sm-1,
+	.bf_gallery_1-<?php echo esc_attr($unique_id); ?> .col-md-1,
+	.bf_gallery_1-<?php echo esc_attr($unique_id); ?> .col-lg-1,
+	.bf_gallery_1-<?php echo esc_attr($unique_id); ?> .col-xs-2,
+	.bf_gallery_1-<?php echo esc_attr($unique_id); ?> .col-sm-2,
+	.bf_gallery_1-<?php echo esc_attr($unique_id); ?> .col-md-2,
+	.bf_gallery_1-<?php echo esc_attr($unique_id); ?> .col-lg-2,
+	.bf_gallery_1-<?php echo esc_attr($unique_id); ?> .col-xs-3,
+	.bf_gallery_1-<?php echo esc_attr($unique_id); ?> .col-sm-3,
+	.bf_gallery_1-<?php echo esc_attr($unique_id); ?> .col-md-3,
+	.bf_gallery_1-<?php echo esc_attr($unique_id); ?> .col-lg-3,
+	.bf_gallery_1-<?php echo esc_attr($unique_id); ?> .col-xs-4,
+	.bf_gallery_1-<?php echo esc_attr($unique_id); ?> .col-sm-4,
+	.bf_gallery_1-<?php echo esc_attr($unique_id); ?> .col-md-4,
+	.bf_gallery_1-<?php echo esc_attr($unique_id); ?> .col-lg-4,
+	.bf_gallery_1-<?php echo esc_attr($unique_id); ?> .col-xs-5,
+	.bf_gallery_1-<?php echo esc_attr($unique_id); ?> .col-sm-5,
+	.bf_gallery_1-<?php echo esc_attr($unique_id); ?> .col-md-5,
+	.bf_gallery_1-<?php echo esc_attr($unique_id); ?> .col-lg-5,
+	.bf_gallery_1-<?php echo esc_attr($unique_id); ?> .col-xs-6,
+	.bf_gallery_1-<?php echo esc_attr($unique_id); ?> .col-sm-6,
+	.bf_gallery_1-<?php echo esc_attr($unique_id); ?> .col-md-6,
+	.bf_gallery_1-<?php echo esc_attr($unique_id); ?> .col-lg-6,
+	.bf_gallery_1-<?php echo esc_attr($unique_id); ?> .col-xs-7,
+	.bf_gallery_1-<?php echo esc_attr($unique_id); ?> .col-sm-7,
+	.bf_gallery_1-<?php echo esc_attr($unique_id); ?> .col-md-7,
+	.bf_gallery_1-<?php echo esc_attr($unique_id); ?> .col-lg-7,
+	.bf_gallery_1-<?php echo esc_attr($unique_id); ?> .col-xs-8,
+	.bf_gallery_1-<?php echo esc_attr($unique_id); ?> .col-sm-8,
+	.bf_gallery_1-<?php echo esc_attr($unique_id); ?> .col-md-8,
+	.bf_gallery_1-<?php echo esc_attr($unique_id); ?> .col-lg-8,
+	.bf_gallery_1-<?php echo esc_attr($unique_id); ?> .col-xs-9,
+	.bf_gallery_1-<?php echo esc_attr($unique_id); ?> .col-sm-9,
+	.bf_gallery_1-<?php echo esc_attr($unique_id); ?> .col-md-9,
+	.bf_gallery_1-<?php echo esc_attr($unique_id); ?> .col-lg-9,
+	.bf_gallery_1-<?php echo esc_attr($unique_id); ?> .col-xs-10,
+	.bf_gallery_1-<?php echo esc_attr($unique_id); ?> .col-sm-10,
+	.bf_gallery_1-<?php echo esc_attr($unique_id); ?> .col-md-10,
+	.bf_gallery_1-<?php echo esc_attr($unique_id); ?> .col-lg-10,
+	.bf_gallery_1-<?php echo esc_attr($unique_id); ?> .col-xs-11,
+	.bf_gallery_1-<?php echo esc_attr($unique_id); ?> .col-sm-11,
+	.bf_gallery_1-<?php echo esc_attr($unique_id); ?> .col-md-11,
+	.bf_gallery_1-<?php echo esc_attr($unique_id); ?> .col-lg-11,
+	.bf_gallery_1-<?php echo esc_attr($unique_id); ?> .col-xs-12,
+	.bf_gallery_1-<?php echo esc_attr($unique_id); ?> .col-sm-12,
+	.bf_gallery_1-<?php echo esc_attr($unique_id); ?> .col-md-12,
+	.bf_gallery_1-<?php echo esc_attr($unique_id); ?> .col-lg-12 {
 		padding-right: 5px !important;
 		padding-left: 5px !important;
 		padding-bottom: 5px !important;
@@ -176,8 +179,7 @@
 	}
 
 	/* Image to background */
-	<?php if ($blog_fixed_grid == 'yes') { ?>
-	.fit-in-content {
+	<?php if ($blog_fixed_grid == 'yes') { ?> .fit-in-content {
 		display: block;
 		height: 250px;
 		background-repeat: no-repeat !important;
@@ -208,25 +210,24 @@
 	}
 
 	<?php
-	if ($blog_direction == "rtl") { ?>
-	.blog_filter_main {
+	if ($blog_direction == "rtl") { ?> .blog_filter_main {
 		direction: rtl;
 	}
 
 	<?php
-	} ?>.snip0047-<?php echo esc_attr($unique_id); ?>.active span {
+	} ?>.snip0047-<?php echo esc_attr($unique_id); ?> .active span {
 		-webkit-transform: translate3d(-20px, 0px, 0px);
 		transform: translate3d(-20px, 0px, 0px);
 		opacity: 1;
 	}
 
-	.snip0047-<?php echo esc_attr($unique_id); ?>.active i {
+	.snip0047-<?php echo esc_attr($unique_id); ?> .active i {
 		opacity: 1;
 		-webkit-transition-delay: 0.15s;
 		transition-delay: 0.15s;
 	}
 
-	.snip0047-<?php echo esc_attr($unique_id); ?>.active:before {
+	.snip0047-<?php echo esc_attr($unique_id); ?> .active:before {
 		width: 38px;
 		-webkit-transition-delay: 0s;
 		transition-delay: 0s;
@@ -247,16 +248,14 @@
 	}
 
 	<?php
-	if ($blog_title_below_image == "no" || $blog_date_below_image == "no" || $blog_author_below_image == "no") { ?>
-	.bf_title_box_1-<?php echo esc_attr($unique_id); ?> {
+	if ($blog_title_below_image == "no" || $blog_date_below_image == "no" || $blog_author_below_image == "no") { ?> .bf_title_box_1-<?php echo esc_attr($unique_id); ?> {
 		padding-top: 5px;
 		padding-bottom: 10px;
 		padding-left: 8px;
 		padding-right: 8px;
 	}
 
-	<?php } ?>
-	.bf_title_box_2-<?php echo esc_attr($unique_id); ?> {
+	<?php } ?> .bf_title_box_2-<?php echo esc_attr($unique_id); ?> {
 		padding-top: 10px;
 		padding-bottom: 10px;
 		padding-left: 8px;
@@ -284,5 +283,5 @@
 	}
 
 
-	<?php echo wp_strip_all_tags($custom_css); ?>
+	<?php echo esc_html(wp_strip_all_tags($custom_css)); ?>
 </style>

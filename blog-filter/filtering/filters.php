@@ -52,8 +52,9 @@ if ($terms && !is_wp_error($terms)) :
     // --- END: NEW DYNAMIC LOGIC ---
 
     // --- Default Filter for the JavaScript ---
+    // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Front-end filter URL parameter, not a form submission.
     if (isset($_GET['filter']) && !empty($_GET['filter'])) {
-        $filter_param = sanitize_text_field(wp_unslash($_GET['filter']));
+        $filter_param = sanitize_text_field(wp_unslash($_GET['filter'])); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
         foreach ($terms as $term) {
             if ($term->name === $filter_param) {
                 $default_filter = $term->term_id;

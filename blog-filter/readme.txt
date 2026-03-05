@@ -3,9 +3,9 @@ Contributors: awordpresslife, razipathhan, hanif0991, muhammadshahid, fkfaisalkh
 Donate link: https://paypal.me/awplife
 Tags: blog filter, post grid, blog layout, category filter, tag filter
 Requires at least: 5.0
-Tested up to: 6.9.1
+Tested up to: 6.9
 Requires PHP: 7.0
-Stable tag: 1.7.6
+Stable tag: 1.7.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -246,6 +246,18 @@ Other plugins from the same development team:
 
 == Changelog ==
 
+= 1.7.7 =
+* Plugin Check Compliance: Replaced all _e() with esc_html_e() across settings page
+* Plugin Check Compliance: Added version parameters to all wp_enqueue_style/script calls
+* Plugin Check Compliance: Removed offloaded CDN Tailwind script from settings page
+* Security: Escaped all PHP output in inline JavaScript with esc_js()
+* Security: Escaped admin_url() with esc_url() and wp_create_nonce() with esc_attr()
+* Security: Replaced json_encode() with wp_json_encode() for safe JSON output
+* Security: Escaped $disabled and $is_selected variables in printf() with esc_attr()
+* Security: Wrapped wp_strip_all_tags() output in esc_html() for custom CSS
+* Security: Escaped get_day_link() output with esc_url() in templates
+* Fixed: CSS selector spacing issues in blog-filter-output-css.php
+
 = 1.7.6 =
 * Added option to disable Bootstrap CSS loading
 * Added option to disable Bootstrap JS loading
@@ -305,5 +317,5 @@ Other plugins from the same development team:
 
 == Upgrade Notice ==
 
-= 1.7.4 =
-Important security update. Fixes Stored XSS vulnerability. All users should update immediately.
+= 1.7.7 =
+Plugin Check compliance update. Fixes security escaping, removes CDN dependency, and ensures all outputs are properly escaped. All users should update.

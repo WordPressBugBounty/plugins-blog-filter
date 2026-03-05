@@ -1,8 +1,9 @@
+<?php if (! defined('ABSPATH')) exit; ?>
 <script> <!---
 jQuery(function() {
 	//Simple filter controls
-	jQuery('.filtr-controls-<?php echo $unique_id; ?>').click(function() {
-	jQuery('.filtr-controls-<?php echo $unique_id; ?>').removeClass('active');
+	jQuery('.filtr-controls-<?php echo esc_js($unique_id); ?>').click(function() {
+	jQuery('.filtr-controls-<?php echo esc_js($unique_id); ?>').removeClass('active');
 	jQuery(this).addClass('active');
 	});
 	//Multifilter controls
@@ -83,7 +84,7 @@ jQuery(function() {
 		<?php
 		if (isset($default_filter) && $default_filter != "all") {
 		?>
-			jQuery("#<?php echo $default_filter; ?>").addClass('active');
+			jQuery("#<?php echo esc_js($default_filter); ?>").addClass('active');
 			jQuery("#all").removeClass("active");
 			<?php
 		}
@@ -94,7 +95,7 @@ jQuery(function() {
 		jQuery(".blog_loader").hide();
 		jQuery(".bfg_theme_1").css("opacity", 1);
 		//Filterizd Default options
-		options<?php echo $unique_id; ?> = {
+		options<?php echo esc_js($unique_id); ?> = {
 			callbacks: {
 				onFilteringStart: function () { },
 				onFilteringEnd: function () { },
@@ -103,8 +104,8 @@ jQuery(function() {
 				onSortingStart: function () { },
 				onSortingEnd: function () { }
 			},
-			controlsSelector: '.filtr-controls-<?php echo $unique_id; ?>',
-			filter: '<?php echo $default_filter; ?>',
+			controlsSelector: '.filtr-controls-<?php echo esc_js($unique_id); ?>',
+			filter: '<?php echo esc_js($default_filter); ?>',
 			filterOutCss: {
 				top: '0px',
 				left: '0px',
@@ -122,11 +123,11 @@ jQuery(function() {
 		selector: '.filtr-item',
 			setupControls: false
 		}
-		var filterizd = jQuery('.bf_gallery_1-<?php echo $unique_id; ?>').filterizr(options<?php echo $unique_id; ?>);
+		var filterizd = jQuery('.bf_gallery_1-<?php echo esc_js($unique_id); ?>').filterizr(options<?php echo esc_js($unique_id); ?>);
 
-		jQuery('.bf_gallery_1-<?php echo $unique_id; ?>').imagesLoaded(function () {
+		jQuery('.bf_gallery_1-<?php echo esc_js($unique_id); ?>').imagesLoaded(function () {
 			// images have already loaded, instantiate Filterizr
-			jQuery('.bf_gallery_1-<?php echo $unique_id; ?>').filterizr(options<?php echo $unique_id; ?>);
+			jQuery('.bf_gallery_1-<?php echo esc_js($unique_id); ?>').filterizr(options<?php echo esc_js($unique_id); ?>);
 		});
 	});
 
@@ -138,26 +139,27 @@ jQuery(function() {
 		//***************** Swipebox *********************//
 		<?php
 		if (wp_script_is('awl-bfg-swipebox-js')) {
+			// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- This is a front-end filter URL parameter, not a form submission.
 			if (isset($_GET['filter'])) { ?>
-				var targetFilter = jQuery('.filtr-control-<?php echo $unique_id; ?> li.active').data('filter');
+				var targetFilter = jQuery('.filtr-control-<?php echo esc_js($unique_id); ?> li.active').data('filter');
 				var lighbox_class_name = "bfg-lightbox-" + targetFilter;
 				jQuery('.bfg-lightbox-' + targetFilter).attr('rel', lighbox_class_name); // add data filter for parent filters
-				jQuery('.bfg-lightbox-<?php echo $unique_id; ?>').swipebox();
+				jQuery('.bfg-lightbox-<?php echo esc_js($unique_id); ?>').swipebox();
 			<?php
 			} else { ?>
 				//***************** Swipebox *********************//
-				jQuery('.filtr-control-<?php echo $unique_id; ?> [data-filter]').click(function () {
-					jQuery('.bfg-lightbox-<?php echo $unique_id; ?>').swipebox('swipebox-destroy');
+				jQuery('.filtr-control-<?php echo esc_js($unique_id); ?> [data-filter]').click(function () {
+					jQuery('.bfg-lightbox-<?php echo esc_js($unique_id); ?>').swipebox('swipebox-destroy');
 					var targetFilter = jQuery(this).data('filter');
 
 					var lighbox_class_name = "bfg-lightbox-" + targetFilter;
 					jQuery('.bfg-lightbox-' + targetFilter).attr('rel', lighbox_class_name); // add data filter for parent filters
-					jQuery('.bfg-lightbox-<?php echo $unique_id; ?>').swipebox();
+					jQuery('.bfg-lightbox-<?php echo esc_js($unique_id); ?>').swipebox();
 					//END Swipebox
 				});
 
 				//Lightbox for multifilter
-				jQuery('.filtr-control-<?php echo $unique_id; ?> [data-multifilter]').click(function () {
+				jQuery('.filtr-control-<?php echo esc_js($unique_id); ?> [data-multifilter]').click(function () {
 					var targetFilter = jQuery(this).data('multifilter');
 					var lighbox_class_name = "bfg-lightbox-" + targetFilter;
 					setTimeout(function () {
@@ -171,7 +173,7 @@ jQuery(function() {
 					}, 1500);
 				});
 				//bfg-lightbox on page load
-				jQuery('.bfg-lightbox-<?php echo $unique_id; ?>').swipebox();
+				jQuery('.bfg-lightbox-<?php echo esc_js($unique_id); ?>').swipebox();
 			<?php
 			}
 		} ?>
@@ -190,7 +192,7 @@ jQuery(function() {
 		jQuery("ul.page-numbers").addClass("blog_pagination mrgt-0");
 
 		jQuery("#filter-all").click(function () {
-			options<?php echo $unique_id; ?> = {
+			options<?php echo esc_js($unique_id); ?> = {
 				animationDuration: 0.5,
 				callbacks: {
 					onFilteringStart: function () { },
@@ -200,7 +202,7 @@ jQuery(function() {
 					onSortingStart: function () { },
 					onSortingEnd: function () { }
 				},
-				controlsSelector: '.filtr-controls-<?php echo $unique_id; ?>',
+				controlsSelector: '.filtr-controls-<?php echo esc_js($unique_id); ?>',
 				filter: 'all',
 				filterOutCss: {
 					top: '0px',
@@ -218,9 +220,9 @@ jQuery(function() {
 				setupControls: false,
 				selector: '.filtr-item',
 			}
-			var filterizd = jQuery('.bf_gallery_1-<?php echo $unique_id; ?>').filterizr(options<?php echo $unique_id; ?>);
+			var filterizd = jQuery('.bf_gallery_1-<?php echo esc_js($unique_id); ?>').filterizr(options<?php echo esc_js($unique_id); ?>);
 			filterizd.filterizr('destroy');
-			filterizd.filterizr(options<?php echo $unique_id; ?>).resize();
+			filterizd.filterizr(options<?php echo esc_js($unique_id); ?>).resize();
 			jQuery('.filter-active').removeClass('filter-active');
 			jQuery('#filter-all').addClass('filter-active');
 		});
@@ -237,9 +239,9 @@ jQuery(function() {
 		?>
 		var total_posts_in_filter = <?php echo json_encode($termandcount); ?>;
 
-		var initload = jQuery("#BlogFilterMain-<?php echo $unique_id; ?>").attr("data-initload");
-		jQuery('.filtr-controls-<?php echo $unique_id; ?>').click(function () {
-			var button = jQuery('#load-more-<?php echo $unique_id; ?>');
+		var initload = jQuery("#BlogFilterMain-<?php echo esc_js($unique_id); ?>").attr("data-initload");
+		jQuery('.filtr-controls-<?php echo esc_js($unique_id); ?>').click(function () {
+			var button = jQuery('#load-more-<?php echo esc_js($unique_id); ?>');
 			var button_scroll = jQuery('.load-scroll-block');
 			var targetFilter = jQuery(this).data('filter');
 			var filter_image_len = total_posts_in_filter[targetFilter];
@@ -262,7 +264,7 @@ jQuery(function() {
 			}
 
 			
-				let targetMultiFilter = jQuery('.filtr-controls-<?php echo $unique_id; ?>.active').map(function () {
+				let targetMultiFilter = jQuery('.filtr-controls-<?php echo esc_js($unique_id); ?>.active').map(function () {
 					return parseInt(jQuery(this).data('filter'), 10);
 				}).get();
 			
@@ -301,11 +303,11 @@ jQuery(function() {
 				}
 				//console.log(targetFilter);
 
-				var ajaxurl = '<?php echo admin_url("admin-ajax.php"); ?>' + '?nocache=' + (new Date())
+				var ajaxurl = '<?php echo esc_url(admin_url("admin-ajax.php")); ?>' + '?nocache=' + (new Date())
 					.getTime();
-				var nonce = '<?php echo wp_create_nonce("load_more_nonce"); ?>';
-				var bfg_query_vars = <?php echo json_encode($atts); ?>;
-				var unique_id = <?php echo $unique_id; ?>;
+				var nonce = '<?php echo esc_attr(wp_create_nonce("load_more_nonce")); ?>';
+				var bfg_query_vars = <?php echo wp_json_encode($atts); ?>;
+				var unique_id = <?php echo esc_js($unique_id); ?>;
 
 				var displayed_posts = jQuery('.displayed_posts').map(function () {
 					return jQuery(this).val();
@@ -339,7 +341,7 @@ jQuery(function() {
 					success: function (data) {
 						if (jQuery.trim(data) != '') {
 							button.removeClass('active');
-							options<?php echo $unique_id; ?> = {
+							options<?php echo esc_js($unique_id); ?> = {
 								/*animationDuration: 0.5,*/
 								callbacks: {
 									onFilteringStart: function () { },
@@ -349,7 +351,7 @@ jQuery(function() {
 									onSortingStart: function () { },
 									onSortingEnd: function () { }
 								},
-								controlsSelector: '.filtr-controls-<?php echo $unique_id; ?>',
+								controlsSelector: '.filtr-controls-<?php echo esc_js($unique_id); ?>',
 								filter: targetFilter,
 								filterOutCss: {
 									top: '0px',
@@ -369,12 +371,12 @@ jQuery(function() {
 								setupControls: false
 							}
 
-							var filterizd = jQuery('.bf_gallery_1-<?php echo $unique_id; ?>').filterizr(options<?php echo $unique_id; ?>);
+							var filterizd = jQuery('.bf_gallery_1-<?php echo esc_js($unique_id); ?>').filterizr(options<?php echo esc_js($unique_id); ?>);
 							$node = jQuery(data);
 							$node[0].firstElementChild.classList.add("loaded-block");
 
 							filterizd.filterizr('insertItem', $node);
-							filterizd.filterizr(options<?php echo $unique_id; ?>).resize();
+							filterizd.filterizr(options<?php echo esc_js($unique_id); ?>).resize();
 							jQuery('.filtr-item .post-box').addClass('lazyimg');
 
 							setTimeout(function () {
@@ -384,13 +386,13 @@ jQuery(function() {
 
 							jQuery('.filtr-container').imagesLoaded(function () {
 								// images have already loaded, instantiate Filterizr
-								jQuery('.bf_gallery_1-<?php echo $unique_id; ?>').filterizr(options<?php echo $unique_id; ?>);
+								jQuery('.bf_gallery_1-<?php echo esc_js($unique_id); ?>').filterizr(options<?php echo esc_js($unique_id); ?>);
 							});
 
 							// Swipebox
 							var lighbox_class_name = "bfg-lightbox-" + targetFilter;
 							jQuery('.bfg-lightbox-' + targetFilter).attr('rel', lighbox_class_name); // add data filter for parent filters
-							jQuery('.bfg-lightbox-<?php echo $unique_id; ?>').swipebox();
+							jQuery('.bfg-lightbox-<?php echo esc_js($unique_id); ?>').swipebox();
 						} else {
 							button.removeClass('active');
 						}
@@ -400,17 +402,17 @@ jQuery(function() {
 		});
 		<?php
 		if ($blog_load_more == "yes") { ?>
-			jQuery('#load-more-<?php echo $unique_id; ?>').click(function () {
+			jQuery('#load-more-<?php echo esc_js($unique_id); ?>').click(function () {
 				
 					// Single Filter
-					var targetFilter = jQuery('.filtr-control-<?php echo $unique_id; ?> li.active').map(function () { return jQuery(this).data('filter'); }).get();
+					var targetFilter = jQuery('.filtr-control-<?php echo esc_js($unique_id); ?> li.active').map(function () { return jQuery(this).data('filter'); }).get();
 				
 				if (targetFilter[0] == "all" || targetFilter == '') { targetFilter = 'all'; }
 
-				var ajaxurl = '<?php echo admin_url("admin-ajax.php"); ?>';
-				var nonce = '<?php echo wp_create_nonce("load_more_nonce"); ?>';
-				var bfg_query_vars = <?php echo json_encode($atts); ?>;
-				var unique_id = <?php echo $unique_id; ?>;
+				var ajaxurl = '<?php echo esc_url(admin_url("admin-ajax.php")); ?>';
+				var nonce = '<?php echo esc_attr(wp_create_nonce("load_more_nonce")); ?>';
+				var bfg_query_vars = <?php echo wp_json_encode($atts); ?>;
+				var unique_id = <?php echo esc_js($unique_id); ?>;
 
 				var displayed_posts = jQuery('.displayed_posts').map(function () { return jQuery(this).val(); }).get();
 				var button = jQuery(this);
@@ -438,7 +440,7 @@ jQuery(function() {
 						if (jQuery.trim(data) != '') {
 							button[0].childNodes[0].textContent = <?php echo wp_json_encode($load_more_text); ?>;
 							button.removeClass('active');
-							options<?php echo $unique_id; ?> = {
+							options<?php echo esc_js($unique_id); ?> = {
 								/*animationDuration: 0.5,*/
 								callbacks: {
 									onFilteringStart: function () { },
@@ -448,7 +450,7 @@ jQuery(function() {
 									onSortingStart: function () { },
 									onSortingEnd: function () { }
 								},
-								controlsSelector: '.filtr-controls-<?php echo $unique_id; ?>',
+								controlsSelector: '.filtr-controls-<?php echo esc_js($unique_id); ?>',
 								filter: targetFilter,
 								filterOutCss: {
 									top: '0px',
@@ -468,12 +470,12 @@ jQuery(function() {
 								setupControls: false
 							}
 
-							var filterizd = jQuery('.bf_gallery_1-<?php echo $unique_id; ?>').filterizr(options<?php echo $unique_id; ?>);
+							var filterizd = jQuery('.bf_gallery_1-<?php echo esc_js($unique_id); ?>').filterizr(options<?php echo esc_js($unique_id); ?>);
 							$node = jQuery(data);
 							$node[0].firstElementChild.classList.add("loaded-block");
 
 							filterizd.filterizr('insertItem', $node);
-							filterizd.filterizr(options<?php echo $unique_id; ?>).resize();
+							filterizd.filterizr(options<?php echo esc_js($unique_id); ?>).resize();
 							jQuery('.filtr-item .post-box').addClass('lazyimg');
 
 							setTimeout(function () {
@@ -483,13 +485,13 @@ jQuery(function() {
 
 							jQuery('.filtr-container').imagesLoaded(function () {
 								// images have already loaded, instantiate Filterizr
-								jQuery('.bf_gallery_1-<?php echo $unique_id; ?>').filterizr(options<?php echo $unique_id; ?>);
+								jQuery('.bf_gallery_1-<?php echo esc_js($unique_id); ?>').filterizr(options<?php echo esc_js($unique_id); ?>);
 							});
 
 							// Swipebox
 							var lighbox_class_name = "bfg-lightbox-" + targetFilter;
 							jQuery('.bfg-lightbox-' + targetFilter).attr('rel', lighbox_class_name); // add data filter for parent filters
-							jQuery('.bfg-lightbox-<?php echo $unique_id; ?>').swipebox();
+							jQuery('.bfg-lightbox-<?php echo esc_js($unique_id); ?>').swipebox();
 						} else {
 							//alert('No More Posts');
 							button[0].childNodes[0].textContent = <?php echo wp_json_encode($no_more_text); ?>;

@@ -1,4 +1,5 @@
 <?php
+if (! defined('ABSPATH')) exit; // Exit if accessed directly
 
 /**
  * Blog Filter - AJAX Load More Handler
@@ -19,7 +20,7 @@ check_ajax_referer('load_more_nonce', 'nonce');
 
 
 // Get the original shortcode attributes that were passed from the JavaScript.
-$user_atts = isset($_POST['bfg_query_vars']) ? (array) $_POST['bfg_query_vars'] : array();
+$user_atts = isset($_POST['bfg_query_vars']) ? array_map('sanitize_text_field', wp_unslash((array) $_POST['bfg_query_vars'])) : array();
 
 // Sanitize critical fields in user_atts for security
 if (isset($user_atts['post_type'])) {
@@ -53,12 +54,12 @@ extract($atts);
 //$order               = isset($atts['order']) ? sanitize_text_field($atts['order']) : 'DESC';
 
 // Get data sent directly from the AJAX call.
-$displayed_posts     = isset($_POST['displayed_posts']) ? array_map('intval', $_POST['displayed_posts']) : array();
+$displayed_posts     = isset($_POST['displayed_posts']) ? array_map('intval', wp_unslash($_POST['displayed_posts'])) : array();
 
 // Sanitize targetFilter - must be 'all' or integer term ID(s)
 $targetFilter = 'all';
 if (isset($_POST['targetFilter'])) {
-    $raw_filter = $_POST['targetFilter'];
+    $raw_filter = sanitize_text_field(wp_unslash($_POST['targetFilter']));
     if (is_array($raw_filter)) {
         // Multiple filters: sanitize each as integer
         $targetFilter = array_map('intval', $raw_filter);
@@ -70,7 +71,7 @@ if (isset($_POST['targetFilter'])) {
     }
 }
 
-$unique_id = isset($_POST['unique_id']) ? intval($_POST['unique_id']) : rand(1, 1000);
+$unique_id = isset($_POST['unique_id']) ? intval($_POST['unique_id']) : wp_rand(1, 1000);
 
 //--------------------------------------------------------------------------
 // 2. Build the Custom Query Arguments

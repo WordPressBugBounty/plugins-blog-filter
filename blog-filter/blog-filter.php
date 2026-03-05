@@ -4,11 +4,13 @@ if (!defined('ABSPATH'))
 /**
 Plugin Name: Blog Filter
 Description: Blog Filter For WordPress Blog With Multiple Filters
-Version: 1.7.6
+Version: 1.7.7
 Author: A WP Life
 Author URI: http://awplife.com/
 Text Domain: blog-filter
 Domain Path: /languages
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
  **/
 
 if (!class_exists('Awl_Blog_Filter')) {
@@ -25,7 +27,7 @@ if (!class_exists('Awl_Blog_Filter')) {
 		protected function _constants()
 		{
 			//Plugin Version
-			define('BF_PLUGIN_VER', '1.7.6');
+			define('BF_PLUGIN_VER', '1.7.7');
 
 			//Plugin Text Domain
 			define("'blog-filter'", "blog-filter");
@@ -54,13 +56,20 @@ if (!class_exists('Awl_Blog_Filter')) {
 
 			// Added settings link on plugins page
 			$bf_plugin_name = plugin_basename(__FILE__);
-			add_filter("plugin_action_links_$bf_plugin_name", 'plugins_page_settings_link');
+			add_filter("plugin_action_links_$bf_plugin_name", 'bf_plugins_page_settings_link');
 
-			function plugins_page_settings_link($links)
+			function bf_plugins_page_settings_link($links)
 			{
-				$bf_settings_link = '<a href="edit.php?page=blog-filter-settings-page">' . __('Settings', 'blog-filter') . '</a>';
+				$bf_settings_link = '<a href="edit.php?page=blog-filter-settings-page">' . esc_html__('Settings', 'blog-filter') . '</a>';
 				array_unshift($links, $bf_settings_link);
 				return $links;
+			}
+			// Backward compatibility wrapper
+			if (! function_exists('plugins_page_settings_link')) {
+				function plugins_page_settings_link($links)
+				{
+					return bf_plugins_page_settings_link($links);
+				}
 			}
 
 			function bfg_get_shortcode_defaults()
@@ -185,7 +194,7 @@ if (!class_exists('Awl_Blog_Filter')) {
 				return;
 			}
 
-			$post_type = sanitize_text_field($_POST['post_type']);
+			$post_type = sanitize_text_field(wp_unslash($_POST['post_type']));
 
 			// Get all public taxonomies associated with the post type.
 			$taxonomies = get_object_taxonomies($post_type, 'objects');
@@ -196,7 +205,7 @@ if (!class_exists('Awl_Blog_Filter')) {
 				foreach ($taxonomies as $taxonomy) {
 					// We only want public taxonomies that can be shown in a UI.
 					if ($taxonomy->public && $taxonomy->show_ui) {
-						$options_html .= '<option value="' . esc_attr($taxonomy->name) . '">' . esc_html($taxonomy->label) . ' (' . $taxonomy->name . ')</option>';
+						$options_html .= '<option value="' . esc_attr($taxonomy->name) . '">' . esc_html($taxonomy->label) . ' (' . esc_html($taxonomy->name) . ')</option>';
 					}
 				}
 			}
@@ -223,7 +232,7 @@ if (!class_exists('Awl_Blog_Filter')) {
 				wp_send_json_error('No taxonomy specified.', 400);
 				return;
 			}
-			$taxonomy_name = sanitize_text_field($_POST['taxonomy']);
+			$taxonomy_name = sanitize_text_field(wp_unslash($_POST['taxonomy']));
 			$taxonomy_obj = get_taxonomy($taxonomy_name);
 			if (!$taxonomy_obj) {
 				wp_send_json_error('Invalid taxonomy.', 400);
@@ -248,11 +257,11 @@ if (!class_exists('Awl_Blog_Filter')) {
 					<table class="bfg-w-full bfg-border-collapse bfg-border bfg-border-gray-300">
 						<thead>
 							<tr class="bfg-bg-gray-200">
-								<th class="bfg-p-2 bfg-border bfg-border-gray-300"><?php _e('ID', 'blog-filter'); ?></th>
+								<th class="bfg-p-2 bfg-border bfg-border-gray-300"><?php esc_html_e('ID', 'blog-filter'); ?></th>
 								<th class="bfg-p-2 bfg-border bfg-border-gray-300">
 									<?php echo esc_html($taxonomy_obj->labels->singular_name); ?>
 								</th>
-								<th class="bfg-p-2 bfg-border bfg-border-gray-300"><?php _e('Post Count', 'blog-filter'); ?></th>
+								<th class="bfg-p-2 bfg-border bfg-border-gray-300"><?php esc_html_e('Post Count', 'blog-filter'); ?></th>
 								<th class="bfg-p-2 bfg-border bfg-border-gray-300 bfg-text-center"></th>
 							</tr>
 						</thead>
@@ -282,13 +291,13 @@ if (!class_exists('Awl_Blog_Filter')) {
 					<table class="bfg-w-full bfg-border-collapse bfg-border bfg-border-gray-300">
 						<thead>
 							<tr class="bfg-bg-gray-200">
-								<th class="bfg-p-2 bfg-border bfg-border-gray-300"><?php _e('ID', 'blog-filter'); ?></th>
+								<th class="bfg-p-2 bfg-border bfg-border-gray-300"><?php esc_html_e('ID', 'blog-filter'); ?></th>
 								<th class="bfg-p-2 bfg-border bfg-border-gray-300">
 									<?php echo esc_html($taxonomy_obj->labels->singular_name); ?>
 								</th>
-								<th class="bfg-p-2 bfg-border bfg-border-gray-300"><?php _e('Post Count', 'blog-filter'); ?></th>
+								<th class="bfg-p-2 bfg-border bfg-border-gray-300"><?php esc_html_e('Post Count', 'blog-filter'); ?></th>
 								<th class="bfg-p-2 bfg-border bfg-border-gray-300 bfg-text-center">
-									<?php _e('Exclude', 'blog-filter'); ?>
+									<?php esc_html_e('Exclude', 'blog-filter'); ?>
 								</th>
 							</tr>
 						</thead>
@@ -325,7 +334,7 @@ if (!class_exists('Awl_Blog_Filter')) {
 		public function load_more_posts()
 		{
 
-			if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'load_more_nonce')) {
+			if (!isset($_POST['nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['nonce'])), 'load_more_nonce')) {
 				exit;
 			}
 
@@ -340,7 +349,8 @@ if (!class_exists('Awl_Blog_Filter')) {
 
 		public function load_textdomain()
 		{
-			load_plugin_textdomain('blog-filter', false, dirname(plugin_basename(__FILE__)) . '/languages');
+			// load_plugin_textdomain is no longer needed for plugins hosted on WordPress.org (since WP 4.6).
+			// Translations are handled automatically. Keeping the method for backward compatibility.
 		}
 
 		public function blog_filter_menu()
@@ -354,28 +364,37 @@ if (!class_exists('Awl_Blog_Filter')) {
 		}
 	}
 
-	// register sf scripts
-	function awplife_bf_register_scripts()
+	// register bf scripts
+	function bf_register_scripts()
 	{
 
 		//js
-		wp_register_script('awl-bf-bootstrap-js', plugin_dir_url(__FILE__) . 'js/bootstrap.min.js', array('jquery'), '', true);
-		wp_register_script('awl-bf-filterizr-js', plugin_dir_url(__FILE__) . 'js/jquery.filterizr.js', array('jquery'), '', false);
-		wp_register_script('awl-bf-underscore-js', plugin_dir_url(__FILE__) . 'js/underscore.js', array('jquery'), '', false);
+		wp_register_script('awl-bf-bootstrap-js', plugin_dir_url(__FILE__) . 'js/bootstrap.min.js', array('jquery'), BF_PLUGIN_VER, true);
+		wp_register_script('awl-bf-filterizr-js', plugin_dir_url(__FILE__) . 'js/jquery.filterizr.js', array('jquery'), BF_PLUGIN_VER, false);
 
 		// css
-		wp_register_style('awl-bf-bootstrap-css', plugin_dir_url(__FILE__) . 'css/bootstrap.css');
-		wp_register_style('awl-bf-font-awesome-4-min-css', plugin_dir_url(__FILE__) . 'css/font-awesome-4.min.css');
-		wp_register_style('awl-bf-filter-output-css', plugin_dir_url(__FILE__) . 'css/blog-filter-output.css');
-		wp_register_style('awl-bf-hover-css', plugin_dir_url(__FILE__) . 'css/hover.css');
+		wp_register_style('awl-bf-bootstrap-css', plugin_dir_url(__FILE__) . 'css/bootstrap.css', array(), BF_PLUGIN_VER);
+		wp_register_style('awl-bf-font-awesome-4-min-css', plugin_dir_url(__FILE__) . 'css/font-awesome-4.min.css', array(), BF_PLUGIN_VER);
+		wp_register_style('awl-bf-filter-output-css', plugin_dir_url(__FILE__) . 'css/blog-filter-output.css', array(), BF_PLUGIN_VER);
+		wp_register_style('awl-bf-hover-css', plugin_dir_url(__FILE__) . 'css/hover.css', array(), BF_PLUGIN_VER);
 
 		//swipe box lightbox
-		wp_register_style('awl-bf-swipebox-css', plugin_dir_url(__FILE__) . 'lightbox/swipebox/css/swipebox.min.css');
-		wp_register_script('awl-bf-swipebox-js', plugin_dir_url(__FILE__) . 'lightbox/swipebox/js/jquery.swipebox.min.js', array('jquery'), '', true);
+		wp_register_style('awl-bf-swipebox-css', plugin_dir_url(__FILE__) . 'lightbox/swipebox/css/swipebox.min.css', array(), BF_PLUGIN_VER);
+		wp_register_script('awl-bf-swipebox-js', plugin_dir_url(__FILE__) . 'lightbox/swipebox/js/jquery.swipebox.min.js', array('jquery'), BF_PLUGIN_VER, true);
 	}
-	add_action('wp_enqueue_scripts', 'awplife_bf_register_scripts');
+	add_action('wp_enqueue_scripts', 'bf_register_scripts');
 
-	$pf_post_filter_object = new Awl_Blog_Filter();
+	// Backward compatibility wrapper for old function name
+	if (! function_exists('awplife_bf_register_scripts')) {
+		function awplife_bf_register_scripts()
+		{
+			bf_register_scripts();
+		}
+	}
+
+	$bf_post_filter_object = new Awl_Blog_Filter();
+	// Backward compatibility
+	$pf_post_filter_object = $bf_post_filter_object;
 	//Shortcode page
 	require_once('blog-filter-shortcode.php');
 } ?>
