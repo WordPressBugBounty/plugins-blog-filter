@@ -122,11 +122,11 @@ function bf_blog_filter_shortcode($user_atts)
     require('blog-filter-output-css.php');
 ?>
     <div id="BlogFilterMain-<?php echo esc_attr($unique_id); ?>" class="blog_filter_main" version="<?php echo esc_attr(BF_PLUGIN_VER); ?>"
-        data-post-type="<?php echo esc_attr($post_type); ?>" data-initload="<?php echo esc_attr($blog_on_load_scroll); ?>" data-scrollflage="1">
+        data-post-type="<?php echo esc_attr($post_type); ?>" data-initload="<?php echo esc_attr($blog_per_page_and_init_load); ?>">
         <?php
         // 3. --- Prepare and Run The Main Query ---
         $paged = (get_query_var('paged')) ? get_query_var('paged') : ((get_query_var('page')) ? get_query_var('page') : 1);
-        $posts_per_page = ($blog_pagination == 'no' && $blog_load_more == 'no' && $blog_load_onscroll == 'no') ? -1 : (int) $blog_per_page_and_init_load;
+        $posts_per_page = ($blog_pagination == 'no' && $blog_load_more == 'no') ? -1 : (int) $blog_per_page_and_init_load;
 
         // If pagination is OFF and someone is on page >1, force a 404:
         if ($blog_pagination === 'no' && get_query_var('paged') > 1) {
@@ -232,8 +232,17 @@ function bf_blog_filter_shortcode($user_atts)
                     class="btn snip0047 snip0047-<?php echo esc_attr($unique_id); ?>"><span
                         style="pointer-events: none;"><?php echo esc_html($load_more_text); ?></span><i
                         class="fa fa-circle-o-notch fa-spin" style="pointer-events: none;"></i></button></div>
-        <?php }
-        if ($blog_pagination == "yes") { ?>
+        <?php } ?>
+        <div class="load-scroll-block" data-scrollflage="1">
+            <div class="lds-ellipsis">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+        <div class="no-more-posts"><?php echo esc_html($no_more_text); ?></div>
+        <?php if ($blog_pagination == "yes") { ?>
             <div class="blog_pagination-<?php echo esc_attr($unique_id); ?>">
                 <?php
                 echo wp_kses_post(paginate_links(array(

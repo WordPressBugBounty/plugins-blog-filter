@@ -1054,66 +1054,42 @@ wp_enqueue_style('blog-filter-tailwind', plugin_dir_url(__FILE__) . 'css/styles.
 
 						<div id="post-filter-order" class="settings-tab bfg-hidden">
 
-							<div class="bfg-flex bfg-items-center bfg-justify-between bfg-border-b bfg-p-4">
-								<h2 class="bfg-text-xl bfg-font-semibold "><?php esc_html_e('Post Order', 'blog-filter'); ?></h2>
-							</div>
+							
 							<div class="bfg-grid bfg-grid-cols-1 bfg-gap-6 bfg-p-6">
 								<div class="bfg-border bfg-border-gray-300 bfg-rounded-lg bfg-p-4 bfg-mt-4">
+									<div class="bfg-flex bfg-items-center bfg-justify-between bfg-border-b bfg-p-4">
+										<h2 class="bfg-text-xl bfg-font-semibold "><?php esc_html_e('Available in Pro', 'blog-filter'); ?></h2>
+									</div>
+									<br>
 									<h3 class="bfg-text-lg bfg-font-semibold bfg-mb-4">
-										<?php esc_html_e('Available in Pro', 'blog-filter'); ?>
+										<?php esc_html_e('Post Order', 'blog-filter'); ?>
 									</h3>
 
 									<!-- Post Order By -->
 									<div class="bfg-flex bfg-justify-between bfg-items-center bfg-opacity-50 bfg-cursor-not-allowed bfg-mb-3">
 										<p class="bfg-mb-0 bfg-font-medium"><?php esc_html_e('Post Order By', 'blog-filter'); ?></p>
-										<select disabled class="bfg-border bfg-rounded bfg-px-3 bfg-py-2 bfg-w-auto">
-											<option selected><?php esc_html_e('Date', 'blog-filter'); ?></option>
-											<option><?php esc_html_e('Title', 'blog-filter'); ?></option>
-											<option><?php esc_html_e('Slug', 'blog-filter'); ?></option>
-											<option><?php esc_html_e('Random', 'blog-filter'); ?></option>
-										</select>
 									</div>
 
 									<!-- Post Order -->
 									<div class="bfg-flex bfg-justify-between bfg-items-center bfg-opacity-50 bfg-cursor-not-allowed">
 										<p class="bfg-mb-0 bfg-font-medium"><?php esc_html_e('Post Order', 'blog-filter'); ?></p>
-										<select disabled class="bfg-border bfg-rounded bfg-px-3 bfg-py-2 bfg-w-auto">
-											<option><?php esc_html_e('Ascending', 'blog-filter'); ?></option>
-											<option selected><?php esc_html_e('Descending', 'blog-filter'); ?></option>
-										</select>
 									</div>
-								</div>
-							</div>
 
-							<div class="bfg-grid bfg-grid-cols-1 bfg-gap-6 bfg-p-6">
+									<br>
+									<h3 class="bfg-text-lg bfg-font-semibold bfg-mb-4">
+										<?php esc_html_e('Filter Order', 'blog-filter'); ?>
+									</h3>
 
-								<h2 class="bfg-text-xl bfg-font-semibold "><?php esc_html_e('Filter Order', 'blog-filter'); ?></h2>
-
-								<div class="bfg-grid bfg-grid-cols-1 bfg-gap-6">
-									<div class="bfg-border bfg-border-gray-300 bfg-rounded-lg bfg-p-4 bfg-mt-4">
-										<h3 class="bfg-text-lg bfg-font-semibold bfg-mb-4">
-											<?php esc_html_e('Available in Pro', 'blog-filter'); ?>
-										</h3>
-
-										<!-- Filter Order By -->
-										<div class="bfg-flex bfg-justify-between bfg-items-center bfg-opacity-50 bfg-cursor-not-allowed bfg-mb-3">
-											<p class="bfg-mb-0 bfg-font-medium"><?php esc_html_e('Filter Order By', 'blog-filter'); ?></p>
-											<select disabled class="bfg-border bfg-rounded bfg-px-3 bfg-py-2 bfg-w-auto">
-												<option><?php esc_html_e('Date', 'blog-filter'); ?></option>
-												<option selected><?php esc_html_e('Title', 'blog-filter'); ?></option>
-												<option><?php esc_html_e('Slug', 'blog-filter'); ?></option>
-											</select>
-										</div>
-
-										<!-- Filter Order -->
-										<div class="bfg-flex bfg-justify-between bfg-items-center bfg-opacity-50 bfg-cursor-not-allowed">
-											<p class="bfg-mb-0 bfg-font-medium"><?php esc_html_e('Filter Order', 'blog-filter'); ?></p>
-											<select disabled class="bfg-border bfg-rounded bfg-px-3 bfg-py-2 bfg-w-auto">
-												<option selected><?php esc_html_e('Ascending', 'blog-filter'); ?></option>
-												<option><?php esc_html_e('Descending', 'blog-filter'); ?></option>
-											</select>
-										</div>
+									<!-- Filter Order By -->
+									<div class="bfg-flex bfg-justify-between bfg-items-center bfg-opacity-50 bfg-cursor-not-allowed bfg-mb-3">
+										<p class="bfg-mb-0 bfg-font-medium"><?php esc_html_e('Filter Order By', 'blog-filter'); ?></p>
 									</div>
+
+									<!-- Filter Order -->
+									<div class="bfg-flex bfg-justify-between bfg-items-center bfg-opacity-50 bfg-cursor-not-allowed">
+										<p class="bfg-mb-0 bfg-font-medium"><?php esc_html_e('Filter Order', 'blog-filter'); ?></p>
+									</div>
+
 								</div>
 							</div>
 						</div>
@@ -1162,11 +1138,7 @@ wp_enqueue_style('blog-filter-tailwind', plugin_dir_url(__FILE__) . 'css/styles.
 									<!-- Load On Scroll Toggle -->
 									<div class="bfg-flex bfg-justify-between bfg-items-center bfg-opacity-50 bfg-cursor-not-allowed">
 										<p class="bfg-mb-0 bfg-font-medium"><?php esc_html_e('Load On Scroll', 'blog-filter'); ?></p>
-										<label class="bfg-relative bfg-inline-flex bfg-items-center">
-											<input type="checkbox" disabled class="bfg-sr-only">
-											<div class="bfg-w-11 bfg-h-6 bfg-bg-gray-200 bfg-rounded-full"></div>
-											<div class="bfg-absolute bfg-top-0.5 bfg-left-0.5 bfg-w-5 bfg-h-5 bfg-bg-white bfg-rounded-full bfg-shadow"></div>
-										</label>
+										
 									</div>
 								</div>
 

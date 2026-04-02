@@ -20,53 +20,28 @@ check_ajax_referer('load_more_nonce', 'nonce');
 
 
 // Get the original shortcode attributes that were passed from the JavaScript.
-$user_atts = isset($_POST['bfg_query_vars']) ? array_map('sanitize_text_field', wp_unslash((array) $_POST['bfg_query_vars'])) : array();
-
-// Sanitize critical fields in user_atts for security
-if (isset($user_atts['post_type'])) {
-    $user_atts['post_type'] = sanitize_key($user_atts['post_type']);
-}
-if (isset($user_atts['blog_filtering'])) {
-    $user_atts['blog_filtering'] = sanitize_key($user_atts['blog_filtering']);
-}
-if (isset($user_atts['selected_terms'])) {
-    // Sanitize as comma-separated integers
-    $user_atts['selected_terms'] = implode(',', array_map('intval', array_filter(explode(',', $user_atts['selected_terms']))));
-}
+$user_atts = isset($_POST['bfg_query_vars']) ? (array) $_POST['bfg_query_vars'] : array();
 
 $defaults = bfg_get_shortcode_defaults();
 
 // CORRECTED: Use shortcode_atts() to merge user's attributes with defaults.
-// The user's attributes are in the $user_atts variable.
 $atts = shortcode_atts($defaults, $user_atts, 'AWL-BlogFilter');
 
-// For convenience, extract attributes into local variables (e.g., $post_type, $blog_template).
+// For convenience, extract attributes into local variables.
 extract($atts);
 
-//echo $blog_buttons_color;
-
-// Sanitize all expected attributes with defaults.
-//$post_type           = isset($atts['post_type']) ? sanitize_text_field($atts['post_type']) : 'post';
-//$blog_filtering      = isset($atts['blog_filtering']) ? sanitize_text_field($atts['blog_filtering']) : 'category';
-//$selected_terms      = isset($atts['selected_terms']) ? sanitize_text_field($atts['selected_terms']) : '';
-//$posts_per_page      = isset($atts['blog_on_load_scroll']) ? intval($atts['blog_on_load_scroll']) : 3;
-//$orderby             = isset($atts['blog_order_by']) ? sanitize_text_field($atts['blog_order_by']) : 'date';
-//$order               = isset($atts['order']) ? sanitize_text_field($atts['order']) : 'DESC';
-
 // Get data sent directly from the AJAX call.
-$displayed_posts     = isset($_POST['displayed_posts']) ? array_map('intval', wp_unslash($_POST['displayed_posts'])) : array();
+$displayed_posts     = isset($_POST['displayed_posts']) ? array_map('intval', (array) $_POST['displayed_posts']) : array();
 
 // Sanitize targetFilter - must be 'all' or integer term ID(s)
 $targetFilter = 'all';
 if (isset($_POST['targetFilter'])) {
-    $raw_filter = sanitize_text_field(wp_unslash($_POST['targetFilter']));
+    $raw_filter = $_POST['targetFilter'];
     if (is_array($raw_filter)) {
-        // Multiple filters: sanitize each as integer
         $targetFilter = array_map('intval', $raw_filter);
     } elseif ($raw_filter === 'all') {
         $targetFilter = 'all';
     } else {
-        // Single filter: sanitize as integer
         $targetFilter = intval($raw_filter);
     }
 }
@@ -81,10 +56,10 @@ $unique_id = isset($_POST['unique_id']) ? intval($_POST['unique_id']) : wp_rand(
 $custom_query_args = array(
     'post_type'         => $post_type,
     'post_status'       => 'publish',
-    'posts_per_page'    => $posts_per_page,
+    'posts_per_page'    => (int) $blog_per_page_and_init_load,
     'post__not_in'      => $displayed_posts, // Exclude posts that are already visible on the page.
-    'orderby'           => $orderby,
-    'order'             => $order,
+    'orderby'           => $blog_order_by,
+    'order'             => $blog_order,
 );
 
 // This is the array that will hold our taxonomy conditions.
@@ -125,7 +100,8 @@ $custom_query = new WP_Query($custom_query_args);
 if ($custom_query->have_posts()) :
     // Pass all the necessary variables from the original shortcode attributes to the template.
 
-    require('blog-filter-content.php');
+    // Corrected path to ensure the content template is found during AJAX requests.
+    require(dirname(__FILE__) . '/blog-filter-content.php');
 
 endif;
 

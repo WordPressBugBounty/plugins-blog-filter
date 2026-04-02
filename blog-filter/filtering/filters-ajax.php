@@ -230,19 +230,23 @@ jQuery(function() {
 		// ==================================================
 
 		<?php
-		$terms = [];
-		$termandcount = "";
-		foreach ($terms as $term) {
-			$termandcount[$term->term_id] = $term->count;
+		$termandcount = array();
+		// Add the 'all' category count if available
+		if (isset($total_post_incat)) {
+			$termandcount['all'] = $total_post_incat;
 		}
-		//print_r($termandcount);
+		// Populate counts for each individual term
+		if (isset($terms) && is_array($terms)) {
+			foreach ($terms as $term) {
+				$termandcount[$term->term_id] = $term->count;
+			}
+		}
 		?>
-		var total_posts_in_filter = <?php echo json_encode($termandcount); ?>;
+		var total_posts_in_filter = <?php echo wp_json_encode($termandcount); ?>;
 
 		var initload = jQuery("#BlogFilterMain-<?php echo esc_js($unique_id); ?>").attr("data-initload");
 		jQuery('.filtr-controls-<?php echo esc_js($unique_id); ?>').click(function () {
 			var button = jQuery('#load-more-<?php echo esc_js($unique_id); ?>');
-			var button_scroll = jQuery('.load-scroll-block');
 			var targetFilter = jQuery(this).data('filter');
 			var filter_image_len = total_posts_in_filter[targetFilter];
 			var loadedItems = jQuery('.filtr-item.' + targetFilter).length;
@@ -471,12 +475,20 @@ jQuery(function() {
 							}
 
 							var filterizd = jQuery('.bf_gallery_1-<?php echo esc_js($unique_id); ?>').filterizr(options<?php echo esc_js($unique_id); ?>);
-							$node = jQuery(data);
-							$node[0].firstElementChild.classList.add("loaded-block");
-
-							filterizd.filterizr('insertItem', $node);
-							filterizd.filterizr(options<?php echo esc_js($unique_id); ?>).resize();
-							jQuery('.filtr-item .post-box').addClass('lazyimg');
+							var $nodes = jQuery(data).filter('.filtr-item');
+							
+							if ($nodes.length > 0) {
+								$nodes.each(function() {
+									var $singleNode = jQuery(this);
+									filterizd.filterizr('insertItem', $singleNode);
+								});
+								
+								// Add a marker to the first new item so we can scroll to it
+								$nodes.first().find('.post-box').addClass('loaded-block');
+								
+								filterizd.filterizr(options<?php echo esc_js($unique_id); ?>).resize();
+								jQuery('.filtr-item .post-box').addClass('lazyimg');
+							}
 
 							setTimeout(function () {
 								jQuery('body, html').animate({ scrollTop: jQuery('.loaded-block').offset().top - 300 }, 500);

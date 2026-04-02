@@ -5,7 +5,7 @@ Tags: blog filter, post grid, blog layout, category filter, tag filter
 Requires at least: 5.0
 Tested up to: 6.9
 Requires PHP: 7.0
-Stable tag: 1.7.7
+Stable tag: 1.7.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -245,6 +245,13 @@ Other plugins from the same development team:
 * [Facebook Like Box](https://wordpress.org/plugins/facebook-likebox-widget-and-shortcode/ "Facebook Likebox Plugin") - Embed Facebook page like boxes on your site.
 
 == Changelog ==
+
+= 1.7.8 =
+* Fixed: AJAX "Load More" functionality by ensuring absolute paths for template inclusion.
+* Fixed: Posts-per-page query logic in AJAX handlers to use unified settings.
+* Fixed: AJAX Term count logic for accurate post distribution across categories.
+* Improved: JavaScript post insertion for Filterizr grid to handle multiple items and prevent layout issues.
+* Fixed: Constant definition error in main plugin file.
 
 = 1.7.7 =
 * Plugin Check Compliance: Replaced all _e() with esc_html_e() across settings page

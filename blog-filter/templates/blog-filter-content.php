@@ -4,11 +4,8 @@ if (!defined('ABSPATH'))
 
 if ($custom_query->have_posts()):
 	$abc = 0;
-	if (isset($_POST['action'])) { // phpcs:ignore WordPress.Security.NonceVerification.Missing -- Nonce verified in blog-filter-ajax-get.php via check_ajax_referer().
-		$blog_load = $blog_on_load_scroll;
-	} else {
-		$blog_load = $blog_per_page_and_init_load;
-	}
+	// In Free version, we always use the unified 'Posts per page' setting.
+	$blog_load = (int) $blog_per_page_and_init_load;
 
 	while ($abc < $blog_load && $custom_query->have_posts()):
 		$custom_query->the_post();
