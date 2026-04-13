@@ -5,7 +5,7 @@ Tags: blog filter, post grid, blog layout, category filter, tag filter
 Requires at least: 5.0
 Tested up to: 6.9
 Requires PHP: 7.0
-Stable tag: 1.7.8
+Stable tag: 1.7.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -245,6 +245,16 @@ Other plugins from the same development team:
 * [Facebook Like Box](https://wordpress.org/plugins/facebook-likebox-widget-and-shortcode/ "Facebook Likebox Plugin") - Embed Facebook page like boxes on your site.
 
 == Changelog ==
+
+= 1.7.9 =
+* **Security**: Hardened AJAX handlers with strict unslashing and input sanitization (`map_deep`, `sanitize_text_field`).
+* **Performance**: Optimized taxonomy count queries and shortcode database interactions to reduce server load.
+* **Compatibility**: Enhanced template path resolution for consistent file inclusion during AJAX.
+* **UI**: De-cluttered admin interface by removing inactive "Pro" feature toggles and placeholders.
+* **Logic**: Optimized background processing for category exclusion and term filtering.
+* **Refiner**: Improved shortcode attribute handling and refreshed default values.
+* **Bugfix**: Resolved pagination issues in AJAX-loaded content by ensuring proper query parameter handling.
+* **Modernization**: Completely removed Font Awesome dependency. Replaced icons with lightweight inline SVGs and cleaned up associated CSS/font assets.
 
 = 1.7.8 =
 * Fixed: AJAX "Load More" functionality by ensuring absolute paths for template inclusion.

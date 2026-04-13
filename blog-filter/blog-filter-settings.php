@@ -4,9 +4,6 @@ if (!defined('ABSPATH'))
 
 //toggle button CSS
 wp_enqueue_style('awl-blog-filter-settings-css', plugin_dir_url(__FILE__) . 'css/blog-filter-settings.css', array(), BF_PLUGIN_VER);
-//wp_enqueue_style( 'awl-fontawesome-all-5.min-css', plugin_dir_url( __FILE__ ).'css/fontawesome-all-5.min.css' );
-wp_enqueue_style('awl-font-awesome-4-min-css', plugin_dir_url(__FILE__) . 'css/font-awesome-4.min.css', array(), BF_PLUGIN_VER);
-//wp_enqueue_style('awl-bootstrap-css', plugin_dir_url(__FILE__) . 'css/blog-filter-bootstrap.css');
 wp_enqueue_style('awl-styles-css', plugin_dir_url(__FILE__) . 'css/styles.css', array(), BF_PLUGIN_VER);
 wp_enqueue_style('wp-color-picker');
 
@@ -278,16 +275,16 @@ wp_enqueue_style('blog-filter-tailwind', plugin_dir_url(__FILE__) . 'css/styles.
 
 										if (! empty($post_types)) {
 											foreach ($post_types as $post_type) {
-												// Only 'post' and 'page' should be selectable
-												$is_enabled  = in_array($post_type->name, array('post', 'page'), true);
-												$disabled    = $is_enabled ? '' : 'disabled';
-												// We only allow selecting 'post' or 'page'; ignore saved values for others
-												$is_selected = ($is_enabled && $post_type->name === $selected_post_type) ? 'selected' : '';
+												// Show only 'post' and 'page'
+												if (!in_array($post_type->name, array('post', 'page'), true)) {
+													continue;
+												}
+
+												$is_selected = ($post_type->name === $selected_post_type) ? 'selected' : '';
 
 												printf(
-													'<option value="%s" %s %s>%s</option>' . "\n",
+													'<option value="%s" %s>%s</option>' . "\n",
 													esc_attr($post_type->name),
-													esc_attr($disabled),
 													esc_attr($is_selected),
 													esc_html($post_type->label)
 												);
@@ -336,8 +333,6 @@ wp_enqueue_style('blog-filter-tailwind', plugin_dir_url(__FILE__) . 'css/styles.
 									<select id="blog_template" name="blog_template"
 										class="bfg-border bfg-rounded bfg-px-3 bfg-py-2 bfg-w-auto">
 										<option value="template1"><?php esc_html_e('Template 1', 'blog-filter'); ?></option>
-										<option value="template1" disabled><?php esc_html_e('Template 2', 'blog-filter'); ?></option>
-										<option value="template1" disabled><?php esc_html_e('Template 3', 'blog-filter'); ?></option>
 									</select>
 								</div>
 
@@ -350,8 +345,7 @@ wp_enqueue_style('blog-filter-tailwind', plugin_dir_url(__FILE__) . 'css/styles.
 										class="bfg-border bfg-rounded bfg-px-3 bfg-py-2 bfg-w-auto">
 										<option value="col-lg-12"><?php esc_html_e('1 Column', 'blog-filter'); ?></option>
 										<option value="col-lg-6"><?php esc_html_e('2 Column', 'blog-filter'); ?></option>
-										<option value="col-lg-4" selected><?php esc_html_e('3 Column', 'blog-filter'); ?>
-										</option>
+										<option value="col-lg-4" selected><?php esc_html_e('3 Column', 'blog-filter'); ?></option>
 										<option value="col-lg-3"><?php esc_html_e('4 Column', 'blog-filter'); ?></option>
 										<option value="col-lg-2"><?php esc_html_e('6 Column', 'blog-filter'); ?></option>
 										<option value="col-lg-1"><?php esc_html_e('12 Column', 'blog-filter'); ?></option>
@@ -365,8 +359,7 @@ wp_enqueue_style('blog-filter-tailwind', plugin_dir_url(__FILE__) . 'css/styles.
 										class="bfg-border bfg-rounded bfg-px-3 bfg-py-2 bfg-w-auto">
 										<option value="col-md-12"><?php esc_html_e('1 Column', 'blog-filter'); ?></option>
 										<option value="col-md-6"><?php esc_html_e('2 Column', 'blog-filter'); ?></option>
-										<option value="col-md-4" selected><?php esc_html_e('3 Column', 'blog-filter'); ?>
-										</option>
+										<option value="col-md-4" selected><?php esc_html_e('3 Column', 'blog-filter'); ?></option>
 										<option value="col-md-3"><?php esc_html_e('4 Column', 'blog-filter'); ?></option>
 										<option value="col-md-2"><?php esc_html_e('6 Column', 'blog-filter'); ?></option>
 										<option value="col-md-1"><?php esc_html_e('12 Column', 'blog-filter'); ?></option>
@@ -442,7 +435,7 @@ wp_enqueue_style('blog-filter-tailwind', plugin_dir_url(__FILE__) . 'css/styles.
 										<div id=""
 											class="bfg-flex bfg-justify-between bfg-items-center bfg-opacity-50 bfg-cursor-not-allowed bfg-mb-3">
 											<label for="bfg_term_select"
-												class="bfg-font-medium"><?php esc_html_e('CPT ( Custom Post Type ) Select Option', 'blog-filter'); ?></label>
+												class="bfg-font-medium"><?php esc_html_e('Media and CPT ( Custom Post Type ) Select Option', 'blog-filter'); ?></label>
 										</div>
 									</div>
 									<!-- Filter Style Dropdown -->
@@ -657,10 +650,6 @@ wp_enqueue_style('blog-filter-tailwind', plugin_dir_url(__FILE__) . 'css/styles.
 										class="bfg-border bfg-rounded bfg-px-3 bfg-py-2 bfg-w-auto">
 										<option value="none"><?php esc_html_e('None', 'blog-filter'); ?> &nbsp &nbsp </option>
 										<option value="hover1" selected><?php esc_html_e('Hover 1', 'blog-filter'); ?></option>
-										<option value="hover1" disabled><?php esc_html_e('Hover 2', 'blog-filter'); ?></option>
-										<option value="hover1" disabled><?php esc_html_e('Hover 3', 'blog-filter'); ?></option>
-										<option value="hover1" disabled><?php esc_html_e('Hover 4', 'blog-filter'); ?></option>
-										<option value="hover1" disabled><?php esc_html_e('Hover 5', 'blog-filter'); ?></option>
 									</select>
 								</div>
 
@@ -671,12 +660,12 @@ wp_enqueue_style('blog-filter-tailwind', plugin_dir_url(__FILE__) . 'css/styles.
 									</h3>
 
 									<div class="bfg-flex bfg-justify-between bfg-items-center bfg-opacity-50 bfg-cursor-not-allowed bfg-mb-3">
-										<p class="bfg-mb-0 bfg-font-medium"><?php esc_html_e('Get more hover effect in Pro', 'blog-filter'); ?></p>
+										<p class="bfg-mb-0 bfg-font-medium"><?php esc_html_e('Get 4 more hover effect in Pro', 'blog-filter'); ?></p>
 
 									</div>
 
 									<div class="bfg-flex bfg-justify-between bfg-items-center bfg-opacity-50 bfg-cursor-not-allowed bfg-mb-3">
-										<p class="bfg-mb-0 bfg-font-medium"><?php esc_html_e('Link On Image', 'blog-filter'); ?></p>
+										<p class="bfg-mb-0 bfg-font-medium"><?php esc_html_e('Post link On Image', 'blog-filter'); ?></p>
 
 									</div>
 
@@ -1521,7 +1510,7 @@ wp_enqueue_style('blog-filter-tailwind', plugin_dir_url(__FILE__) . 'css/styles.
 				<button type="button"
 					class="bfg-bg-[#6dbe73] bfg-text-white bfg-font-semibold bfg-px-4 bfg-py-2 bfg-rounded-md"
 					onclick="CopyShortcode()">
-					<i class="fa fa-copy bfg-mr-1" aria-hidden="true"></i> <?php esc_html_e('Copy Shortcode', 'blog-filter'); ?>
+					<i class="bf-icon bfg-mr-1" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></i> <?php esc_html_e('Copy Shortcode', 'blog-filter'); ?>
 				</button>
 			</div>
 		</div>
@@ -1585,8 +1574,7 @@ wp_enqueue_style('blog-filter-tailwind', plugin_dir_url(__FILE__) . 'css/styles.
 			// Hide all dependent sections when post type changes
 			jQuery('#bfg_term_select').parent().addClass('bfg-hidden');
 			jQuery('#bfg_term_table_container').html('').addClass('bfg-hidden');
-			// Also hide the main exclude tab when the post type changes
-			jQuery('#exclude').addClass('bfg-hidden');
+
 
 			taxonomyDropdown.html('<option value=""><?php esc_html_e('Loading...', 'blog-filter'); ?></option>');
 
@@ -1607,21 +1595,19 @@ wp_enqueue_style('blog-filter-tailwind', plugin_dir_url(__FILE__) . 'css/styles.
 			var includeTableContainer = jQuery('#bfg_term_table_container');
 
 			// --- FIX IS HERE ---
-			var excludeTab = jQuery('#exclude'); // Get the main exclude tab container
-			var excludeTableContainer = jQuery('#bfg_exclude_term_table_container'); // Get the inner table container
+
 
 			if (!selectedTaxonomy) {
 				termDropdownContainer.addClass('bfg-hidden');
 				includeTableContainer.addClass('bfg-hidden');
-				excludeTab.addClass('bfg-hidden'); // Hide the entire exclude tab
+
 				return;
 			}
 
 			// Show loading messages and make containers visible
 			termDropdownContainer.removeClass('bfg-hidden');
 			includeTableContainer.removeClass('bfg-hidden').html('<p class="bfg-text-center bfg-py-4"><?php esc_html_e('Loading...', 'blog-filter'); ?></p>');
-			excludeTab.removeClass('bfg-hidden'); // Make the main exclude tab visible
-			excludeTableContainer.html('<p class="bfg-text-center bfg-py-4"><?php esc_html_e('Loading...', 'blog-filter'); ?></p>');
+
 
 			jQuery.post(ajaxurl, {
 				'action': 'get_terms_for_taxonomy',
@@ -1630,24 +1616,25 @@ wp_enqueue_style('blog-filter-tailwind', plugin_dir_url(__FILE__) . 'css/styles.
 			}, function(response) {
 				if (response.success) {
 					// Populate all elements from the single response object
-					termDropdown.html(response.data.dropdown);
 					includeTableContainer.html(response.data.table);
-					excludeTableContainer.html(response.data.exclude_table); // Populate the inner container
-				} else {
-					var errorMsg = '<p class="bfg-text-red-500"><?php esc_html_e('Error loading terms.', 'blog-filter'); ?></p>';
-					termDropdown.html('<option value=""><?php esc_html_e('Error', 'blog-filter'); ?></option>');
-					includeTableContainer.html(errorMsg);
-					excludeTableContainer.html(errorMsg);
+
+					// Trigger initial limit check
+					var checkedCount = jQuery('.bfg-term-checkbox:checked').length;
+					if (checkedCount >= 4) {
+						jQuery('.bfg-term-checkbox:not(:checked)').prop('disabled', true);
+					}
 				}
-
-				// Filter selecetion limit
-				jQuery('.bfg-term-checkbox').click(function() {
-					jQuery(this).next().next().prop('disabled', !this.checked)
-					jQuery('.bfg-term-checkbox').not(':checked').prop('disabled', jQuery('.bfg-term-checkbox:checked').length == 4);
-				});
-
-
 			});
+		});
+
+		// Filter selection limit (Free Version: Max 4)
+		jQuery(document).on('click', '.bfg-term-checkbox', function() {
+			var checkedCount = jQuery('.bfg-term-checkbox:checked').length;
+			if (checkedCount >= 4) {
+				jQuery('.bfg-term-checkbox:not(:checked)').prop('disabled', true);
+			} else {
+				jQuery('.bfg-term-checkbox').prop('disabled', false);
+			}
 		});
 
 

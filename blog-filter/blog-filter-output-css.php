@@ -215,19 +215,19 @@ if (! defined('ABSPATH')) exit; // Exit if accessed directly
 	}
 
 	<?php
-	} ?>.snip0047-<?php echo esc_attr($unique_id); ?> .active span {
+	} ?>.snip0047-<?php echo esc_attr($unique_id); ?>.active span {
 		-webkit-transform: translate3d(-20px, 0px, 0px);
 		transform: translate3d(-20px, 0px, 0px);
 		opacity: 1;
 	}
 
-	.snip0047-<?php echo esc_attr($unique_id); ?> .active i {
+	.snip0047-<?php echo esc_attr($unique_id); ?>.active i {
 		opacity: 1;
 		-webkit-transition-delay: 0.15s;
 		transition-delay: 0.15s;
 	}
 
-	.snip0047-<?php echo esc_attr($unique_id); ?> .active:before {
+	.snip0047-<?php echo esc_attr($unique_id); ?>.active:before {
 		width: 38px;
 		-webkit-transition-delay: 0s;
 		transition-delay: 0s;

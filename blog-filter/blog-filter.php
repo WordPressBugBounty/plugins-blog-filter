@@ -4,7 +4,7 @@ if (!defined('ABSPATH'))
 /**
 Plugin Name: Blog Filter
 Description: Blog Filter For WordPress Blog With Multiple Filters
-Version: 1.7.8
+Version: 1.7.9
 Author: A WP Life
 Author URI: http://awplife.com/
 Text Domain: blog-filter
@@ -27,7 +27,7 @@ if (!class_exists('Awl_Blog_Filter')) {
 		protected function _constants()
 		{
 			//Plugin Version
-			define('BF_PLUGIN_VER', '1.7.8');
+			define('BF_PLUGIN_VER', '1.7.9');
 
 			//Plugin Text Domain
 			define('BF_TEXT_DOMAIN', 'blog-filter');
@@ -89,8 +89,6 @@ if (!class_exists('Awl_Blog_Filter')) {
 
 					// Image Settings
 					'blog_image' => 'no',
-					'blog_image_link' => 'no',
-					'blog_image_lightbox' => 'no',
 					'blog_image_hover_effect' => 'none',
 					'blog_image_quality' => 'large',
 
@@ -147,7 +145,6 @@ if (!class_exists('Awl_Blog_Filter')) {
 
 					// Taxonomy Filtering
 					'blog_filtering' => 'blog_category',
-					'default_filter_term' => 'all',
 
 					'selected_terms' => '',
 
@@ -238,9 +235,8 @@ if (!class_exists('Awl_Blog_Filter')) {
 				return;
 			}
 			$terms = get_terms(['taxonomy' => $taxonomy_name, 'hide_empty' => false]);
-			$dropdown_html = '<option value="all">' . __('All', 'blog-filter') . '</option>';
+	$dropdown_html = '<option value="all">' . __('All', 'blog-filter') . '</option>';
 			$table_html = '';
-			$exclude_table_html = '';
 
 			// --- Build HTML for all three elements if terms exist ---
 			if (!is_wp_error($terms) && !empty($terms)) {
@@ -278,55 +274,18 @@ if (!class_exists('Awl_Blog_Filter')) {
 							<?php endforeach; ?>
 						</tbody>
 					</table>
-					<p><b><?php esc_html_e('Note: In free version you can use only 4 taxonomy as filters', 'blog-filter'); ?></b></p>
+					<p><b><?php esc_html_e('Note: Blog Filter Standard supports up to 4 taxonomy as filters', 'blog-filter'); ?></b></p>
 				</div>
 				<?php
 				$table_html = ob_get_clean();
-
-				// Build Exclusion Table HTML
-				ob_start();
-				?>
-				<div class="bfg-overflow-auto" style="max-height: 415px;">
-					<table class="bfg-w-full bfg-border-collapse bfg-border bfg-border-gray-300">
-						<thead>
-							<tr class="bfg-bg-gray-200">
-								<th class="bfg-p-2 bfg-border bfg-border-gray-300"><?php esc_html_e('ID', 'blog-filter'); ?></th>
-								<th class="bfg-p-2 bfg-border bfg-border-gray-300">
-									<?php echo esc_html($taxonomy_obj->labels->singular_name); ?>
-								</th>
-								<th class="bfg-p-2 bfg-border bfg-border-gray-300"><?php esc_html_e('Post Count', 'blog-filter'); ?></th>
-								<th class="bfg-p-2 bfg-border bfg-border-gray-300 bfg-text-center">
-									<?php esc_html_e('Exclude', 'blog-filter'); ?>
-								</th>
-							</tr>
-						</thead>
-						<tbody>
-							<?php foreach ($terms as $term): ?>
-								<tr>
-									<td class="bfg-p-2 bfg-border bfg-border-gray-300"><?php echo esc_html($term->term_id); ?></td>
-									<td class="bfg-p-2 bfg-border bfg-border-gray-300"><?php echo esc_html($term->name); ?></td>
-									<td class="bfg-p-2 bfg-border bfg-border-gray-300"><?php echo esc_html($term->count); ?></td>
-									<td class="bfg-p-2 bfg-border bfg-border-gray-300 bfg-text-center">
-										<input type="checkbox" class="bfg-exclude-checkbox" name="exclude_terms[]"
-											value="<?php echo esc_attr($term->term_id); ?>">
-									</td>
-								</tr>
-							<?php endforeach; ?>
-						</tbody>
-					</table>
-				</div>
-<?php
-				$exclude_table_html = ob_get_clean();
 			} else {
 				$table_html = '<p>' . __('No terms found for this taxonomy.', 'blog-filter') . '</p>';
-				$exclude_table_html = $table_html;
 			}
 
 			// Send all three HTML strings back in a single JSON object
 			wp_send_json_success([
 				'dropdown' => $dropdown_html,
 				'table' => $table_html,
-				'exclude_table' => $exclude_table_html
 			]);
 		}
 
@@ -373,13 +332,10 @@ if (!class_exists('Awl_Blog_Filter')) {
 
 		// css
 		wp_register_style('awl-bf-bootstrap-css', plugin_dir_url(__FILE__) . 'css/bootstrap.css', array(), BF_PLUGIN_VER);
-		wp_register_style('awl-bf-font-awesome-4-min-css', plugin_dir_url(__FILE__) . 'css/font-awesome-4.min.css', array(), BF_PLUGIN_VER);
+
 		wp_register_style('awl-bf-filter-output-css', plugin_dir_url(__FILE__) . 'css/blog-filter-output.css', array(), BF_PLUGIN_VER);
 		wp_register_style('awl-bf-hover-css', plugin_dir_url(__FILE__) . 'css/hover.css', array(), BF_PLUGIN_VER);
 
-		//swipe box lightbox
-		wp_register_style('awl-bf-swipebox-css', plugin_dir_url(__FILE__) . 'lightbox/swipebox/css/swipebox.min.css', array(), BF_PLUGIN_VER);
-		wp_register_script('awl-bf-swipebox-js', plugin_dir_url(__FILE__) . 'lightbox/swipebox/js/jquery.swipebox.min.js', array('jquery'), BF_PLUGIN_VER, true);
 	}
 	add_action('wp_enqueue_scripts', 'bf_register_scripts');
 

@@ -33,11 +33,9 @@ function bf_blog_filter_shortcode($user_atts)
     // This ensures all necessary assets are loaded for the gallery to function.
     wp_enqueue_script('imagesloaded');
     wp_enqueue_script('awl-bf-filterizr-js');
-    wp_enqueue_style('awl-bf-font-awesome-4-min-css');
+
     wp_enqueue_style('awl-bf-filter-output-css');
     wp_enqueue_style('awl-bf-hover-css');
-    wp_enqueue_style('awl-bf-swipebox-css');
-    wp_enqueue_script('awl-bf-swipebox-js');
     // Bootstrap JS & CSS (conditionally loaded based on shortcode attributes)
     $defaults = bfg_get_shortcode_defaults();
     $temp_atts = shortcode_atts($defaults, $user_atts, 'AWL-BlogFilter');
@@ -67,13 +65,7 @@ function bf_blog_filter_shortcode($user_atts)
         }
     }
 
-    if (empty($atts['exclude_terms']) || $atts['exclude_terms'] == 'all') {
-        if (!empty($user_atts['exclude_categories'])) {
-            $atts['exclude_terms'] = $user_atts['exclude_categories'];
-        } elseif (!empty($user_atts['exclude_tags'])) {
-            $atts['exclude_terms'] = $user_atts['exclude_tags'];
-        }
-    }
+
 
 
     if (empty($atts['blog_filtering']) || $atts['blog_filtering'] == 'blog_category') {
@@ -85,22 +77,6 @@ function bf_blog_filter_shortcode($user_atts)
         if (!empty($user_atts['blog_filtering'])) {
             $atts['blog_filtering'] = 'post_tag';
         }
-    }
-
-
-    // Do the same for the default filter term.
-    if (empty($atts['default_filter_term']) || $atts['default_filter_term'] == 'all') {
-        if (!empty($user_atts['default_cat_filter'])) {
-            $atts['default_filter_term'] = $user_atts['default_cat_filter'];
-        } elseif (!empty($user_atts['default_tag_filter'])) {
-            $atts['default_filter_term'] = $user_atts['default_tag_filter'];
-        }
-    }
-
-    if (isset($user_atts['default_filter_term'])) {
-        $default_filter = $atts['default_filter_term'];
-    } else {
-        $default_filter = "all";
     }
 
     // --- END: BACKWARD COMPATIBILITY LAYER ---
@@ -155,14 +131,7 @@ function bf_blog_filter_shortcode($user_atts)
             ? array_map('intval', array_map('trim', explode(',', $selected_terms)))
             : array();
 
-        $exclude_terms_array = ! empty($exclude_terms)
-            ? array_map('intval', array_map('trim', explode(',', $exclude_terms)))
-            : array();
 
-        // Remove excluded IDs from your includes
-        if (! empty($selected_terms_array) && ! empty($exclude_terms_array)) {
-            $selected_terms_array = array_diff($selected_terms_array, $exclude_terms_array);
-        }
 
         $tax_query = [];
 
@@ -184,26 +153,9 @@ function bf_blog_filter_shortcode($user_atts)
 
         // … you could push other tax_queries here if needed …
 
-        // 3) only attach the tax_query var if it has at least one clause
-        if (! empty($tax_query)) {
-            // if you have more than one clause you may also want a 'relation' key:
-            // $tax_query['relation'] = 'AND';
-            $args['tax_query'] = $tax_query;
-        }
-
-
-        // Only add a NOT IN clause if there are terms to exclude
-        if (! empty($exclude_terms_array)) {
-            $tax_query[] = array(
-                'taxonomy' => $blog_filtering,
-                'field'    => 'term_id',
-                'terms'    => $exclude_terms_array,
-                'operator' => 'NOT IN',
-            );
-        }
-
-        // Attach tax_query only when you have at least one condition
-        if (count($tax_query) > 1) {
+        // Attach tax_query only when you have at least one condition.
+        if (! empty($tax_query) && count($tax_query) > 1) {
+            // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
             $custom_query_args['tax_query'] = $tax_query;
         }
 
@@ -230,8 +182,7 @@ function bf_blog_filter_shortcode($user_atts)
         if ($blog_load_more == "yes") { ?>
             <div class="row text-center" style="padding:35px;"><button id="load-more-<?php echo esc_attr($unique_id); ?>"
                     class="btn snip0047 snip0047-<?php echo esc_attr($unique_id); ?>"><span
-                        style="pointer-events: none;"><?php echo esc_html($load_more_text); ?></span><i
-                        class="fa fa-circle-o-notch fa-spin" style="pointer-events: none;"></i></button></div>
+                        style="pointer-events: none;"><?php echo esc_html($load_more_text); ?></span><i class="bf-spinner-icon" style="pointer-events: none;"><svg class="bf-spinner" width="16" height="16" viewBox="0 0 50 50"><circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle></svg></i></button></div>
         <?php } ?>
         <div class="load-scroll-block" data-scrollflage="1">
             <div class="lds-ellipsis">
@@ -248,8 +199,8 @@ function bf_blog_filter_shortcode($user_atts)
                 echo wp_kses_post(paginate_links(array(
                     'total' => $custom_query->max_num_pages,
                     'current' => $paged,
-                    'prev_text' => '<i class="fa fa-caret-left"></i>',
-                    'next_text' => '<i class="fa fa-caret-right"></i>',
+                    'prev_text' => '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>',
+                    'next_text' => '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>',
                 )));
                 ?>
             </div>

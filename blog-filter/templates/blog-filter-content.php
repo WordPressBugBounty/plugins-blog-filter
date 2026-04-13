@@ -69,12 +69,12 @@ if ($custom_query->have_posts()):
 								<div class="blog_metaInfo">
 									<?php
 									if ($link_on_date == "yes") { ?>
-										<span class="blog_date"><i class="fa fa-calendar"></i> <a class="blog_date_a"
+										<span class="blog_date"><i class="bf-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg></i> <a class="blog_date_a"
 												href="<?php echo esc_url(get_day_link($year, $month, $day)); ?>"><?php the_time('j F, Y'); ?></a>
 										</span>
 									<?php
 									} else { ?>
-										<span class="blog_date"><i class="fa fa-calendar"></i> <?php the_time('j F, Y'); ?> </span>
+										<span class="blog_date"><i class="bf-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg></i> <?php the_time('j F, Y'); ?> </span>
 									<?php
 									} ?>
 								</div>
@@ -84,7 +84,7 @@ if ($custom_query->have_posts()):
 						if ($blog_author_below_image == "no") {
 							if ($blog_author == "yes") { ?>
 								<div class="blog_metaInfo">
-									<span class="blog_author"><i class="fa fa-user-o"></i> <?php esc_html_e('By', 'blog-filter') ?> <?php the_author(); ?> </span>
+									<span class="blog_author"><i class="bf-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></i> <?php esc_html_e('By', 'blog-filter') ?> <?php the_author(); ?> </span>
 								</div>
 						<?php
 							}
@@ -110,12 +110,12 @@ if ($custom_query->have_posts()):
 								<div class="blog_metaInfo">
 									<?php
 									if ($link_on_date == "yes") { ?>
-										<span class="blog_date"><i class="fa fa-calendar"></i> <a class="blog_date_a"
+										<span class="blog_date"><i class="bf-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg></i> <a class="blog_date_a"
 												href="<?php echo esc_url(get_day_link($year, $month, $day)); ?>"><?php the_time('j F, Y'); ?></a>
 										</span>
 									<?php
 									} else { ?>
-										<span class="blog_date"><i class="fa fa-calendar"></i> <?php the_time('j F, Y'); ?> </span>
+										<span class="blog_date"><i class="bf-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg></i> <?php the_time('j F, Y'); ?> </span>
 									<?php
 									} ?>
 								</div>
@@ -125,7 +125,7 @@ if ($custom_query->have_posts()):
 						if ($blog_author_below_image == "yes") {
 							if ($blog_author == "yes") { ?>
 								<div class="blog_metaInfo">
-									<span class="blog_author"><i class="fa fa-user-o"></i> <?php esc_html_e('By', 'blog-filter') ?> <?php the_author(); ?> </span>
+									<span class="blog_author"><i class="bf-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></i> <?php esc_html_e('By', 'blog-filter') ?> <?php the_author(); ?> </span>
 								</div>
 							<?php
 							}
@@ -182,7 +182,7 @@ if ($custom_query->have_posts()):
 							<div class="bf_read_more_div_1">
 								<a id="blog_read_more" class="snip0047 snip0047-<?php echo esc_attr($unique_id); ?> bf_read_more_1"
 									href="<?php the_permalink(); ?>"><span><?php echo esc_html($blog_read_more_text); ?></span><i
-										class="fa fa-link"></i></a>
+										class="bf-icon-readmore"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></i></a>
 							</div>
 						<?php
 						} ?>

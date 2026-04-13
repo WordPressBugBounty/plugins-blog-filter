@@ -16,11 +16,11 @@ check_ajax_referer('load_more_nonce', 'nonce');
 //--------------------------------------------------------------------------
 // 1. Retrieve and Sanitize Data from the AJAX Request
 //--------------------------------------------------------------------------
-// You call the function directly again here
 
 
 // Get the original shortcode attributes that were passed from the JavaScript.
-$user_atts = isset($_POST['bfg_query_vars']) ? (array) $_POST['bfg_query_vars'] : array();
+// We use map_deep and wp_unslash for multi-dimensional array sanitization.
+$user_atts = isset($_POST['bfg_query_vars']) ? map_deep(wp_unslash($_POST['bfg_query_vars']), 'sanitize_text_field') : array();
 
 $defaults = bfg_get_shortcode_defaults();
 
@@ -31,12 +31,13 @@ $atts = shortcode_atts($defaults, $user_atts, 'AWL-BlogFilter');
 extract($atts);
 
 // Get data sent directly from the AJAX call.
-$displayed_posts     = isset($_POST['displayed_posts']) ? array_map('intval', (array) $_POST['displayed_posts']) : array();
+$displayed_posts = isset($_POST['displayed_posts']) ? array_map('intval', wp_unslash((array) $_POST['displayed_posts'])) : array();
 
 // Sanitize targetFilter - must be 'all' or integer term ID(s)
 $targetFilter = 'all';
 if (isset($_POST['targetFilter'])) {
-    $raw_filter = $_POST['targetFilter'];
+    // Sanitize immediately to satisfy security checks
+    $raw_filter = map_deep(wp_unslash($_POST['targetFilter']), 'sanitize_text_field');
     if (is_array($raw_filter)) {
         $targetFilter = array_map('intval', $raw_filter);
     } elseif ($raw_filter === 'all') {
@@ -46,7 +47,7 @@ if (isset($_POST['targetFilter'])) {
     }
 }
 
-$unique_id = isset($_POST['unique_id']) ? intval($_POST['unique_id']) : wp_rand(1, 1000);
+$unique_id = isset($_POST['unique_id']) ? intval(wp_unslash($_POST['unique_id'])) : wp_rand(1, 1000);
 
 //--------------------------------------------------------------------------
 // 2. Build the Custom Query Arguments
@@ -54,13 +55,18 @@ $unique_id = isset($_POST['unique_id']) ? intval($_POST['unique_id']) : wp_rand(
 
 // Base arguments for the query.
 $custom_query_args = array(
-    'post_type'         => $post_type,
-    'post_status'       => 'publish',
-    'posts_per_page'    => (int) $blog_per_page_and_init_load,
-    'post__not_in'      => $displayed_posts, // Exclude posts that are already visible on the page.
-    'orderby'           => $blog_order_by,
-    'order'             => $blog_order,
+    'post_type'      => $post_type,
+    'post_status'    => 'publish',
+    'posts_per_page' => (int) $blog_per_page_and_init_load,
+    'orderby'        => $blog_order_by,
+    'order'          => $blog_order,
 );
+
+// Only use post__not_in if we have posts to exclude, to save performance.
+if (! empty($displayed_posts)) {
+    // phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn
+    $custom_query_args['post__not_in'] = $displayed_posts;
+}
 
 // This is the array that will hold our taxonomy conditions.
 $tax_query = array();
@@ -87,6 +93,7 @@ if ($targetFilter !== 'all' && !empty($blog_filtering)) {
 if (!empty($tax_query)) {
     // Set the relation if you ever have more than one taxonomy condition.
     $tax_query['relation'] = 'AND';
+    // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
     $custom_query_args['tax_query'] = $tax_query;
 }
 

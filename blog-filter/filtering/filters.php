@@ -31,16 +31,20 @@ if ($terms && !is_wp_error($terms)) :
     $all_post_count = '';
     if ($filter_post_count == "yes") {
         $count_query_args = array(
-            'post_type' => $post_type,
-            'posts_per_page' => -1, // Count all matching posts
+            'post_type'      => $post_type,
+            'posts_per_page' => 1, // We only need found_posts
+            'fields'         => 'ids',
+            'no_found_rows'  => false, // Must be false to get found_posts
         );
         // If specific terms are selected, count posts within them.
         if (!empty($selected_terms_array)) {
+            // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
             $count_query_args['tax_query'] = array(
                 array(
-                    'taxonomy' => $taxonomy_name,
-                    'field'    => 'term_id',
-                    'terms'    => $selected_terms_array,
+                    'taxonomy'         => $taxonomy_name,
+                    'field'            => 'term_id',
+                    'terms'            => $selected_terms_array,
+                    'include_children' => false,
                 ),
             );
         }
@@ -51,25 +55,6 @@ if ($terms && !is_wp_error($terms)) :
     }
     // --- END: NEW DYNAMIC LOGIC ---
 
-    // --- Default Filter for the JavaScript ---
-    // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Front-end filter URL parameter, not a form submission.
-    if (isset($_GET['filter']) && !empty($_GET['filter'])) {
-        $filter_param = sanitize_text_field(wp_unslash($_GET['filter'])); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-        foreach ($terms as $term) {
-            if ($term->name === $filter_param) {
-                $default_filter = $term->term_id;
-            }
-        }
-    } else {
-        $selected_terms_array = !empty($selected_terms) ? explode(',', $selected_terms) : array();
-        if (!empty($default_filter) && $default_filter != 'all' && (empty($selected_terms_array) || in_array($default_filter, $selected_terms_array))) {
-            $default_filter = $default_filter;
-        } else {
-            $default_filter = "all";
-        }
-    }
-    // --- Default Filter for the JavaScript ---
-
     // The rest of this file is your original HTML structure, which now works with the dynamic $terms variable.
     if ($blog_filters == "yes") { ?>
 
@@ -78,13 +63,13 @@ if ($terms && !is_wp_error($terms)) :
                 <?php
                 if ($blog_filter_all == "yes") { ?>
                     <li id="all" class="snip0047 snip0047-<?php echo esc_attr($unique_id); ?> active filtr-controls-<?php echo esc_attr($unique_id); ?>" data-filter="all"><span style="pointer-events: none;"><?php echo esc_html($blog_all_text);
-                                                                                                                                                                                                                echo esc_html($all_post_count); ?></span><i class="fa fa-check" style="pointer-events: none;"></i></li>
+                                                                                                                                                                                                                echo esc_html($all_post_count); ?></span><i class="bf-icon-check" style="pointer-events: none;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></i></li>
                 <?php
                 }
                 foreach ($terms as $term) {
                     $single_filter_post_count = ($filter_post_count == "yes") ? ' (' . $term->count . ')' : '';  ?>
                     <li id="<?php echo esc_attr($term->term_id); ?>" class="filtr-controls-<?php echo esc_attr($unique_id); ?> snip0047 snip0047-<?php echo esc_attr($unique_id); ?>" value="<?php echo esc_attr($term->term_id); ?>" data-filter="<?php echo esc_attr($term->term_id); ?>"><span style="pointer-events: none;"><?php echo esc_html($term->name);
-                                                                                                                                                                                                                                                                                                                                echo esc_html($single_filter_post_count); ?></span><i class="fa fa-check" style="pointer-events: none;"></i></li>
+                                                                                                                                                                                                                                                                                                                                echo esc_html($single_filter_post_count); ?></span><i class="bf-icon-check" style="pointer-events: none;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></i></li>
                 <?php
                 } ?>
             </ul>

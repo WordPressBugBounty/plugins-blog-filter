@@ -40,17 +40,7 @@ jQuery(function() {
 				});
 			}
 
-			<?php if ($blog_template == 'template3') { ?>
-
-				AWL_setMaxHeight('.blog-post-content');
-
-			<?php }
-			if ($blog_template == 'template2') { ?>
-
-				AWL_setMaxHeight('.blog_content');
-				AWL_setMaxHeight('.blog_content_2');
-
-			<?php }
+			<?php
 			if ($blog_template == 'template1') { ?>
 
 				AWL_setMaxHeight('.bf_title_box_1 ');
@@ -59,9 +49,6 @@ jQuery(function() {
 			<?php } ?>
 		});
 	<?php } ?>
-
-
-	
 
 	//Lazy load issue fix js
 	setTimeout(function () {
@@ -81,15 +68,6 @@ jQuery(function() {
 			var _href = $this.attr("href");
 			$this.attr("href", _href + '');
 		});
-		<?php
-		if (isset($default_filter) && $default_filter != "all") {
-		?>
-			jQuery("#<?php echo esc_js($default_filter); ?>").addClass('active');
-			jQuery("#all").removeClass("active");
-			<?php
-		}
-
-			?>
 
 		// Animate loader off screen
 		jQuery(".blog_loader").hide();
@@ -105,7 +83,7 @@ jQuery(function() {
 				onSortingEnd: function () { }
 			},
 			controlsSelector: '.filtr-controls-<?php echo esc_js($unique_id); ?>',
-			filter: '<?php echo esc_js($default_filter); ?>',
+			filter: 'all',
 			filterOutCss: {
 				top: '0px',
 				left: '0px',
@@ -135,48 +113,6 @@ jQuery(function() {
 	jQuery(document).ready(function () {
 		// For init load scale
 		jQuery('.filtr-item .post-box').addClass('lazyimg');
-
-		//***************** Swipebox *********************//
-		<?php
-		if (wp_script_is('awl-bfg-swipebox-js')) {
-			// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- This is a front-end filter URL parameter, not a form submission.
-			if (isset($_GET['filter'])) { ?>
-				var targetFilter = jQuery('.filtr-control-<?php echo esc_js($unique_id); ?> li.active').data('filter');
-				var lighbox_class_name = "bfg-lightbox-" + targetFilter;
-				jQuery('.bfg-lightbox-' + targetFilter).attr('rel', lighbox_class_name); // add data filter for parent filters
-				jQuery('.bfg-lightbox-<?php echo esc_js($unique_id); ?>').swipebox();
-			<?php
-			} else { ?>
-				//***************** Swipebox *********************//
-				jQuery('.filtr-control-<?php echo esc_js($unique_id); ?> [data-filter]').click(function () {
-					jQuery('.bfg-lightbox-<?php echo esc_js($unique_id); ?>').swipebox('swipebox-destroy');
-					var targetFilter = jQuery(this).data('filter');
-
-					var lighbox_class_name = "bfg-lightbox-" + targetFilter;
-					jQuery('.bfg-lightbox-' + targetFilter).attr('rel', lighbox_class_name); // add data filter for parent filters
-					jQuery('.bfg-lightbox-<?php echo esc_js($unique_id); ?>').swipebox();
-					//END Swipebox
-				});
-
-				//Lightbox for multifilter
-				jQuery('.filtr-control-<?php echo esc_js($unique_id); ?> [data-multifilter]').click(function () {
-					var targetFilter = jQuery(this).data('multifilter');
-					var lighbox_class_name = "bfg-lightbox-" + targetFilter;
-					setTimeout(function () {
-						jQuery(".filtr-item").each(function () {
-							if (jQuery(this).css('opacity') == 1) {
-								jQuery(this).find("a").attr('rel', lighbox_class_name);
-							} else {
-								jQuery(this).find("a").attr('rel', '');
-							}
-						});
-					}, 1500);
-				});
-				//bfg-lightbox on page load
-				jQuery('.bfg-lightbox-<?php echo esc_js($unique_id); ?>').swipebox();
-			<?php
-			}
-		} ?>
 
 		jQuery("#filter-hide-button").on("click", function () {
 			var Get_height = jQuery(".simplefilter").height();
@@ -254,14 +190,14 @@ jQuery(function() {
 			//console.log(loadedItems);
 			if (filter_image_len == loadedItems) {
 				<?php if ($blog_load_more == "yes") { ?>
-					button[0].childNodes[0].textContent = <?php echo wp_json_encode($no_more_text); ?>;
-					button[0].style.pointerEvents = "none";
+					button.find('span').text(<?php echo wp_json_encode($no_more_text); ?>);
+					button.css('pointer-events', 'none');
 					button.removeClass('active');
 				<?php } ?>
 			} else {
 				<?php if ($blog_load_more == "yes") { ?>
-					button[0].childNodes[0].textContent = <?php echo wp_json_encode($load_more_text); ?>;
-					button[0].style.pointerEvents = "auto";
+					button.find('span').text(<?php echo wp_json_encode($load_more_text); ?>);
+					button.css('pointer-events', 'auto');
 					button.removeClass('active');
 				<?php } ?>
 				
@@ -393,10 +329,6 @@ jQuery(function() {
 								jQuery('.bf_gallery_1-<?php echo esc_js($unique_id); ?>').filterizr(options<?php echo esc_js($unique_id); ?>);
 							});
 
-							// Swipebox
-							var lighbox_class_name = "bfg-lightbox-" + targetFilter;
-							jQuery('.bfg-lightbox-' + targetFilter).attr('rel', lighbox_class_name); // add data filter for parent filters
-							jQuery('.bfg-lightbox-<?php echo esc_js($unique_id); ?>').swipebox();
 						} else {
 							button.removeClass('active');
 						}
@@ -436,13 +368,13 @@ jQuery(function() {
 					cache: false,
 					beforeSend: function (xhr) {
 						//loading text
-						button[0].childNodes[0].innerHTML = '..';
+						button.find('span').html('..');
 						button.addClass('active');
 					},
 					complete: function () { },
 					success: function (data) {
 						if (jQuery.trim(data) != '') {
-							button[0].childNodes[0].textContent = <?php echo wp_json_encode($load_more_text); ?>;
+							button.find('span').text(<?php echo wp_json_encode($load_more_text); ?>);
 							button.removeClass('active');
 							options<?php echo esc_js($unique_id); ?> = {
 								/*animationDuration: 0.5,*/
@@ -500,14 +432,10 @@ jQuery(function() {
 								jQuery('.bf_gallery_1-<?php echo esc_js($unique_id); ?>').filterizr(options<?php echo esc_js($unique_id); ?>);
 							});
 
-							// Swipebox
-							var lighbox_class_name = "bfg-lightbox-" + targetFilter;
-							jQuery('.bfg-lightbox-' + targetFilter).attr('rel', lighbox_class_name); // add data filter for parent filters
-							jQuery('.bfg-lightbox-<?php echo esc_js($unique_id); ?>').swipebox();
 						} else {
 							//alert('No More Posts');
-							button[0].childNodes[0].textContent = <?php echo wp_json_encode($no_more_text); ?>;
-							button[0].style.pointerEvents = "none";
+							button.find('span').text(<?php echo wp_json_encode($no_more_text); ?>);
+							button.css('pointer-events', 'none');
 							button.removeClass('active');
 						}
 					}

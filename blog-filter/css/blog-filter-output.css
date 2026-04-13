@@ -736,14 +736,29 @@ figure.snip1120.hover a:nth-child(3) {
 }
 .snip0047 i {
   font-size: 15px;
-  right: 12px;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
   position: absolute;
   opacity: 0;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
   -webkit-transition-delay: 0s;
   transition-delay: 0s;
+  display: flex;
+  align-items: center;
 }
+.snip0047:hover span {
+  padding-right: 20px;
+}
+.snip0047:hover i {
+  opacity: 1;
+  right: 12px;
+}
+.snip0047 i svg {
+  display: block;
+}
+
 .snip0047:before {
   content: '';
   top: 0;
@@ -1193,4 +1208,60 @@ figure.snip1216 .blog_title{
     max-height: 400px;
     z-index:9;
     overflow:scroll;
+}
+
+/* Blog Filter SVG Icon Styles */
+.bf-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    margin-right: 5px;
+    margin-top: -2px;
+}
+
+.bf-icon svg {
+    display: block;
+}
+
+.snip0047.active i {
+    opacity: 1;
+    right: 12px;
+}
+
+.snip0047.active span {
+  padding-right: 20px;
+}
+
+.bf-spinner-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+}
+
+.snip0047.active .bf-spinner {
+    display: block;
+}
+
+.bf-spinner {
+    display: none; /* Only hidden when not .active */
+    vertical-align: middle;
+    animation: bf_spin 1s linear infinite;
+}
+
+.bf-spinner .path {
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-width: 7;
+    opacity: 1;
+}
+
+@keyframes bf_spin {
+    100% { transform: rotate(360deg); }
+}
+
+.blog_pagination [class^="blog_pagination-"] svg {
+    vertical-align: middle;
+    display: inline-block;
 }
