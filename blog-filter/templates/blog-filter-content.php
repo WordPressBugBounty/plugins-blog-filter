@@ -41,6 +41,39 @@ if ($custom_query->have_posts()):
 			$filter_value_name = $terms[0]->name;
 		}
 		// --- END: NEW DYNAMIC CODE ---
+
+		// Excerpt/Description Fetch Fallback for CPTs and Page Builders (e.g. Divi)
+		$bf_excerpt = get_the_excerpt();
+		if (empty($bf_excerpt)) {
+			$bf_excerpt = get_the_content();
+			
+			// Check if Divi Builder is active on this post
+			$is_divi = false;
+			if (function_exists('et_pb_is_pagebuilder_used') && et_pb_is_pagebuilder_used(get_the_ID())) {
+				$is_divi = true;
+			} elseif (get_post_meta(get_the_ID(), '_et_pb_use_builder', true) === 'on') {
+				$is_divi = true;
+			}
+
+			if ($is_divi) {
+				// Let Divi evaluate its shortcodes and modules first to generate the actual content
+				if (function_exists('et_builder_render_layout')) {
+					$bf_excerpt = et_builder_render_layout($bf_excerpt);
+				} else {
+					$bf_excerpt = do_shortcode($bf_excerpt);
+				}
+				// If dynamic content tokens remain, pass through 'the_content' filter to resolve them
+				if (strpos($bf_excerpt, '@ET-DC@') !== false) {
+					$bf_excerpt = apply_filters('the_content', $bf_excerpt);
+				}
+			} else {
+				// Standard shortcode stripping via regex for non-Divi builders
+				$bf_excerpt = preg_replace('/\[.*?\]/', '', $bf_excerpt);
+			}
+		}
+		// Clean up any leftover Divi dynamic content tokens to prevent raw Base64 leak
+		$bf_excerpt = preg_replace('/@ET-DC@.*?@/', '', $bf_excerpt);
+		$bf_excerpt = wp_strip_all_tags(strip_shortcodes($bf_excerpt));
 ?>
 		<div style="opacity:0;" id="bf_<?php echo esc_attr(get_the_ID()); ?>" data-category="<?php echo esc_attr($keys); ?>"
 			data-sort="<?php echo esc_attr($filter_value_name); ?>"
@@ -151,9 +184,9 @@ if ($custom_query->have_posts()):
 							<div class="bf_desc_1-<?php echo esc_attr($unique_id); ?> blog_desc fit-text">
 								<?php
 								if ($three_dots == "yes") {
-									echo esc_html(wp_strip_all_tags(substr(get_the_excerpt(), 0, $blog_desc_characters))) . '...';
+									echo esc_html(substr($bf_excerpt, 0, (int)$blog_desc_characters)) . '...';
 								} else {
-									echo esc_html(wp_strip_all_tags(substr(get_the_excerpt(), 0, $blog_desc_characters)));
+									echo esc_html(substr($bf_excerpt, 0, (int)$blog_desc_characters));
 								} ?>
 							</div>
 						<?php

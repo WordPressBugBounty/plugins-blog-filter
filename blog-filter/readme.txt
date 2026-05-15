@@ -1,21 +1,21 @@
-=== Blog Filter Post Filtering  ===
+=== Blog Filter - Post Grid Filter by Category or Tag  ===
 Contributors: awordpresslife, razipathhan, hanif0991, muhammadshahid, fkfaisalkhan007, sharikkhan007, zishlife, FARAZFRANK
 Donate link: https://paypal.me/awplife
 Tags: blog filter, post grid, blog layout, category filter, tag filter
 Requires at least: 5.0
 Tested up to: 6.9
 Requires PHP: 7.0
-Stable tag: 1.7.9
+Stable tag: 1.8.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Blog Filter helps users display posts in filterable grid and masonry layouts. Organize content by categories or tags with customizable designs.
+Create a responsive Blog Filter Post Grid to showcase posts. Let visitors filter by Category or Tag easily using Ajax. Supports Elementor and Divi.
 
 == Description ==
 
-**Blog Filter** is a WordPress plugin designed to help website owners display their blog posts in organized, filterable layouts. Whether you run a personal blog, news site, or content-heavy portal, this plugin provides an intuitive way for visitors to browse and discover posts based on categories or tags.
+Need a beautiful blog post grid for your site? This plugin is built for you. It helps you show your posts in clean grids or masonry layouts. 
 
-The plugin automatically fetches your existing WordPress posts and displays them in a grid or masonry layout. Visitors can click on filter buttons to instantly see posts from specific categories or tags, making content discovery much easier on sites with large archives.
+Visitors can instantly filter posts by **Category or Tag** without loading new pages. This makes your site faster and much easier to explore.
 
 [youtube https://www.youtube.com/watch?v=7Ue3eIM3nu4]
 
@@ -23,26 +23,33 @@ The plugin automatically fetches your existing WordPress posts and displays them
 
 **Premium <a href="https://awplife.com/demo/blog-filter-premium/">Blog Filter Plugin Demo</a>**
 
-= What Does Blog Filter Do? =
+= Simple and Powerful =
+Our **Blog Filter** fetches your content automatically. You can choose two main styles for your **Post Grid**:
+* **Grid Layout:** Shows your posts in even rows and neat columns.
+* **Masonry Layout:** Fits posts tightly together like Pinterest, saving empty space.
 
-At its core, Blog Filter takes your WordPress posts and presents them in a visually organized manner. Instead of showing posts in a traditional chronological list, you can display them in:
+= Who Needs a Filterable Post Grid? =
+* **Bloggers:** Let readers sort through articles by **Category or Tag**.
+* **News Sites:** Arrange top news into easy sections that users can toggle.
+* **Portfolio Sites:** Showcase your work dynamically in a clean visual grid.
+* **Writers:** Help users find specific topics using simple button clicks.
 
-* **Grid Layouts** - Posts arranged in neat rows and columns
-* **Masonry Layouts** - Pinterest-style arrangement that optimizes space by eliminating gaps between posts of different heights
+== Blog Filter Post Grid Key Features ==
 
-The filtering functionality lets visitors click on category or tag buttons to view only the posts that match their interests. This happens dynamically on the page without requiring a reload.
+= Instant Category or Tag Filters =
+Users click filter buttons above your grid. Posts will instantly sort by their **Category or Tag**.
 
-= Who Can Benefit From This Plugin? =
+= Responsive Layouts =
+Your **Post Grid** looks great on phones, tablets, and desktops. The design adapts to every screen size.
 
-**Content Publishers**: If your site has hundreds of articles across multiple topics, filtering helps readers find relevant content quickly.
+= Grid and Masonry Styles =
+Switch between standard grids or masonry layouts with one click. Masonry works best for images of different heights.
 
-**News Websites**: Organize stories by categories like sports, technology, entertainment, and let users toggle between sections.
+= Fast Load More Button =
+Instead of slow page numbers, use our AJAX **Load More** button. It loads new posts fast without refreshing.
 
-**Educational Blogs**: Students and researchers can filter posts by subject matter or topic tags.
-
-**Portfolio Blogs**: Showcase written work or case studies with easy category-based navigation.
-
-**Magazine-Style Sites**: Present content in a visually appealing grid that resembles magazine layouts.
+= Page Builder Ready =
+Works with classic editors and modern page builders. Fully compatible with Elementor, Beaver Builder, and Divi.
 
 = Quick Setup Guide =
 
@@ -189,34 +196,17 @@ The premium version includes Swipebox lightbox integration, which displays featu
 
 == Frequently Asked Questions ==
 
-= How do I display the filtered posts on my site? =
+= How do I show the Blog Filter Post Grid? =
+Copy the generated shortcode from settings. Paste it into any page, post, or widget area you like.
 
-After configuring your settings, copy the shortcode displayed in the Blog Filter admin panel. Paste this shortcode into any page, post, or text widget where you want the filtered post grid to appear.
+= Can visitors sort by both Category or Tag? =
+Yes. You can choose to display a Category filter, a Tag filter, or both together.
 
-= Can I filter by both categories and tags? =
+= Will the Blog Filter slow down my site? =
+No. The plugin is lightweight. It uses fast AJAX to load and filter posts instantly.
 
-Yes. In the settings, you choose whether to use post categories, post tags, or both as your filter criteria.
-
-= Does the plugin work with custom post types? =
-
-The premium version includes custom post type support. You can display and filter content from any registered post type.
-
-= Will this slow down my website? =
-
-The plugin is designed with performance in mind. You can also select lower image resolutions to reduce page load times on image-heavy layouts.
-
-= Is the layout mobile-friendly? =
-
-Yes. The grid layout is fully responsive and adjusts to fit screens of all sizes, from large desktop monitors to mobile phones.
-
-= Can I customize the appearance? =
-
-The settings panel includes options for colors, visibility toggles, and layout preferences. The premium version adds custom CSS support for more advanced styling.
-
-= What if I need help? =
-
-Post your questions on the WordPress plugin support forum:
-https://wordpress.org/support/plugin/blog-filter/
+= Does it support Custom Post Types? =
+Yes! The premium version fully supports filtering custom post types by any custom taxonomy.
 
 == Recommended Plugins ==
 
@@ -245,6 +235,12 @@ Other plugins from the same development team:
 * [Facebook Like Box](https://wordpress.org/plugins/facebook-likebox-widget-and-shortcode/ "Facebook Likebox Plugin") - Embed Facebook page like boxes on your site.
 
 == Changelog ==
+
+= 1.8.0 =
+* Date: 16-05-2026
+* **Feature**: Ported advanced description fallback logic from Premium for improved builder and CPT support.
+* **Compatibility**: Added native support for Divi Builder layouts, preventing blank descriptions on Divi posts.
+* **Fix**: Automatically resolves and renders Divi Dynamic Content tokens (Base64 @ET-DC@ markers) to output clean, evaluated plain text instead of garbled database strings.
 
 = 1.7.9 =
 * **Security**: Hardened AJAX handlers with strict unslashing and input sanitization (`map_deep`, `sanitize_text_field`).
