@@ -1,19 +1,6 @@
 <?php
 if (!defined('ABSPATH'))
 	exit; // Exit if accessed directly
-
-//toggle button CSS
-wp_enqueue_style('awl-blog-filter-settings-css', plugin_dir_url(__FILE__) . 'css/blog-filter-settings.css', array(), BF_PLUGIN_VER);
-wp_enqueue_style('awl-styles-css', plugin_dir_url(__FILE__) . 'css/styles.css', array(), BF_PLUGIN_VER);
-wp_enqueue_style('wp-color-picker');
-
-//js
-wp_enqueue_script('jquery');
-wp_enqueue_script('wp-color-picker');
-wp_enqueue_script('awl-blog-filter-isotope-js', plugin_dir_url(__FILE__) . 'js/isotope.pkgd.js', array('jquery'), BF_PLUGIN_VER, false);
-wp_enqueue_script('awl-bootstrap-js', plugin_dir_url(__FILE__) . 'js/bootstrap.min.js', array('jquery'), BF_PLUGIN_VER, true);
-
-wp_enqueue_style('blog-filter-tailwind', plugin_dir_url(__FILE__) . 'css/styles.min.css', [], '1.0');
 ?>
 
 
@@ -271,7 +258,7 @@ wp_enqueue_style('blog-filter-tailwind', plugin_dir_url(__FILE__) . 'css/styles.
 											'public' => true,
 										);
 										$post_types = get_post_types($args, 'objects');
-										$selected_post_type = get_option('your_plugin_post_type_setting', 'post');
+										$selected_post_type = 'post';
 
 										if (! empty($post_types)) {
 											foreach ($post_types as $post_type) {
@@ -1273,6 +1260,11 @@ wp_enqueue_style('blog-filter-tailwind', plugin_dir_url(__FILE__) . 'css/styles.
 											<td class="bf-pro-value"><span class="bf-yes">&#10003;</span></td>
 										</tr>
 										<tr>
+											<td><?php esc_html_e('Filter Selection Limit', 'blog-filter'); ?></td>
+											<td><?php esc_html_e('Up to 4 Filters', 'blog-filter'); ?></td>
+											<td class="bf-pro-value"><?php esc_html_e('Unlimited Filters', 'blog-filter'); ?></td>
+										</tr>
+										<tr>
 											<td><?php esc_html_e('Multi-Filter (Select Multiple)', 'blog-filter'); ?></td>
 											<td><span class="bf-no">&#10007;</span></td>
 											<td class="bf-pro-value"><span class="bf-yes">&#10003;</span></td>
@@ -1507,10 +1499,11 @@ wp_enqueue_style('blog-filter-tailwind', plugin_dir_url(__FILE__) . 'css/styles.
 			<textarea id="awl-shortcode" readonly rows="15"
 				class="bfg-w-full bfg-border bfg-rounded-md bfg-p-2 bfg-text-gray-700"></textarea>
 			<div class="bfg-mt-4">
-				<button type="button"
-					class="bfg-bg-[#6dbe73] bfg-text-white bfg-font-semibold bfg-px-4 bfg-py-2 bfg-rounded-md"
+				<button type="button" id="bfg-copy-btn"
+					class="bfg-bg-[#6dbe73] bfg-text-white bfg-font-semibold bfg-px-4 bfg-py-2 bfg-rounded-md bfg-inline-flex bfg-items-center bfg-justify-center bfg-gap-2"
+					style="display: inline-flex; align-items: center; justify-content: center; gap: 8px;"
 					onclick="CopyShortcode()">
-					<i class="bf-icon bfg-mr-1" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></i> <?php esc_html_e('Copy Shortcode', 'blog-filter'); ?>
+					<i class="bf-icon" aria-hidden="true" style="margin: 0; display: inline-flex; align-items: center;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></i> <?php esc_html_e('Copy Shortcode', 'blog-filter'); ?>
 				</button>
 			</div>
 		</div>
@@ -1581,7 +1574,7 @@ wp_enqueue_style('blog-filter-tailwind', plugin_dir_url(__FILE__) . 'css/styles.
 			jQuery.post(ajaxurl, {
 				'action': 'get_taxonomies_for_post_type',
 				'post_type': selectedPostType,
-				'security': '<?php echo esc_attr(wp_create_nonce("bfg_admin_nonce")); ?>'
+				'security': typeof bfg_admin_ajax !== 'undefined' ? bfg_admin_ajax.nonce : ''
 			}, function(response) {
 				taxonomyDropdown.html(response.success ? response.data : '<option value=""><?php esc_html_e('Error', 'blog-filter'); ?></option>');
 			});
@@ -1612,7 +1605,7 @@ wp_enqueue_style('blog-filter-tailwind', plugin_dir_url(__FILE__) . 'css/styles.
 			jQuery.post(ajaxurl, {
 				'action': 'get_terms_for_taxonomy',
 				'taxonomy': selectedTaxonomy,
-				'security': '<?php echo esc_attr(wp_create_nonce("bfg_admin_nonce")); ?>'
+				'security': typeof bfg_admin_ajax !== 'undefined' ? bfg_admin_ajax.nonce : ''
 			}, function(response) {
 				if (response.success) {
 					// Populate all elements from the single response object
@@ -1939,11 +1932,40 @@ wp_enqueue_style('blog-filter-tailwind', plugin_dir_url(__FILE__) . 'css/styles.
 
 	}
 
+	var copyTimeout;
+	var originalHtml;
 	function CopyShortcode() {
 		var copyText = document.getElementById("awl-shortcode");
-		copyText.select();
-		document.execCommand("copy");
+		var copyBtn = document.getElementById("bfg-copy-btn");
+		if (!originalHtml) {
+			originalHtml = copyBtn.innerHTML;
+		}
 
+		function showFeedback() {
+			copyBtn.innerHTML = '<i class="bf-icon" aria-hidden="true" style="margin: 0; display: inline-flex; align-items: center;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></i> <?php echo esc_js( __( 'Copied!', 'blog-filter' ) ); ?>';
+			
+			if (copyTimeout) {
+				clearTimeout(copyTimeout);
+			}
+			copyTimeout = setTimeout(function() {
+				copyBtn.innerHTML = originalHtml;
+				copyTimeout = null;
+			}, 1000);
+		}
+
+		if (navigator.clipboard && navigator.clipboard.writeText) {
+			navigator.clipboard.writeText(copyText.value).then(function() {
+				showFeedback();
+			}).catch(function(err) {
+				copyText.select();
+				document.execCommand("copy");
+				showFeedback();
+			});
+		} else {
+			copyText.select();
+			document.execCommand("copy");
+			showFeedback();
+		}
 	}
 
 	function closeModal() {

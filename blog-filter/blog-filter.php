@@ -4,7 +4,7 @@ if (!defined('ABSPATH'))
 /**
 Plugin Name: Blog Filter
 Description: Blog Filter For WordPress Blog With Multiple Filters
-Version: 1.8.0
+Version: 1.8.1
 Author: A WP Life
 Author URI: http://awplife.com/
 Text Domain: blog-filter
@@ -27,7 +27,7 @@ if (!class_exists('Awl_Blog_Filter')) {
 		protected function _constants()
 		{
 			//Plugin Version
-			define('BF_PLUGIN_VER', '1.8.0');
+			define('BF_PLUGIN_VER', '1.8.1');
 
 			//Plugin Text Domain
 			define('BF_TEXT_DOMAIN', 'blog-filter');
@@ -54,109 +54,11 @@ if (!class_exists('Awl_Blog_Filter')) {
 			//add menu item, change menu for multisite
 			add_action('admin_menu', array($this, 'blog_filter_menu'), 101);
 
-			// Added settings link on plugins page
+			//Added settings link on plugins page
 			$bf_plugin_name = plugin_basename(__FILE__);
-			add_filter("plugin_action_links_$bf_plugin_name", 'bf_plugins_page_settings_link');
+			add_filter("plugin_action_links_$bf_plugin_name", array($this, 'bf_plugins_page_settings_link'));
 
-			function bf_plugins_page_settings_link($links)
-			{
-				$bf_settings_link = '<a href="edit.php?page=blog-filter-settings-page">' . esc_html__('Settings', 'blog-filter') . '</a>';
-				array_unshift($links, $bf_settings_link);
-				return $links;
-			}
-			// Backward compatibility wrapper
-			if (! function_exists('plugins_page_settings_link')) {
-				function plugins_page_settings_link($links)
-				{
-					return bf_plugins_page_settings_link($links);
-				}
-			}
-
-			function bfg_get_shortcode_defaults()
-			{
-				return array(
-					// General & Post Type Settings
-					'post_type' => 'post',
-					'blog_direction' => 'ltr',
-					'blog_fixed_grid' => 'no',
-					'blog_template' => 'template1',
-
-					// Columns
-					'blog_col_large_desktops' => 'col-lg-4',
-					'blog_col_desktops' => 'col-md-4',
-					'blog_col_tablets' => 'col-sm-6',
-					'blog_col_phones' => 'col-xs-12',
-
-					// Image Settings
-					'blog_image' => 'no',
-					'blog_image_hover_effect' => 'none',
-					'blog_image_quality' => 'large',
-
-					// Title Settings
-					'blog_title' => 'no',
-					'blog_title_font_size' => 25,
-					'blog_title_color' => '#000',
-					'blog_title_below_image' => 'no',
-
-					// Description Settings
-					'blog_desc' => 'no',
-					'blog_desc_characters' => '100',
-					'blog_desc_font_size' => 12,
-					'blog_desc_color' => '#606060',
-					'blog_desc_box_color' => '#EDEEF0',
-					'three_dots' => 'no',
-
-					// Links and Display
-					'link_on_date' => 'no',
-
-					// Read More
-					'blog_read_more' => 'no',
-					'blog_read_more_text' => 'Read More',
-
-					// Metadata Display
-					'blog_date' => 'no',
-					'blog_date_below_image' => 'no',
-					'blog_author' => 'no',
-					'blog_author_below_image' => 'no',
-					'blog_categories' => 'no',
-					'blog_tags' => 'no',
-
-					// Pagination & Load
-					'blog_pagination' => 'no',
-					'blog_load_more' => 'no',
-					'blog_pagination_loadmore_color' => '#58BBEE',
-					'blog_per_page_and_init_load' => '12',
-					'load_more_text' => 'Load More',
-					'no_more_text' => 'No More Posts',
-
-					// Filters
-					'blog_filters' => 'no',
-					'filter_post_count' => 'no',
-					'blog_filter_all' => 'no',
-					'blog_all_text' => 'All',
-					'blog_first_filter_selected' => 'no',
-
-					// Search
-					'blog_search' => 'no',
-					'blog_search_text' => 'Search',
-
-					// Styling & Colors
-					'blog_buttons_color' => '#58BBEE',
-
-					// Taxonomy Filtering
-					'blog_filtering' => 'blog_category',
-
-					'selected_terms' => '',
-
-					// Bootstrap
-					'disable_bootstrap_css' => 'no',
-					'disable_bootstrap_js' => 'no',
-
-					// Custom CSS
-					'custom_css' => '',
-				);
-				//return $defaults;
-			}
+			add_action('admin_enqueue_scripts', array($this, 'enqueue_admin_scripts'));
 
 			add_action('wp_enqueue_scripts', array(&$this, 'enqueue_scripts_in_header'));
 
@@ -164,7 +66,7 @@ if (!class_exists('Awl_Blog_Filter')) {
 
 			add_action('wp_ajax_nopriv_load_more', array(&$this, 'load_more_posts'));
 
-			add_filter('wp_lazy_loading_enabled', '__return_false');
+			add_filter('wp_img_tag_add_loading_attr', array($this, 'disable_lazy_load_for_plugin_images'), 10, 3);
 
 			add_action('wp_ajax_get_taxonomies_for_post_type', array(&$this, 'bfg_get_taxonomies_callback'));
 
@@ -182,6 +84,11 @@ if (!class_exists('Awl_Blog_Filter')) {
 			// First, check for security.
 			if (!check_ajax_referer('bfg_admin_nonce', 'security', false)) {
 				wp_send_json_error('Invalid security token.', 403);
+				return;
+			}
+
+			if (!current_user_can('manage_options')) {
+				wp_send_json_error('Permission denied.', 403);
 				return;
 			}
 
@@ -293,11 +200,11 @@ if (!class_exists('Awl_Blog_Filter')) {
 		{
 
 			if (!isset($_POST['nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['nonce'])), 'load_more_nonce')) {
-				exit;
+				wp_die('Invalid security token.', 403);
 			}
 
 			require(BF_PLUGIN_DIR . 'templates/blog-filter-ajax-get.php');
-			die;
+			wp_die();
 		}
 
 		public function enqueue_scripts_in_header()
@@ -307,8 +214,7 @@ if (!class_exists('Awl_Blog_Filter')) {
 
 		public function load_textdomain()
 		{
-			// load_plugin_textdomain is no longer needed for plugins hosted on WordPress.org (since WP 4.6).
-			// Translations are handled automatically. Keeping the method for backward compatibility.
+			load_plugin_textdomain('blog-filter', false, dirname(plugin_basename(__FILE__)) . '/languages');
 		}
 
 		public function blog_filter_menu()
@@ -319,6 +225,127 @@ if (!class_exists('Awl_Blog_Filter')) {
 		public function awl_blog_filter_page()
 		{
 			require_once('blog-filter-settings.php');
+		}
+
+		public function enqueue_admin_scripts($hook_suffix)
+		{
+			if (isset($_GET['page']) && $_GET['page'] === 'blog-filter-settings-page') {
+				wp_enqueue_style('awl-blog-filter-settings-css', BF_PLUGIN_URL . 'css/blog-filter-settings.css', array(), BF_PLUGIN_VER);
+				wp_enqueue_style('awl-styles-css', BF_PLUGIN_URL . 'css/styles.css', array(), BF_PLUGIN_VER);
+				wp_enqueue_style('wp-color-picker');
+
+				wp_enqueue_script('jquery');
+				wp_enqueue_script('wp-color-picker');
+				wp_enqueue_script('awl-blog-filter-isotope-js', BF_PLUGIN_URL . 'js/isotope.pkgd.js', array('jquery'), BF_PLUGIN_VER, false);
+				wp_enqueue_script('awl-bootstrap-js', BF_PLUGIN_URL . 'js/bootstrap.min.js', array('jquery'), BF_PLUGIN_VER, true);
+
+				wp_enqueue_style('blog-filter-tailwind', BF_PLUGIN_URL . 'css/styles.min.css', [], '1.0');
+				
+				// Localize nonce for admin ajax operations
+				wp_localize_script('awl-bootstrap-js', 'bfg_admin_ajax', array(
+					'nonce' => wp_create_nonce('bfg_admin_nonce')
+				));
+			}
+		}
+
+		public function disable_lazy_load_for_plugin_images($value, $image, $context)
+		{
+			if (strpos($image, 'portfolio_thumbnail') !== false) {
+				return false;
+			}
+			return $value;
+		}
+
+		public function bf_plugins_page_settings_link($links)
+		{
+			$bf_settings_link = '<a href="edit.php?page=blog-filter-settings-page">' . esc_html__('Settings', 'blog-filter') . '</a>';
+			array_unshift($links, $bf_settings_link);
+			return $links;
+		}
+
+		public function bfg_get_shortcode_defaults()
+		{
+			return array(
+				// General & Post Type Settings
+				'post_type' => 'post',
+				'blog_direction' => 'ltr',
+				'blog_fixed_grid' => 'no',
+				'blog_template' => 'template1',
+
+				// Columns
+				'blog_col_large_desktops' => 'col-lg-4',
+				'blog_col_desktops' => 'col-md-4',
+				'blog_col_tablets' => 'col-sm-6',
+				'blog_col_phones' => 'col-xs-12',
+
+				// Image Settings
+				'blog_image' => 'no',
+				'blog_image_hover_effect' => 'none',
+				'blog_image_quality' => 'large',
+
+				// Title Settings
+				'blog_title' => 'no',
+				'blog_title_font_size' => 25,
+				'blog_title_color' => '#000',
+				'blog_title_below_image' => 'no',
+
+				// Description Settings
+				'blog_desc' => 'no',
+				'blog_desc_characters' => '100',
+				'blog_desc_font_size' => 12,
+				'blog_desc_color' => '#606060',
+				'blog_desc_box_color' => '#EDEEF0',
+				'three_dots' => 'no',
+
+				// Links and Display
+				'link_on_date' => 'no',
+
+				// Read More
+				'blog_read_more' => 'no',
+				'blog_read_more_text' => __('Read More', 'blog-filter'),
+
+				// Metadata Display
+				'blog_date' => 'no',
+				'blog_date_below_image' => 'no',
+				'blog_author' => 'no',
+				'blog_author_below_image' => 'no',
+				'blog_categories' => 'no',
+				'blog_tags' => 'no',
+
+				// Pagination & Load
+				'blog_pagination' => 'no',
+				'blog_load_more' => 'no',
+				'blog_pagination_loadmore_color' => '#58BBEE',
+				'blog_per_page_and_init_load' => '12',
+				'load_more_text' => __('Load More', 'blog-filter'),
+				'no_more_text' => __('No More Posts', 'blog-filter'),
+
+				// Filters
+				'blog_filters' => 'no',
+				'filter_post_count' => 'no',
+				'blog_filter_all' => 'no',
+				'blog_all_text' => __('All', 'blog-filter'),
+				'blog_first_filter_selected' => 'no',
+
+				// Search
+				'blog_search' => 'no',
+				'blog_search_text' => __('Search', 'blog-filter'),
+
+				// Styling & Colors
+				'blog_buttons_color' => '#58BBEE',
+
+				// Taxonomy Filtering
+				'blog_filtering' => 'blog_category',
+
+				'selected_terms' => '',
+
+				// Bootstrap
+				'disable_bootstrap_css' => 'no',
+				'disable_bootstrap_js' => 'no',
+
+				// Custom CSS
+				'custom_css' => '',
+			);
 		}
 	}
 
@@ -350,6 +377,31 @@ if (!class_exists('Awl_Blog_Filter')) {
 	$bf_post_filter_object = new Awl_Blog_Filter();
 	// Backward compatibility
 	$pf_post_filter_object = $bf_post_filter_object;
+
+	if (! function_exists('bfg_get_shortcode_defaults')) {
+		function bfg_get_shortcode_defaults()
+		{
+			global $bf_post_filter_object;
+			return $bf_post_filter_object->bfg_get_shortcode_defaults();
+		}
+	}
+
+	if (! function_exists('plugins_page_settings_link')) {
+		function plugins_page_settings_link($links)
+		{
+			global $bf_post_filter_object;
+			return $bf_post_filter_object->bf_plugins_page_settings_link($links);
+		}
+	}
+
+	if (! function_exists('bf_plugins_page_settings_link')) {
+		function bf_plugins_page_settings_link($links)
+		{
+			global $bf_post_filter_object;
+			return $bf_post_filter_object->bf_plugins_page_settings_link($links);
+		}
+	}
+
 	//Shortcode page
 	require_once('blog-filter-shortcode.php');
 } ?>

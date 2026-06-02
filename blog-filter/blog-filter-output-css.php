@@ -283,5 +283,5 @@ if (! defined('ABSPATH')) exit; // Exit if accessed directly
 	}
 
 
-	<?php echo esc_html(wp_strip_all_tags($custom_css)); ?>
+	<?php echo wp_strip_all_tags($custom_css); ?>
 </style>

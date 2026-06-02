@@ -81,7 +81,56 @@ function bf_blog_filter_shortcode($user_atts)
 
     // --- END: BACKWARD COMPATIBILITY LAYER ---
     // Now, extract all attributes into local variables.
-    extract($atts);
+    // Explicitly define attributes into local variables to avoid extract().
+    $post_type = $atts['post_type'];
+    $blog_direction = $atts['blog_direction'];
+    $blog_fixed_grid = $atts['blog_fixed_grid'];
+    $blog_template = $atts['blog_template'];
+    $blog_col_large_desktops = $atts['blog_col_large_desktops'];
+    $blog_col_desktops = $atts['blog_col_desktops'];
+    $blog_col_tablets = $atts['blog_col_tablets'];
+    $blog_col_phones = $atts['blog_col_phones'];
+    $blog_image = $atts['blog_image'];
+    $blog_image_hover_effect = $atts['blog_image_hover_effect'];
+    $blog_image_quality = $atts['blog_image_quality'];
+    $blog_title = $atts['blog_title'];
+    $blog_title_font_size = $atts['blog_title_font_size'];
+    $blog_title_color = $atts['blog_title_color'];
+    $blog_title_below_image = $atts['blog_title_below_image'];
+    $blog_desc = $atts['blog_desc'];
+    $blog_desc_characters = $atts['blog_desc_characters'];
+    $blog_desc_font_size = $atts['blog_desc_font_size'];
+    $blog_desc_color = $atts['blog_desc_color'];
+    $blog_desc_box_color = $atts['blog_desc_box_color'];
+    $three_dots = $atts['three_dots'];
+    $link_on_date = $atts['link_on_date'];
+    $blog_read_more = $atts['blog_read_more'];
+    $blog_read_more_text = $atts['blog_read_more_text'];
+    $blog_date = $atts['blog_date'];
+    $blog_date_below_image = $atts['blog_date_below_image'];
+    $blog_author = $atts['blog_author'];
+    $blog_author_below_image = $atts['blog_author_below_image'];
+    $blog_categories = $atts['blog_categories'];
+    $blog_tags = $atts['blog_tags'];
+    $blog_pagination = $atts['blog_pagination'];
+    $blog_load_more = $atts['blog_load_more'];
+    $blog_pagination_loadmore_color = $atts['blog_pagination_loadmore_color'];
+    $blog_per_page_and_init_load = $atts['blog_per_page_and_init_load'];
+    $load_more_text = $atts['load_more_text'];
+    $no_more_text = $atts['no_more_text'];
+    $blog_filters = $atts['blog_filters'];
+    $filter_post_count = $atts['filter_post_count'];
+    $blog_filter_all = $atts['blog_filter_all'];
+    $blog_all_text = $atts['blog_all_text'];
+    $blog_first_filter_selected = $atts['blog_first_filter_selected'];
+    $blog_search = $atts['blog_search'];
+    $blog_search_text = $atts['blog_search_text'];
+    $blog_buttons_color = $atts['blog_buttons_color'];
+    $blog_filtering = $atts['blog_filtering'];
+    $selected_terms = $atts['selected_terms'];
+    $disable_bootstrap_css = $atts['disable_bootstrap_css'];
+    $disable_bootstrap_js = $atts['disable_bootstrap_js'];
+    $custom_css = $atts['custom_css'];
 
     $unique_id = wp_rand(1, 1000);
 
@@ -91,11 +140,15 @@ function bf_blog_filter_shortcode($user_atts)
     $g = $g - 22;
     $b = $b - 19;
 
+    // Capture and enqueue dynamic CSS instead of printing it directly.
+    ob_start();
+    require('blog-filter-output-css.php');
+    $dynamic_css = ob_get_clean();
+    $dynamic_css = preg_replace('/<\/?style[^>]*>/i', '', $dynamic_css);
+    wp_add_inline_style('awl-bf-filter-output-css', $dynamic_css);
+
     // Start output buffering to capture all HTML.
     ob_start();
-
-    // Include the dynamic CSS file.
-    require('blog-filter-output-css.php');
 ?>
     <div id="BlogFilterMain-<?php echo esc_attr($unique_id); ?>" class="blog_filter_main" version="<?php echo esc_attr(BF_PLUGIN_VER); ?>"
         data-post-type="<?php echo esc_attr($post_type); ?>" data-initload="<?php echo esc_attr($blog_per_page_and_init_load); ?>">
@@ -206,9 +259,14 @@ function bf_blog_filter_shortcode($user_atts)
             </div>
         <?php }
 
-        // --- FIX: Include the correct file for JavaScript output ---
-        // An AJAX handler file should never be included directly.
+        // Capture and enqueue dynamic JS instead of printing it directly.
+        ob_start();
         include(BF_PLUGIN_DIR . "filtering/filters-ajax.php");
+        $dynamic_js = ob_get_clean();
+        $dynamic_js = preg_replace('/<\/?script[^>]*>/i', '', $dynamic_js);
+        $dynamic_js = preg_replace('/<!--(-+)?/i', '', $dynamic_js);
+        $dynamic_js = preg_replace('/(-+)?-->/i', '', $dynamic_js);
+        wp_add_inline_script('awl-bf-filterizr-js', $dynamic_js);
         ?>
     </div>
 <?php

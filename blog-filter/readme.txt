@@ -3,9 +3,9 @@ Contributors: awordpresslife, razipathhan, hanif0991, muhammadshahid, fkfaisalkh
 Donate link: https://paypal.me/awplife
 Tags: blog filter, post grid, blog layout, category filter, tag filter
 Requires at least: 5.0
-Tested up to: 6.9
+Tested up to: 7.0
 Requires PHP: 7.0
-Stable tag: 1.8.0
+Stable tag: 1.8.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -236,8 +236,18 @@ Other plugins from the same development team:
 
 == Changelog ==
 
+= 1.8.1 =
+* Date: 02-06-2026
+* **Security**: Hardened AJAX handlers with capabilities check (`current_user_can`) to restrict admin operations to administrators.
+* **Standards**: Switched dynamic inline CSS/JS output in shortcode to enqueued inline script/style wrappers.
+* **Modernization**: Hooked admin enqueues to `admin_enqueue_scripts` with page-specific suffix checks and modernized Clipboard copy API.
+* **Escaping**: Resolved custom CSS escaping entity corruption issue and escaped single post permalinks.
+* **Performance**: Replaced global lazy load disabling filter with targeted callback for plugin images only.
+* **Cleanup**: Eliminated PHP's `extract()` from shortcode and AJAX scripts, and cleaned placeholder options.
+
 = 1.8.0 =
 * Date: 16-05-2026
+* Perfecly work with New wordpress version 7.0
 * **Feature**: Ported advanced description fallback logic from Premium for improved builder and CPT support.
 * **Compatibility**: Added native support for Divi Builder layouts, preventing blank descriptions on Divi posts.
 * **Fix**: Automatically resolves and renders Divi Dynamic Content tokens (Base64 @ET-DC@ markers) to output clean, evaluated plain text instead of garbled database strings.

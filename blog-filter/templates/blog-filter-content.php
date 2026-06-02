@@ -214,7 +214,7 @@ if ($custom_query->have_posts()):
 						if ($blog_read_more == "yes") { ?>
 							<div class="bf_read_more_div_1">
 								<a id="blog_read_more" class="snip0047 snip0047-<?php echo esc_attr($unique_id); ?> bf_read_more_1"
-									href="<?php the_permalink(); ?>"><span><?php echo esc_html($blog_read_more_text); ?></span><i
+									href="<?php echo esc_url(get_permalink()); ?>"><span><?php echo esc_html($blog_read_more_text); ?></span><i
 										class="bf-icon-readmore"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></i></a>
 							</div>
 						<?php
