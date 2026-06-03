@@ -4,7 +4,7 @@ if (!defined('ABSPATH'))
 /**
 Plugin Name: Blog Filter
 Description: Blog Filter For WordPress Blog With Multiple Filters
-Version: 1.8.1
+Version: 1.8.2
 Author: A WP Life
 Author URI: http://awplife.com/
 Text Domain: blog-filter
@@ -27,7 +27,7 @@ if (!class_exists('Awl_Blog_Filter')) {
 		protected function _constants()
 		{
 			//Plugin Version
-			define('BF_PLUGIN_VER', '1.8.1');
+			define('BF_PLUGIN_VER', '1.8.2');
 
 			//Plugin Text Domain
 			define('BF_TEXT_DOMAIN', 'blog-filter');
@@ -231,18 +231,16 @@ if (!class_exists('Awl_Blog_Filter')) {
 		{
 			if (isset($_GET['page']) && $_GET['page'] === 'blog-filter-settings-page') {
 				wp_enqueue_style('awl-blog-filter-settings-css', BF_PLUGIN_URL . 'css/blog-filter-settings.css', array(), BF_PLUGIN_VER);
-				wp_enqueue_style('awl-styles-css', BF_PLUGIN_URL . 'css/styles.css', array(), BF_PLUGIN_VER);
 				wp_enqueue_style('wp-color-picker');
 
 				wp_enqueue_script('jquery');
 				wp_enqueue_script('wp-color-picker');
 				wp_enqueue_script('awl-blog-filter-isotope-js', BF_PLUGIN_URL . 'js/isotope.pkgd.js', array('jquery'), BF_PLUGIN_VER, false);
-				wp_enqueue_script('awl-bootstrap-js', BF_PLUGIN_URL . 'js/bootstrap.min.js', array('jquery'), BF_PLUGIN_VER, true);
 
 				wp_enqueue_style('blog-filter-tailwind', BF_PLUGIN_URL . 'css/styles.min.css', [], '1.0');
 				
 				// Localize nonce for admin ajax operations
-				wp_localize_script('awl-bootstrap-js', 'bfg_admin_ajax', array(
+				wp_localize_script('awl-blog-filter-isotope-js', 'bfg_admin_ajax', array(
 					'nonce' => wp_create_nonce('bfg_admin_nonce')
 				));
 			}
@@ -339,10 +337,6 @@ if (!class_exists('Awl_Blog_Filter')) {
 
 				'selected_terms' => '',
 
-				// Bootstrap
-				'disable_bootstrap_css' => 'no',
-				'disable_bootstrap_js' => 'no',
-
 				// Custom CSS
 				'custom_css' => '',
 			);
@@ -354,12 +348,9 @@ if (!class_exists('Awl_Blog_Filter')) {
 	{
 
 		//js
-		wp_register_script('awl-bf-bootstrap-js', plugin_dir_url(__FILE__) . 'js/bootstrap.min.js', array('jquery'), BF_PLUGIN_VER, true);
 		wp_register_script('awl-bf-filterizr-js', plugin_dir_url(__FILE__) . 'js/jquery.filterizr.js', array('jquery'), BF_PLUGIN_VER, false);
 
 		// css
-		wp_register_style('awl-bf-bootstrap-css', plugin_dir_url(__FILE__) . 'css/bootstrap.css', array(), BF_PLUGIN_VER);
-
 		wp_register_style('awl-bf-filter-output-css', plugin_dir_url(__FILE__) . 'css/blog-filter-output.css', array(), BF_PLUGIN_VER);
 		wp_register_style('awl-bf-hover-css', plugin_dir_url(__FILE__) . 'css/hover.css', array(), BF_PLUGIN_VER);
 

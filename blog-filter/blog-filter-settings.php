@@ -380,39 +380,6 @@ if (!defined('ABSPATH'))
 									</select>
 								</div>
 
-								<!-- Disable Bootstrap CSS -->
-								<div class="bfg-flex bfg-justify-between bfg-items-center">
-									<p class="bfg-mb-0 bfg-font-medium">
-										<?php esc_html_e('Disable Bootstrap CSS', 'blog-filter'); ?>
-									</p>
-									<label class="bfg-relative bfg-inline-flex bfg-items-center bfg-cursor-pointer">
-										<input type="checkbox" id="disable_bootstrap_css" name="disable_bootstrap_css" value="yes"
-											class="bfg-sr-only bfg-peer" onchange="toggleSwitch(this)">
-										<div
-											class="bfg-w-11 bfg-h-6 bfg-bg-gray-200 bfg-rounded-full bfg-peer-checked:bfg-bg-skyCustom bfg-transition">
-										</div>
-										<div
-											class="bfg-absolute bfg-top-0.5 bfg-left-0.5 bfg-w-5 bfg-h-5 bfg-bg-white bfg-rounded-full bfg-shadow bfg-transform bfg-transition-transform bfg-peer-checked:bfg-translate-x-5">
-										</div>
-									</label>
-								</div>
-
-								<!-- Disable Bootstrap JS -->
-								<div class="bfg-flex bfg-justify-between bfg-items-center">
-									<p class="bfg-mb-0 bfg-font-medium">
-										<?php esc_html_e('Disable Bootstrap JS', 'blog-filter'); ?>
-									</p>
-									<label class="bfg-relative bfg-inline-flex bfg-items-center bfg-cursor-pointer">
-										<input type="checkbox" id="disable_bootstrap_js" name="disable_bootstrap_js" value="yes"
-											class="bfg-sr-only bfg-peer" onchange="toggleSwitch(this)">
-										<div
-											class="bfg-w-11 bfg-h-6 bfg-bg-gray-200 bfg-rounded-full bfg-peer-checked:bfg-bg-skyCustom bfg-transition">
-										</div>
-										<div
-											class="bfg-absolute bfg-top-0.5 bfg-left-0.5 bfg-w-5 bfg-h-5 bfg-bg-white bfg-rounded-full bfg-shadow bfg-transform bfg-transition-transform bfg-peer-checked:bfg-translate-x-5">
-										</div>
-									</label>
-								</div>
 
 								<div class="bfg-border bfg-border-gray-300 bfg-rounded-lg bfg-p-4 bfg-mt-4">
 									<h3 class="bfg-text-lg bfg-font-semibold bfg-mb-4">
@@ -1472,9 +1439,9 @@ if (!defined('ABSPATH'))
 <div class="loader" style="display:none;"></div>
 
 <div id="modal-show-shortcode"
-	class="bfg-fixed bfg-inset-0 bfg-bg-black/50 bfg-flex bfg-items-center bfg-justify-center bfg-hidden">
+	class="bfg-fixed bfg-inset-0 bfg-bg-black/50 bfg-flex bfg-items-center bfg-justify-center bfg-z-[99999] bfg-hidden" style="z-index: 99999;">
 	<div id="inner-modal"
-		class="bfg-absolute bfg-top-[15%] bfg-left-[40%] bfg-transform bfg-translate-x-[50%] bfg-translate-y-[50%] bfg-bg-white bfg-rounded-lg bfg-shadow-lg bfg-w-[35rem] bfg-max-w-full ">
+		class="bfg-relative bfg-bg-white bfg-rounded-lg bfg-shadow-lg bfg-w-[35rem] bfg-max-w-[90%]">
 
 		<div class="bfg-flex bfg-justify-between bfg-items-center bfg-border-b bfg-p-6">
 			<h4 class="bfg-text-lg bfg-font-semibold"><?php esc_html_e('Blog Filter Shortcode', 'blog-filter'); ?></h4>
@@ -1916,14 +1883,6 @@ if (!defined('ABSPATH'))
 		}
 
 		shortcode = shortcode + ' custom_css="' + ' "';
-
-		if (jQuery("#disable_bootstrap_css").prop('checked') == true) {
-			shortcode = shortcode + ' disable_bootstrap_css="yes"';
-		}
-
-		if (jQuery("#disable_bootstrap_js").prop('checked') == true) {
-			shortcode = shortcode + ' disable_bootstrap_js="yes"';
-		}
 
 		shortcode = shortcode + ' ]';
 

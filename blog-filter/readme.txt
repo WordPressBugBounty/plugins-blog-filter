@@ -5,7 +5,7 @@ Tags: blog filter, post grid, blog layout, category filter, tag filter
 Requires at least: 5.0
 Tested up to: 7.0
 Requires PHP: 7.0
-Stable tag: 1.8.1
+Stable tag: 1.8.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -235,6 +235,13 @@ Other plugins from the same development team:
 * [Facebook Like Box](https://wordpress.org/plugins/facebook-likebox-widget-and-shortcode/ "Facebook Likebox Plugin") - Embed Facebook page like boxes on your site.
 
 == Changelog ==
+
+= 1.8.2 =
+* Date: 03-06-2026
+* **Performance**: Removed standard Bootstrap CSS and JS libraries to reduce payload size by ~200 KB and completely prevent styling conflicts with active themes.
+* **Grid Layout**: Added a lightweight responsive Flexbox grid scoped strictly to the plugin, preserving all responsive column configurations.
+* **UI**: Corrected shortcode overlay modal centering alignment and layer priority index. Removed redundant "Disable Bootstrap CSS/JS" option checkboxes from the settings panel.
+* **Cleanup**: Deleted all redundant, unused, and duplicate asset files from the plugin workspace.
 
 = 1.8.1 =
 * Date: 02-06-2026
