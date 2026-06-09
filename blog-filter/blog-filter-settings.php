@@ -17,7 +17,7 @@ if (!defined('ABSPATH'))
 				<!-- Right side: version + button in a single flex item -->
 				<div class="bfg-flex bfg-items-center bfg-space-x-4">
 					<span class="bfg-text-gray-500 bfg-text-sm">
-						<?php esc_html_e('Try Pro Version – 5.9.0', 'blog-filter'); ?>
+						<?php esc_html_e('Try Pro Version – 6.3.0', 'blog-filter'); ?>
 					</span>
 					<a
 						class="bfg-bg-[#6dbe73] bfg-hover:bg-green-600 bfg-text-white bfg-font-semibold
@@ -233,7 +233,7 @@ if (!defined('ABSPATH'))
 												fill="#f59e0b" stroke="#f59e0b" stroke-width="1.5" stroke-linecap="round"
 												stroke-linejoin="round"></path>
 										</g>
-									</svg> <?php esc_html_e('Upgrade to Pro', 'blog-filter'); ?>
+									</svg> <?php esc_html_e('Pro Features', 'blog-filter'); ?>
 								</button>
 							</li>
 						</ul>
@@ -1211,6 +1211,7 @@ if (!defined('ABSPATH'))
 										</tr>
 									</thead>
 									<tbody>
+										<!-- Layout & Core Settings -->
 										<tr>
 											<td><?php esc_html_e('Blog Templates', 'blog-filter'); ?></td>
 											<td><?php esc_html_e('1 Template', 'blog-filter'); ?></td>
@@ -1222,14 +1223,51 @@ if (!defined('ABSPATH'))
 											<td class="bf-pro-value"><span class="bf-yes">&#10003;</span></td>
 										</tr>
 										<tr>
+											<td><?php esc_html_e('Post Order By (Date, Title, Random)', 'blog-filter'); ?></td>
+											<td><span class="bf-no">&#10007;</span></td>
+											<td class="bf-pro-value"><span class="bf-yes">&#10003;</span></td>
+										</tr>
+										<tr>
+											<td><?php esc_html_e('Thumbnail Spacing Control', 'blog-filter'); ?></td>
+											<td><span class="bf-no">&#10007;</span></td>
+											<td class="bf-pro-value"><span class="bf-yes">&#10003;</span></td>
+										</tr>
+
+										<!-- Filters & Search Options -->
+										<tr>
 											<td><?php esc_html_e('Post Filters (Categories / Tags)', 'blog-filter'); ?></td>
 											<td><span class="bf-yes">&#10003;</span></td>
+											<td class="bf-pro-value"><span class="bf-yes">&#10003;</span></td>
+										</tr>
+										<tr>
+											<td><?php esc_html_e('Subcategory Filters', 'blog-filter'); ?></td>
+											<td><span class="bf-no">&#10007;</span></td>
 											<td class="bf-pro-value"><span class="bf-yes">&#10003;</span></td>
 										</tr>
 										<tr>
 											<td><?php esc_html_e('Filter Selection Limit', 'blog-filter'); ?></td>
 											<td><?php esc_html_e('Up to 4 Filters', 'blog-filter'); ?></td>
 											<td class="bf-pro-value"><?php esc_html_e('Unlimited Filters', 'blog-filter'); ?></td>
+										</tr>
+										<tr>
+											<td><?php esc_html_e('Default Filter Selection', 'blog-filter'); ?></td>
+											<td><span class="bf-no">&#10007;</span></td>
+											<td class="bf-pro-value"><span class="bf-yes">&#10003;</span></td>
+										</tr>
+										<tr>
+											<td><?php esc_html_e('Filter Button Ordering', 'blog-filter'); ?></td>
+											<td><span class="bf-no">&#10007;</span></td>
+											<td class="bf-pro-value"><span class="bf-yes">&#10003;</span></td>
+										</tr>
+										<tr>
+											<td><?php esc_html_e('Filter Post Count', 'blog-filter'); ?></td>
+											<td><span class="bf-yes">&#10003;</span></td>
+											<td class="bf-pro-value"><span class="bf-yes">&#10003;</span></td>
+										</tr>
+										<tr>
+											<td><?php esc_html_e('Dropdown Filter Style', 'blog-filter'); ?></td>
+											<td><span class="bf-no">&#10007;</span></td>
+											<td class="bf-pro-value"><span class="bf-yes">&#10003;</span></td>
 										</tr>
 										<tr>
 											<td><?php esc_html_e('Multi-Filter (Select Multiple)', 'blog-filter'); ?></td>
@@ -1242,7 +1280,12 @@ if (!defined('ABSPATH'))
 											<td class="bf-pro-value"><span class="bf-yes">&#10003;</span></td>
 										</tr>
 										<tr>
-											<td><?php esc_html_e('Dropdown Filter Style', 'blog-filter'); ?></td>
+											<td><?php esc_html_e('Exclude Terms (Categories/Tags)', 'blog-filter'); ?></td>
+											<td><span class="bf-no">&#10007;</span></td>
+											<td class="bf-pro-value"><span class="bf-yes">&#10003;</span></td>
+										</tr>
+										<tr>
+											<td><?php esc_html_e('URL-Based Filtering', 'blog-filter'); ?></td>
 											<td><span class="bf-no">&#10007;</span></td>
 											<td class="bf-pro-value"><span class="bf-yes">&#10003;</span></td>
 										</tr>
@@ -1256,8 +1299,15 @@ if (!defined('ABSPATH'))
 											<td><span class="bf-no">&#10007;</span></td>
 											<td class="bf-pro-value"><span class="bf-yes">&#10003;</span></td>
 										</tr>
+
+										<!-- Loading & Navigation -->
 										<tr>
-											<td><?php esc_html_e('Scroll Load (Infinite Scroll)', 'blog-filter'); ?></td>
+											<td><?php esc_html_e('Pagination', 'blog-filter'); ?></td>
+											<td><span class="bf-yes">&#10003;</span></td>
+											<td class="bf-pro-value"><span class="bf-yes">&#10003;</span></td>
+										</tr>
+										<tr>
+											<td><?php esc_html_e('Pagination Color Customization', 'blog-filter'); ?></td>
 											<td><span class="bf-no">&#10007;</span></td>
 											<td class="bf-pro-value"><span class="bf-yes">&#10003;</span></td>
 										</tr>
@@ -1267,12 +1317,29 @@ if (!defined('ABSPATH'))
 											<td class="bf-pro-value"><span class="bf-yes">&#10003;</span></td>
 										</tr>
 										<tr>
-											<td><?php esc_html_e('Pagination', 'blog-filter'); ?></td>
-											<td><span class="bf-yes">&#10003;</span></td>
+											<td><?php esc_html_e('Scroll Load (Infinite Scroll)', 'blog-filter'); ?></td>
+											<td><span class="bf-no">&#10007;</span></td>
+											<td class="bf-pro-value"><span class="bf-yes">&#10003;</span></td>
+										</tr>
+
+										<!-- Interactive Media & Hover Effects -->
+										<tr>
+											<td><?php esc_html_e('Image Hover Effects', 'blog-filter'); ?></td>
+											<td><?php esc_html_e('1 Effect', 'blog-filter'); ?></td>
+											<td class="bf-pro-value"><?php esc_html_e('5 Effects', 'blog-filter'); ?></td>
+										</tr>
+										<tr>
+											<td><?php esc_html_e('Thumbnail Hover Effect', 'blog-filter'); ?></td>
+											<td><span class="bf-no">&#10007;</span></td>
 											<td class="bf-pro-value"><span class="bf-yes">&#10003;</span></td>
 										</tr>
 										<tr>
-											<td><?php esc_html_e('Pagination Color Customization', 'blog-filter'); ?></td>
+											<td><?php esc_html_e('Image Lightbox', 'blog-filter'); ?></td>
+											<td><span class="bf-no">&#10007;</span></td>
+											<td class="bf-pro-value"><span class="bf-yes">&#10003;</span></td>
+										</tr>
+										<tr>
+											<td><?php esc_html_e('Post Link on Featured Image', 'blog-filter'); ?></td>
 											<td><span class="bf-no">&#10007;</span></td>
 											<td class="bf-pro-value"><span class="bf-yes">&#10003;</span></td>
 										</tr>
@@ -1292,48 +1359,15 @@ if (!defined('ABSPATH'))
 											<td class="bf-pro-value"><span class="bf-yes">&#10003;</span></td>
 										</tr>
 										<tr>
-											<td><?php esc_html_e('Thumbnail Hover Effect', 'blog-filter'); ?></td>
-											<td><span class="bf-no">&#10007;</span></td>
-											<td class="bf-pro-value"><span class="bf-yes">&#10003;</span></td>
-										</tr>
-										<tr>
-											<td><?php esc_html_e('Thumbnail Spacing Control', 'blog-filter'); ?></td>
-											<td><span class="bf-no">&#10007;</span></td>
-											<td class="bf-pro-value"><span class="bf-yes">&#10003;</span></td>
-										</tr>
-										<tr>
 											<td><?php esc_html_e('Comments Count Display', 'blog-filter'); ?></td>
 											<td><span class="bf-no">&#10007;</span></td>
 											<td class="bf-pro-value"><span class="bf-yes">&#10003;</span></td>
 										</tr>
+
+										<!-- Advanced & General -->
 										<tr>
-											<td><?php esc_html_e('Post Order By (Date, Title, Random)', 'blog-filter'); ?></td>
-											<td><span class="bf-no">&#10007;</span></td>
-											<td class="bf-pro-value"><span class="bf-yes">&#10003;</span></td>
-										</tr>
-										<tr>
-											<td><?php esc_html_e('Filter Button Ordering', 'blog-filter'); ?></td>
-											<td><span class="bf-no">&#10007;</span></td>
-											<td class="bf-pro-value"><span class="bf-yes">&#10003;</span></td>
-										</tr>
-										<tr>
-											<td><?php esc_html_e('Exclude Terms (Categories/Tags)', 'blog-filter'); ?></td>
-											<td><span class="bf-no">&#10007;</span></td>
-											<td class="bf-pro-value"><span class="bf-yes">&#10003;</span></td>
-										</tr>
-										<tr>
-											<td><?php esc_html_e('Filter Post Count', 'blog-filter'); ?></td>
+											<td><?php esc_html_e('RTL Support', 'blog-filter'); ?></td>
 											<td><span class="bf-yes">&#10003;</span></td>
-											<td class="bf-pro-value"><span class="bf-yes">&#10003;</span></td>
-										</tr>
-										<tr>
-											<td><?php esc_html_e('Image Hover Effects', 'blog-filter'); ?></td>
-											<td><?php esc_html_e('1 Effect', 'blog-filter'); ?></td>
-											<td class="bf-pro-value"><?php esc_html_e('5 Effects', 'blog-filter'); ?></td>
-										</tr>
-										<tr>
-											<td><?php esc_html_e('Image Lightbox', 'blog-filter'); ?></td>
-											<td><span class="bf-no">&#10007;</span></td>
 											<td class="bf-pro-value"><span class="bf-yes">&#10003;</span></td>
 										</tr>
 										<tr>
@@ -1341,16 +1375,7 @@ if (!defined('ABSPATH'))
 											<td><span class="bf-yes">&#10003;</span></td>
 											<td class="bf-pro-value"><span class="bf-yes">&#10003;</span></td>
 										</tr>
-										<tr>
-											<td><?php esc_html_e('RTL Support', 'blog-filter'); ?></td>
-											<td><span class="bf-yes">&#10003;</span></td>
-											<td class="bf-pro-value"><span class="bf-yes">&#10003;</span></td>
-										</tr>
-										<tr>
-											<td><?php esc_html_e('Disable Bootstrap CSS/JS', 'blog-filter'); ?></td>
-											<td><span class="bf-yes">&#10003;</span></td>
-											<td class="bf-pro-value"><span class="bf-yes">&#10003;</span></td>
-										</tr>
+										
 									</tbody>
 								</table>
 							</div>
@@ -1423,7 +1448,7 @@ if (!defined('ABSPATH'))
 						</div>
 
 						<div>
-							<p class="bfg-text-gray-400 bfg-text-sm bfg-mb-1"><?php esc_html_e('Upgrade To Pro Version 5.9.0', 'blog-filter'); ?></p>
+							<p class="bfg-text-gray-400 bfg-text-sm bfg-mb-1"><?php esc_html_e('Upgrade To Pro Version 6.3.0', 'blog-filter'); ?></p>
 							<a href="https://awplife.com/product/blog-filter-wordpress-plugin/" target="_blank"
 								style="color: white; text-decoration: none;">
 								<?php esc_html_e('Buy Pro', 'blog-filter'); ?> <span aria-hidden="true">→</span>

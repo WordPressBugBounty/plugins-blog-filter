@@ -4,7 +4,7 @@ if (!defined('ABSPATH'))
 /**
 Plugin Name: Blog Filter
 Description: Blog Filter For WordPress Blog With Multiple Filters
-Version: 1.8.2
+Version: 1.8.3
 Author: A WP Life
 Author URI: http://awplife.com/
 Text Domain: blog-filter
@@ -27,7 +27,7 @@ if (!class_exists('Awl_Blog_Filter')) {
 		protected function _constants()
 		{
 			//Plugin Version
-			define('BF_PLUGIN_VER', '1.8.2');
+			define('BF_PLUGIN_VER', '1.8.3');
 
 			//Plugin Text Domain
 			define('BF_TEXT_DOMAIN', 'blog-filter');

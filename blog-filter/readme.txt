@@ -5,7 +5,7 @@ Tags: blog filter, post grid, blog layout, category filter, tag filter
 Requires at least: 5.0
 Tested up to: 7.0
 Requires PHP: 7.0
-Stable tag: 1.8.2
+Stable tag: 1.8.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -235,6 +235,11 @@ Other plugins from the same development team:
 * [Facebook Like Box](https://wordpress.org/plugins/facebook-likebox-widget-and-shortcode/ "Facebook Likebox Plugin") - Embed Facebook page like boxes on your site.
 
 == Changelog ==
+
+= 1.8.3 =
+* Date: 09-06-2026
+* **UI**: Added new premium/pro features (Subcategory Filters, Default Filter Selection, URL-Based Filtering, and Post Link on Featured Image) to the Free vs Pro comparison table on the settings screen.
+* **UI**: Rearranged and categorized comparison table features by usability to improve readability (Layout & Core Settings, Filters & Search, Loading & Navigation, Interactive Media & Hover Effects, and Advanced).
 
 = 1.8.2 =
 * Date: 03-06-2026
