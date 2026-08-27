@@ -60,15 +60,10 @@ function bf_blog_filter_shortcode($user_atts)
 
 
 
-    if (empty($atts['blog_filtering']) || $atts['blog_filtering'] == 'blog_category') {
-        if (!empty($user_atts['blog_filtering'])) {
-            $atts['blog_filtering'] = 'category';
-        }
-    }
-    if (empty($atts['blog_filtering']) || $atts['blog_filtering'] == 'blog_tag') {
-        if (!empty($user_atts['blog_filtering'])) {
-            $atts['blog_filtering'] = 'post_tag';
-        }
+    if (empty($atts['blog_filtering']) || $atts['blog_filtering'] === 'blog_category') {
+        $atts['blog_filtering'] = 'category';
+    } elseif ($atts['blog_filtering'] === 'blog_tag') {
+        $atts['blog_filtering'] = 'post_tag';
     }
 
     // --- END: BACKWARD COMPATIBILITY LAYER ---
@@ -123,42 +118,38 @@ function bf_blog_filter_shortcode($user_atts)
 
     $custom_css = $atts['custom_css'];
 
-    $unique_id = wp_rand(1, 1000);
+    $unique_id = wp_rand(1000, 999999);
 
     //color dark code
-    list($r, $g, $b) = sscanf($blog_desc_box_color, "#%02x%02x%02x");
-    $r = $r - 24;
-    $g = $g - 22;
-    $b = $b - 19;
-
-    // Capture and enqueue dynamic CSS instead of printing it directly.
-    ob_start();
-    require('blog-filter-output-css.php');
-    $dynamic_css = ob_get_clean();
-    $dynamic_css = preg_replace('/<\/?style[^>]*>/i', '', $dynamic_css);
-    wp_add_inline_style('awl-bf-filter-output-css', $dynamic_css);
+    $r = 0; $g = 0; $b = 0;
+    if (!empty($blog_desc_box_color)) {
+        $sscanf_res = sscanf($blog_desc_box_color, "#%02x%02x%02x");
+        if ($sscanf_res && count($sscanf_res) === 3) {
+            list($r, $g, $b) = $sscanf_res;
+        }
+    }
+    $r = max(0, (int)$r - 24);
+    $g = max(0, (int)$g - 22);
+    $b = max(0, (int)$b - 19);
 
     // Start output buffering to capture all HTML.
     ob_start();
+
+    // Output dynamic scoped CSS for this gallery instance
+    ob_start();
+    require('blog-filter-output-css.php');
+    $dynamic_css = ob_get_clean();
+    echo $dynamic_css;
 ?>
     <div id="BlogFilterMain-<?php echo esc_attr($unique_id); ?>" class="blog_filter_main" version="<?php echo esc_attr(BF_PLUGIN_VER); ?>"
         data-post-type="<?php echo esc_attr($post_type); ?>" data-initload="<?php echo esc_attr($blog_per_page_and_init_load); ?>">
         <?php
         // 3. --- Prepare and Run The Main Query ---
-        $paged = (get_query_var('paged')) ? get_query_var('paged') : ((get_query_var('page')) ? get_query_var('page') : 1);
-        $posts_per_page = ($blog_pagination == 'no' && $blog_load_more == 'no') ? -1 : (int) $blog_per_page_and_init_load;
-
-        // If pagination is OFF and someone is on page >1, force a 404:
-        if ($blog_pagination === 'no' && get_query_var('paged') > 1) {
-            global $wp_query;
-            // Tell WP this is a 404
-            $wp_query->set_404();
-            status_header(404);
-            nocache_headers();
-            // Load your theme’s 404 template and bail out
-            include(get_query_template('404'));
-            exit;
+        $paged = 1;
+        if ($blog_pagination === 'yes') {
+            $paged = (get_query_var('paged')) ? get_query_var('paged') : ((get_query_var('page')) ? get_query_var('page') : 1);
         }
+        $posts_per_page = ($blog_pagination == 'no' && $blog_load_more == 'no') ? -1 : (int) $blog_per_page_and_init_load;
 
         $custom_query_args = array(
             'post_type'      => $post_type,
@@ -211,7 +202,10 @@ function bf_blog_filter_shortcode($user_atts)
             include(BF_PLUGIN_DIR . "filtering/filters.php");
         }
         ?>
-        <div class="filtr-container filters-div bf_gallery_1-<?php echo esc_attr($unique_id); ?>" style="width:100%">
+        <!-- Loader below filters -->
+        <div class="blog_loader blog_loader-<?php echo esc_attr($unique_id); ?>"></div>
+
+        <div class="filtr-container filters-div bf_gallery_1-<?php echo esc_attr($unique_id); ?>" style="width:100%; opacity:0; transition: opacity 0.4s ease-in-out;">
             <?php
             if ($custom_query->have_posts()) {
                 include('templates/blog-filter-content.php');
@@ -219,7 +213,6 @@ function bf_blog_filter_shortcode($user_atts)
                 echo '<p class="bfg-no-posts-found">' . esc_html__('No posts found.', 'blog-filter') . '</p>';
             }
             ?>
-            <div class="blog_loader blog_loader-<?php echo esc_attr($unique_id); ?>"></div>
         </div>
 
         <?php // Load More, Scroll, and Pagination Controls
@@ -250,14 +243,11 @@ function bf_blog_filter_shortcode($user_atts)
             </div>
         <?php }
 
-        // Capture and enqueue dynamic JS instead of printing it directly.
+        // Dynamic JS initialization
         ob_start();
         include(BF_PLUGIN_DIR . "filtering/filters-ajax.php");
         $dynamic_js = ob_get_clean();
-        $dynamic_js = preg_replace('/<\/?script[^>]*>/i', '', $dynamic_js);
-        $dynamic_js = preg_replace('/<!--(-+)?/i', '', $dynamic_js);
-        $dynamic_js = preg_replace('/(-+)?-->/i', '', $dynamic_js);
-        wp_add_inline_script('awl-bf-filterizr-js', $dynamic_js);
+        echo $dynamic_js;
         ?>
     </div>
 <?php

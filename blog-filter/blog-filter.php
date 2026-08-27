@@ -4,7 +4,7 @@ if (!defined('ABSPATH'))
 /**
 Plugin Name: Blog Filter
 Description: Blog Filter For WordPress Blog With Multiple Filters
-Version: 1.8.3
+Version: 1.8.5
 Author: A WP Life
 Author URI: http://awplife.com/
 Text Domain: blog-filter
@@ -27,7 +27,7 @@ if (!class_exists('Awl_Blog_Filter')) {
 		protected function _constants()
 		{
 			//Plugin Version
-			define('BF_PLUGIN_VER', '1.8.3');
+			define('BF_PLUGIN_VER', '1.8.5');
 
 			//Plugin Text Domain
 			define('BF_TEXT_DOMAIN', 'blog-filter');
@@ -60,17 +60,17 @@ if (!class_exists('Awl_Blog_Filter')) {
 
 			add_action('admin_enqueue_scripts', array($this, 'enqueue_admin_scripts'));
 
-			add_action('wp_enqueue_scripts', array(&$this, 'enqueue_scripts_in_header'));
+			add_action('wp_enqueue_scripts', array($this, 'enqueue_scripts_in_header'));
 
-			add_action('wp_ajax_load_more', array(&$this, 'load_more_posts'));
+			add_action('wp_ajax_load_more', array($this, 'load_more_posts'));
 
-			add_action('wp_ajax_nopriv_load_more', array(&$this, 'load_more_posts'));
+			add_action('wp_ajax_nopriv_load_more', array($this, 'load_more_posts'));
 
 			add_filter('wp_img_tag_add_loading_attr', array($this, 'disable_lazy_load_for_plugin_images'), 10, 3);
 
-			add_action('wp_ajax_get_taxonomies_for_post_type', array(&$this, 'bfg_get_taxonomies_callback'));
+			add_action('wp_ajax_get_taxonomies_for_post_type', array($this, 'bfg_get_taxonomies_callback'));
 
-			add_action('wp_ajax_get_terms_for_taxonomy', array(&$this, 'bfg_get_terms_for_taxonomy_callback'));
+			add_action('wp_ajax_get_terms_for_taxonomy', array($this, 'bfg_get_terms_for_taxonomy_callback'));
 		}// end of hook function
 
 		/**
@@ -210,6 +210,7 @@ if (!class_exists('Awl_Blog_Filter')) {
 		public function enqueue_scripts_in_header()
 		{
 			wp_enqueue_script('jquery');
+			wp_enqueue_script('imagesloaded');
 		}
 
 		public function load_textdomain()
@@ -277,37 +278,37 @@ if (!class_exists('Awl_Blog_Filter')) {
 				'blog_col_phones' => 'col-xs-12',
 
 				// Image Settings
-				'blog_image' => 'no',
+				'blog_image' => 'yes',
 				'blog_image_hover_effect' => 'none',
 				'blog_image_quality' => 'large',
 
 				// Title Settings
-				'blog_title' => 'no',
+				'blog_title' => 'yes',
 				'blog_title_font_size' => 25,
 				'blog_title_color' => '#000',
 				'blog_title_below_image' => 'no',
 
 				// Description Settings
-				'blog_desc' => 'no',
+				'blog_desc' => 'yes',
 				'blog_desc_characters' => '100',
 				'blog_desc_font_size' => 12,
 				'blog_desc_color' => '#606060',
 				'blog_desc_box_color' => '#EDEEF0',
-				'three_dots' => 'no',
+				'three_dots' => 'yes',
 
 				// Links and Display
 				'link_on_date' => 'no',
 
 				// Read More
-				'blog_read_more' => 'no',
+				'blog_read_more' => 'yes',
 				'blog_read_more_text' => __('Read More', 'blog-filter'),
 
 				// Metadata Display
-				'blog_date' => 'no',
+				'blog_date' => 'yes',
 				'blog_date_below_image' => 'no',
-				'blog_author' => 'no',
+				'blog_author' => 'yes',
 				'blog_author_below_image' => 'no',
-				'blog_categories' => 'no',
+				'blog_categories' => 'yes',
 				'blog_tags' => 'no',
 
 				// Pagination & Load
@@ -319,9 +320,9 @@ if (!class_exists('Awl_Blog_Filter')) {
 				'no_more_text' => __('No More Posts', 'blog-filter'),
 
 				// Filters
-				'blog_filters' => 'no',
+				'blog_filters' => 'yes',
 				'filter_post_count' => 'no',
-				'blog_filter_all' => 'no',
+				'blog_filter_all' => 'yes',
 				'blog_all_text' => __('All', 'blog-filter'),
 				'blog_first_filter_selected' => 'no',
 
@@ -333,7 +334,7 @@ if (!class_exists('Awl_Blog_Filter')) {
 				'blog_buttons_color' => '#58BBEE',
 
 				// Taxonomy Filtering
-				'blog_filtering' => 'blog_category',
+				'blog_filtering' => 'category',
 
 				'selected_terms' => '',
 
@@ -348,7 +349,7 @@ if (!class_exists('Awl_Blog_Filter')) {
 	{
 
 		//js
-		wp_register_script('awl-bf-filterizr-js', plugin_dir_url(__FILE__) . 'js/jquery.filterizr.js', array('jquery'), BF_PLUGIN_VER, false);
+		wp_register_script('awl-bf-filterizr-js', plugin_dir_url(__FILE__) . 'js/jquery.filterizr.js', array('jquery', 'imagesloaded'), BF_PLUGIN_VER, true);
 
 		// css
 		wp_register_style('awl-bf-filter-output-css', plugin_dir_url(__FILE__) . 'css/blog-filter-output.css', array(), BF_PLUGIN_VER);

@@ -22,7 +22,11 @@ if ($custom_query->have_posts()):
 
 		// Get the terms for the current post using the dynamic taxonomy name from the shortcode.
 		// The $blog_filtering variable should hold 'category', 'post_tag', or your custom taxonomy name.
-		$terms = get_the_terms($post->ID, $blog_filtering);
+		$active_taxonomy = (!empty($blog_filtering) && $blog_filtering !== 'blog_category') ? $blog_filtering : 'category';
+		if ($active_taxonomy === 'blog_tag') {
+			$active_taxonomy = 'post_tag';
+		}
+		$terms = get_the_terms($post->ID, $active_taxonomy);
 
 		// Check if any terms were found and it's not an error.
 		if ($terms && !is_wp_error($terms)) {
@@ -75,7 +79,7 @@ if ($custom_query->have_posts()):
 		$bf_excerpt = preg_replace('/@ET-DC@.*?@/', '', $bf_excerpt);
 		$bf_excerpt = wp_strip_all_tags(strip_shortcodes($bf_excerpt));
 ?>
-		<div style="opacity:0;" id="bf_<?php echo esc_attr(get_the_ID()); ?>" data-category="<?php echo esc_attr($keys); ?>"
+		<div id="bf_<?php echo esc_attr(get_the_ID()); ?>" data-category="<?php echo esc_attr($keys); ?>"
 			data-sort="<?php echo esc_attr($filter_value_name); ?>"
 			class="<?php echo esc_attr(str_replace(",", "", $keys)); ?> pfg_theme_1 filtr-item filtr_item_1 single_one <?php echo esc_attr($blog_col_large_desktops); ?> <?php echo esc_attr($blog_col_desktops); ?> <?php echo esc_attr($blog_col_tablets); ?> <?php echo esc_attr($blog_col_phones); ?>">
 			<?php

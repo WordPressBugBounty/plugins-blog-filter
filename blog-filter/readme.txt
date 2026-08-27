@@ -3,9 +3,9 @@ Contributors: awordpresslife, razipathhan, hanif0991, muhammadshahid, fkfaisalkh
 Donate link: https://paypal.me/awplife
 Tags: blog filter, post grid, blog layout, category filter, tag filter
 Requires at least: 5.0
-Tested up to: 7.0
+Tested up to: 7.1
 Requires PHP: 7.0
-Stable tag: 1.8.3
+Stable tag: 1.8.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -174,10 +174,10 @@ The premium version includes Swipebox lightbox integration, which displays featu
 
 == Screenshots ==
 
-1. Blog Filter Gallery with category filters
-2. Blog Filter Gallery without featured images
-3. Blog Filter Layout with post filtering
-4. Blog Filter Gallery displaying posts without images
+1. Blog with Category Filters
+2. Blog without Featured Images
+3. Blog Layout Different color
+4. Blog without Featured Images Different color
 5. Settings page interface
 
 == Installation ==
@@ -235,6 +235,23 @@ Other plugins from the same development team:
 * [Facebook Like Box](https://wordpress.org/plugins/facebook-likebox-widget-and-shortcode/ "Facebook Likebox Plugin") - Embed Facebook page like boxes on your site.
 
 == Changelog ==
+
+= 1.8.5 =
+* Date: 27-08-2026
+* **UX / Loading State**: Repositioned loading spinner to display centered directly below the filter buttons.
+* **Animation & Reveal**: Posts remain cleanly hidden while images and layouts calculate, followed by a smooth fade-in reveal once Filterizr initializes.
+* **CSS Optimization**: Improved `.blog_loader` CSS centering with responsive margin auto and smooth spin transitions.
+
+= 1.8.4 =
+* Date: 27-08-2026
+* **WordPress 7.1 & PHP 8.x Compatibility**: Full compatibility overhaul for modern WordPress versions, PHP 8.0 - 8.4+, and Block Themes (Full Site Editing).
+* **Fix**: Resolved JavaScript `Uncaught SyntaxError` by implementing safe JSON encoding (`wp_json_encode` with strict hex flags) for all inline and localized script variables.
+* **Fix**: Resolved post visibility and opacity issues by eliminating hardcoded inline `opacity:0` styling on post cards.
+* **Fix**: Fixed frontend CSS and JS asset rendering in block themes and dynamic template renderers by registering dependencies properly and embedding scoped dynamic stylesheets.
+* **Fix**: Resolved fatal 404 template crash on modern block themes by replacing legacy template inclusions with safe query pagination sanitization.
+* **Fix**: Corrected default taxonomy from `blog_category` to standard core `category` and updated visual defaults to ensure instant post display with zero configuration.
+* **Fix**: Removed deprecated PHP pass-by-reference `&$this` call signatures from hook callbacks and modernized string trimming.
+* **Fix**: Resolved undefined variable reference in admin settings shortcode generator.
 
 = 1.8.3 =
 * Date: 09-06-2026

@@ -6,12 +6,13 @@ global $wp_query;
 // --- START: NEW DYNAMIC LOGIC ---
 
 // 1. Set the taxonomy name directly from the shortcode attribute ($blog_filtering).
-$taxonomy_name = $blog_filtering;
+$taxonomy_name = (!empty($blog_filtering) && $blog_filtering !== 'blog_category') ? $blog_filtering : 'category';
 
 // 2. Prepare arguments to get only the terms selected in the shortcode.
 // This now uses the generic 'selected_terms' attribute.
 
-$selected_terms_array = !empty($selected_terms) ? explode(',', $selected_terms, 4) : array();
+$selected_terms_raw = !empty($selected_terms) ? array_map('intval', array_map('trim', explode(',', $selected_terms))) : array();
+$selected_terms_array = !empty($selected_terms_raw) ? array_slice($selected_terms_raw, 0, 4) : array();
 
 $term_args = array(
     'taxonomy'   => $taxonomy_name,

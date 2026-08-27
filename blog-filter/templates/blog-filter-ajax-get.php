@@ -36,15 +36,10 @@ if (empty($atts['selected_terms'])) {
     }
 }
 
-if (empty($atts['blog_filtering']) || $atts['blog_filtering'] == 'blog_category') {
-    if (!empty($user_atts['blog_filtering'])) {
-        $atts['blog_filtering'] = 'category';
-    }
-}
-if (empty($atts['blog_filtering']) || $atts['blog_filtering'] == 'blog_tag') {
-    if (!empty($user_atts['blog_filtering'])) {
-        $atts['blog_filtering'] = 'post_tag';
-    }
+if (empty($atts['blog_filtering']) || $atts['blog_filtering'] === 'blog_category') {
+    $atts['blog_filtering'] = 'category';
+} elseif ($atts['blog_filtering'] === 'blog_tag') {
+    $atts['blog_filtering'] = 'post_tag';
 }
 // --- END: BACKWARD COMPATIBILITY LAYER ---
 
@@ -116,7 +111,7 @@ if (isset($_POST['targetFilter'])) {
     }
 }
 
-$unique_id = isset($_POST['unique_id']) ? intval(wp_unslash($_POST['unique_id'])) : wp_rand(1, 1000);
+$unique_id = isset($_POST['unique_id']) ? sanitize_text_field(wp_unslash($_POST['unique_id'])) : wp_rand(1000, 999999);
 
 //--------------------------------------------------------------------------
 // 2. Build the Custom Query Arguments
@@ -151,11 +146,14 @@ if ($targetFilter !== 'all' && !empty($blog_filtering)) {
     );
 } else if ($targetFilter === 'all' && !empty($blog_filtering) && !empty($selected_terms)) {
     // If filter is "All", fall back to the original terms selected in the shortcode.
-    $tax_query[] = array(
-        'taxonomy' => $blog_filtering,
-        'field'    => 'term_id',
-        'terms'    => explode(',', $selected_terms),
-    );
+    $selected_terms_clean = array_map('intval', array_map('trim', explode(',', $selected_terms)));
+    if (!empty($selected_terms_clean)) {
+        $tax_query[] = array(
+            'taxonomy' => $blog_filtering,
+            'field'    => 'term_id',
+            'terms'    => $selected_terms_clean,
+        );
+    }
 }
 
 // If we have built a tax_query, add it to the main query arguments.

@@ -1824,16 +1824,15 @@ if (!defined('ABSPATH'))
 			shortcode = shortcode + '';
 		}
 
-		var blog_pagination_LoadMore_color = jQuery("#blog_pagination_color").val();
-		if (blog_pagination_LoadMore_color) {
-			//console.log(blog_pagination);
-			shortcode = shortcode + ' blog_pagination_LoadMore_color="' + blog_pagination_LoadMore_color + '"';
+		var blog_pagination_loadmore_color = jQuery("#blog_pagination_color").val();
+		if (blog_pagination_loadmore_color) {
+			shortcode = shortcode + ' blog_pagination_loadmore_color="' + blog_pagination_loadmore_color + '"';
 		} else {
 			shortcode = shortcode + '';
 		}
 
 		var blog_per_page_and_init_load = jQuery("#blog_per_page").val();
-		if (blog_per_page) {
+		if (blog_per_page_and_init_load) {
 			shortcode = shortcode + ' blog_per_page_and_init_load="' + blog_per_page_and_init_load + '"';
 		}
 
