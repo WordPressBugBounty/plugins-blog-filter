@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 if (! defined('ABSPATH')) exit; // Exit if accessed directly
 ?>
 <style>
@@ -116,8 +116,38 @@ if (! defined('ABSPATH')) exit; // Exit if accessed directly
 		background-color: <?php echo esc_attr($blog_buttons_color); ?> !important;
 	}
 
+		.filtr-controls-<?php echo esc_attr($unique_id); ?>.searchTerm,
+	.filtr-controls-<?php echo esc_attr($unique_id); ?>.searchTerm-right {
+		border: 2px solid <?php echo esc_attr($blog_buttons_color); ?> !important;
+		color: <?php echo esc_attr($blog_buttons_color); ?> !important;
+	}
+
+	.filtr-controls-<?php echo esc_attr($unique_id); ?>.searchTerm:focus,
+	.filtr-controls-<?php echo esc_attr($unique_id); ?>.searchTerm-right:focus {
+		border-color: <?php echo esc_attr($blog_buttons_color); ?> !important;
+		color: <?php echo esc_attr($blog_buttons_color); ?> !important;
+	}
+
+	.filtr-controls-<?php echo esc_attr($unique_id); ?>.searchTerm::placeholder,
+	.filtr-controls-<?php echo esc_attr($unique_id); ?>.searchTerm-right::placeholder {
+		color: <?php echo esc_attr($blog_buttons_color); ?> !important;
+		opacity: 0.65;
+	}
+
 	.blog_loader-<?php echo esc_attr($unique_id); ?> {
+		margin: 40px auto !important;
+		left: auto !important;
+		top: auto !important;
+		position: relative;
+		border: 5px solid #f3f3f3;
+		border-radius: 50%;
 		border-top: 5px solid <?php echo esc_attr($blog_buttons_color); ?> !important;
+		width: 50px;
+		height: 50px;
+		-webkit-animation: spin 1s linear infinite;
+		animation: spin 1s linear infinite;
+		display: block;
+		box-sizing: border-box;
 	}
 
 	.filtr-container {
@@ -278,8 +308,32 @@ if (! defined('ABSPATH')) exit; // Exit if accessed directly
 		margin: 10px 1px;
 	}
 
-	.blog_metaInfo>span {
+		.blog_metaInfo>span {
 		color: <?php echo esc_attr($blog_desc_color); ?>;
+		display: inline-flex;
+		align-items: center;
+		vertical-align: middle;
+		line-height: 1.4;
+	}
+
+	.blog_metaInfo>span>i {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		vertical-align: middle;
+		line-height: 1;
+		margin-right: 4px;
+	}
+
+	.blog_metaInfo>span>i>.blog_cat_icon,
+	.blog_metaInfo>span>i>.blog_tag_icon {
+		height: 16px !important;
+		width: 16px !important;
+		opacity: 0.7;
+		vertical-align: middle;
+		display: inline-block;
+		object-fit: contain;
+		margin: 0 !important;
 	}
 
 

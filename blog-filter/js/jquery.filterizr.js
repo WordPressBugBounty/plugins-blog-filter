@@ -1,4 +1,4 @@
-/**
+﻿/**
 * Filterizr is a jQuery plugin that sorts, shuffles and applies stunning filters over
 * responsive galleries using CSS3 transitions and custom CSS effects.
 *
@@ -348,7 +348,9 @@
             }, {
                 key: "contentsMatchSearch",
                 value: function(t) {
-                    return Boolean(this.getContentsLowercase().includes(t))
+                    var searchTerm = (t || "").toString().toLowerCase();
+                    var content = this.getContentsLowercase();
+                    return Boolean(content.includes(searchTerm));
                 }
             }, {
                 key: "getContentsLowercase",

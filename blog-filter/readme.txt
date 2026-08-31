@@ -1,11 +1,11 @@
-=== Blog Filter - Post Grid Filter by Category or Tag  ===
+﻿=== Blog Filter - Post Grid Filter by Category or Tag  ===
 Contributors: awordpresslife, razipathhan, hanif0991, muhammadshahid, fkfaisalkhan007, sharikkhan007, zishlife, FARAZFRANK
 Donate link: https://paypal.me/awplife
 Tags: blog filter, post grid, blog layout, category filter, tag filter
 Requires at least: 5.0
 Tested up to: 7.1
 Requires PHP: 7.0
-Stable tag: 1.8.5
+Stable tag: 1.8.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -235,6 +235,13 @@ Other plugins from the same development team:
 * [Facebook Like Box](https://wordpress.org/plugins/facebook-likebox-widget-and-shortcode/ "Facebook Likebox Plugin") - Embed Facebook page like boxes on your site.
 
 == Changelog ==
+
+= 1.8.6 =
+* Date: 31-08-2026
+* **Fix**: Resolved issue where uppercase/capital letters in search queries returned no matching posts by making Filterizr search matching strictly case-insensitive.
+* **Fix**: Resolved vertical misalignment where category and tag icons sat higher than the text in post cards; implemented inline-flex vertical centering.
+* **UI/UX**: Synchronized search input border, text color, placeholder, and focus styling dynamically with the selected button color ($blog_buttons_color).
+* **UI/UX**: Enhanced loading spinner horizontal centering directly below filter buttons with responsive auto margins.
 
 = 1.8.5 =
 * Date: 27-08-2026
