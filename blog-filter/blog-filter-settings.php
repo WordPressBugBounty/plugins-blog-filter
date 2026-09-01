@@ -241,6 +241,7 @@ if (!defined('ABSPATH'))
 
 					<!-- Settings Content -->
 					<div class="bfg-w-3/4  bfg-border bfg-border-gray-100 bfg-bg-[white]">
+						<input type="hidden" id="bfg_admin_security" value="<?php echo esc_attr(wp_create_nonce('bfg_admin_nonce')); ?>">
 
 						<div id="general" class="settings-tab ">
 							<div class="bfg-flex bfg-items-center bfg-justify-between bfg-border-b bfg-p-4">
@@ -414,8 +415,7 @@ if (!defined('ABSPATH'))
 										class="bfg-font-medium"><?php esc_html_e('Select Taxonomy for Filtering', 'blog-filter'); ?></label>
 									<select id="bfg_taxonomy_select" name="bfg_taxonomy_select"
 										class="bfg-border bfg-rounded bfg-px-3 bfg-py-2 bfg-w-1/3">
-										<option value=""><?php esc_html_e('Select a post type first', 'blog-filter'); ?>
-										</option>
+										<option value=""><?php esc_html_e('Select a post type first', 'blog-filter'); ?></option>
 									</select>
 								</div>
 
@@ -1551,6 +1551,15 @@ if (!defined('ABSPATH'))
 
 
 	jQuery(document).ready(function(jQuery) {
+		function getAdminNonce() {
+			var formNonce = jQuery('#bfg_admin_security').val();
+			if (formNonce) return formNonce;
+			if (typeof bfg_admin_ajax !== 'undefined' && bfg_admin_ajax.nonce) {
+				return bfg_admin_ajax.nonce;
+			}
+			return '';
+		}
+
 		// --- AJAX for fetching TAXONOMIES based on POST TYPE ---
 		jQuery('#post_type').on('change', function() {
 			var selectedPostType = jQuery(this).val();
@@ -1560,15 +1569,26 @@ if (!defined('ABSPATH'))
 			jQuery('#bfg_term_select').parent().addClass('bfg-hidden');
 			jQuery('#bfg_term_table_container').html('').addClass('bfg-hidden');
 
+			if (!selectedPostType) {
+				taxonomyDropdown.html('<option value=""><?php esc_html_e('Select a post type first', 'blog-filter'); ?></option>');
+				return;
+			}
 
 			taxonomyDropdown.html('<option value=""><?php esc_html_e('Loading...', 'blog-filter'); ?></option>');
 
 			jQuery.post(ajaxurl, {
 				'action': 'get_taxonomies_for_post_type',
 				'post_type': selectedPostType,
-				'security': typeof bfg_admin_ajax !== 'undefined' ? bfg_admin_ajax.nonce : ''
+				'security': getAdminNonce()
 			}, function(response) {
-				taxonomyDropdown.html(response.success ? response.data : '<option value=""><?php esc_html_e('Error', 'blog-filter'); ?></option>');
+				if (response && response.success && response.data) {
+					taxonomyDropdown.html(response.data);
+					taxonomyDropdown.trigger('change');
+				} else {
+					taxonomyDropdown.html('<option value=""><?php esc_html_e('No taxonomies found', 'blog-filter'); ?></option>');
+				}
+			}).fail(function() {
+				taxonomyDropdown.html('<option value=""><?php esc_html_e('No taxonomies found', 'blog-filter'); ?></option>');
 			});
 		});
 
@@ -1576,16 +1596,11 @@ if (!defined('ABSPATH'))
 		jQuery('#bfg_taxonomy_select').on('change', function() {
 			var selectedTaxonomy = jQuery(this).val();
 			var termDropdownContainer = jQuery('#bfg_term_select').parent();
-			var termDropdown = jQuery('#bfg_term_select');
 			var includeTableContainer = jQuery('#bfg_term_table_container');
 
-			// --- FIX IS HERE ---
-
-
-			if (!selectedTaxonomy) {
+			if (!selectedTaxonomy || selectedTaxonomy === 'none') {
 				termDropdownContainer.addClass('bfg-hidden');
 				includeTableContainer.addClass('bfg-hidden');
-
 				return;
 			}
 
@@ -1593,14 +1608,12 @@ if (!defined('ABSPATH'))
 			termDropdownContainer.removeClass('bfg-hidden');
 			includeTableContainer.removeClass('bfg-hidden').html('<p class="bfg-text-center bfg-py-4"><?php esc_html_e('Loading...', 'blog-filter'); ?></p>');
 
-
 			jQuery.post(ajaxurl, {
 				'action': 'get_terms_for_taxonomy',
 				'taxonomy': selectedTaxonomy,
-				'security': typeof bfg_admin_ajax !== 'undefined' ? bfg_admin_ajax.nonce : ''
+				'security': getAdminNonce()
 			}, function(response) {
-				if (response.success) {
-					// Populate all elements from the single response object
+				if (response && response.success && response.data) {
 					includeTableContainer.html(response.data.table);
 
 					// Trigger initial limit check
@@ -1622,9 +1635,7 @@ if (!defined('ABSPATH'))
 			}
 		});
 
-
 		// On page load, trigger the change handler if a post type is already selected
-		// This is useful for when you save the settings and the page reloads.
 		if (jQuery('#post_type').val()) {
 			jQuery('#post_type').trigger('change');
 		}

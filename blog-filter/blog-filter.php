@@ -1,10 +1,10 @@
-﻿<?php
+<?php
 if (!defined('ABSPATH'))
 	exit; // Exit if accessed directly
 /**
 Plugin Name: Blog Filter
 Description: Blog Filter For WordPress Blog With Multiple Filters
-Version: 1.8.6
+Version: 1.8.7
 Author: A WP Life
 Author URI: http://awplife.com/
 Text Domain: blog-filter
@@ -27,7 +27,7 @@ if (!class_exists('Awl_Blog_Filter')) {
 		protected function _constants()
 		{
 			//Plugin Version
-			define('BF_PLUGIN_VER', '1.8.6');
+			define('BF_PLUGIN_VER', '1.8.7');
 
 			//Plugin Text Domain
 			define('BF_TEXT_DOMAIN', 'blog-filter');
@@ -87,62 +87,69 @@ if (!class_exists('Awl_Blog_Filter')) {
 				return;
 			}
 
-			if (!current_user_can('manage_options')) {
+			if (!current_user_can('edit_posts') && !current_user_can('manage_options')) {
 				wp_send_json_error('Permission denied.', 403);
 				return;
 			}
 
-			if (!isset($_POST['post_type']) || empty($_POST['post_type'])) {
-				wp_send_json_error('No post type specified.', 400);
-				return;
+			$post_type = isset($_POST['post_type']) ? sanitize_text_field(wp_unslash($_POST['post_type'])) : 'post';
+			if (empty($post_type)) {
+				$post_type = 'post';
 			}
-
-			$post_type = sanitize_text_field(wp_unslash($_POST['post_type']));
 
 			// Get all public taxonomies associated with the post type.
 			$taxonomies = get_object_taxonomies($post_type, 'objects');
 
-			$options_html = '<option value="none">' . __('None', 'blog-filter') . '</option>';
+			$options_html = '';
 
 			if (!empty($taxonomies)) {
 				foreach ($taxonomies as $taxonomy) {
 					// We only want public taxonomies that can be shown in a UI.
 					if ($taxonomy->public && $taxonomy->show_ui) {
-						$options_html .= '<option value="' . esc_attr($taxonomy->name) . '">' . esc_html($taxonomy->label) . ' (' . esc_html($taxonomy->name) . ')</option>';
+						$selected = ($taxonomy->name === 'category') ? ' selected' : '';
+						$options_html .= '<option value="' . esc_attr($taxonomy->name) . '"' . $selected . '>' . esc_html($taxonomy->label) . ' (' . esc_html($taxonomy->name) . ')</option>';
 					}
 				}
 			}
 
 			// Check if we actually found any usable taxonomies
-			if ($options_html === '<option value="none">' . __('None', 'blog-filter') . '</option>') {
-				wp_send_json_success('<option value="none">' . __('No taxonomies found for this post type', 'blog-filter') . '</option>');
-			} else {
-				wp_send_json_success($options_html);
+			if (empty($options_html)) {
+				$options_html = '<option value="none">' . __('No taxonomies found for this post type', 'blog-filter') . '</option>';
 			}
+
+			wp_send_json_success($options_html);
 		}
 
 		public function bfg_get_terms_for_taxonomy_callback()
 		{
 			// Security check
-			check_ajax_referer('bfg_admin_nonce', 'security');
-			if (!current_user_can('manage_options')) {
+			if (!check_ajax_referer('bfg_admin_nonce', 'security', false)) {
+				wp_send_json_error('Invalid security token.', 403);
+				return;
+			}
+
+			if (!current_user_can('edit_posts') && !current_user_can('manage_options')) {
 				wp_send_json_error('Permission denied.', 403);
 				return;
 			}
 
 			// --- Prepare data ---
-			if (!isset($_POST['taxonomy']) || empty($_POST['taxonomy'])) {
-				wp_send_json_error('No taxonomy specified.', 400);
+			$taxonomy_name = isset($_POST['taxonomy']) ? sanitize_text_field(wp_unslash($_POST['taxonomy'])) : 'category';
+			if (empty($taxonomy_name) || $taxonomy_name === 'none') {
+				wp_send_json_success([
+					'dropdown' => '<option value="all">' . __('All', 'blog-filter') . '</option>',
+					'table' => '<p>' . __('No terms available for this taxonomy.', 'blog-filter') . '</p>',
+				]);
 				return;
 			}
-			$taxonomy_name = sanitize_text_field(wp_unslash($_POST['taxonomy']));
+
 			$taxonomy_obj = get_taxonomy($taxonomy_name);
 			if (!$taxonomy_obj) {
 				wp_send_json_error('Invalid taxonomy.', 400);
 				return;
 			}
 			$terms = get_terms(['taxonomy' => $taxonomy_name, 'hide_empty' => false]);
-	$dropdown_html = '<option value="all">' . __('All', 'blog-filter') . '</option>';
+			$dropdown_html = '<option value="all">' . __('All', 'blog-filter') . '</option>';
 			$table_html = '';
 
 			// --- Build HTML for all three elements if terms exist ---
@@ -240,7 +247,10 @@ if (!class_exists('Awl_Blog_Filter')) {
 
 				wp_enqueue_style('blog-filter-tailwind', BF_PLUGIN_URL . 'css/styles.min.css', [], '1.0');
 				
-				// Localize nonce for admin ajax operations
+				// Localize nonce on jQuery so it is guaranteed to be available immediately
+				wp_localize_script('jquery', 'bfg_admin_ajax', array(
+					'nonce' => wp_create_nonce('bfg_admin_nonce')
+				));
 				wp_localize_script('awl-blog-filter-isotope-js', 'bfg_admin_ajax', array(
 					'nonce' => wp_create_nonce('bfg_admin_nonce')
 				));

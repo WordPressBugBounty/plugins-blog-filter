@@ -1,11 +1,11 @@
-﻿=== Blog Filter - Post Grid Filter by Category or Tag  ===
+=== Blog Filter - Post Grid Filter by Category or Tag  ===
 Contributors: awordpresslife, razipathhan, hanif0991, muhammadshahid, fkfaisalkhan007, sharikkhan007, zishlife, FARAZFRANK
 Donate link: https://paypal.me/awplife
 Tags: blog filter, post grid, blog layout, category filter, tag filter
 Requires at least: 5.0
 Tested up to: 7.1
 Requires PHP: 7.0
-Stable tag: 1.8.6
+Stable tag: 1.8.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -235,6 +235,12 @@ Other plugins from the same development team:
 * [Facebook Like Box](https://wordpress.org/plugins/facebook-likebox-widget-and-shortcode/ "Facebook Likebox Plugin") - Embed Facebook page like boxes on your site.
 
 == Changelog ==
+
+= 1.8.7 =
+* Date: 01-09-2026
+* **Fix**: Cleaned all plugin files to remove UTF-8 BOM byte-order marks, preventing "Cannot modify header information - headers already sent" warnings and redirect/cookie failures.
+* **Fix**: Resolved "Error" display in "Select Taxonomy for Filtering" dropdown on the admin settings screen by embedding direct security nonces in the DOM and hardening AJAX taxonomy retrieval.
+* **Admin UX**: Preserved dynamic post type taxonomy fetching and terms table rendering with graceful fallbacks.
 
 = 1.8.6 =
 * Date: 31-08-2026
